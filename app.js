@@ -1,6 +1,13 @@
 'use strict';
 
 /* ============================================================
+   SUPABASE
+   ============================================================ */
+const SUPABASE_URL     = 'https://pngglilremuetaphpuem.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBuZ2dsaWxyZW11ZXRhcGhwdWVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0OTYxNzYsImV4cCI6MjA5ODA3MjE3Nn0.gzk0PkPKAHSz1iMiIGVIopJWGytTohtwOsrE-tSlhJA';
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+/* ============================================================
    DEV MODE  — set true locally, or append ?dev to URL
    ============================================================ */
 const DEV_MODE = new URLSearchParams(location.search).has('dev') || false;
@@ -42,9 +49,15 @@ const PICK_TOTAL     = 11;
 
 const ADMIN_PASSWORD    = 'fantapick2026';
 const ADMIN_SESSION_KEY = 'fantapick_wc26_admin_auth';
-const ROUND_STATE_KEY   = 'fantapick_wc26_round_state';
-const MATCH_DATA_KEY    = 'fantapick_wc26_match_data';
-const ALL_DRAFTS_KEY    = 'fantapick_wc26_all_drafts';
+
+/* ============================================================
+   IN-MEMORY CACHE  (populated from Supabase on init, kept in sync)
+   Reads are synchronous (cache); writes are async (Supabase).
+   ============================================================ */
+let _roundState      = { currentRound: CURRENT_ROUND, roundState: 'upcoming' };
+let _matchData       = {};   // { [round]: { [matchId]: { homeScore, awayScore, completed, players } } }
+let _allDrafts       = {};   // { [round]: [ draftEntry, … ] } sorted by score desc
+let _qualifiedTeams  = [];   // array of team_code strings for CURRENT_ROUND
 
 /* ============================================================
    11 FORMATIONS  { d, c, a, slots[11:{r,pos}] }
@@ -225,8 +238,6 @@ function getCompletedDraft(round) { return (loadStorage().drafts || {})[round] |
 function saveCompletedDraft(round, data) {
   const s = loadStorage(); s.drafts = s.drafts || {}; s.drafts[round] = data; saveStorage(s);
 }
-function getLeaderboard(round) { return (loadStorage().leaderboards || {})[round] || []; }
-
 /* -------- Draft state persistence -------- */
 function saveDraftState(phase) {
   if (DEV_MODE || !DATA.squads) return;
@@ -275,36 +286,47 @@ function restoreDraftState(saved) {
   S.usedKeys         = new Set(S.drafted.map(playerKey));
 }
 
-function saveLeaderboardEntry(round, nick, score) {
-  const s = loadStorage(); s.leaderboards = s.leaderboards || {};
-  s.leaderboards[round] = s.leaderboards[round] || [];
-  const lb = s.leaderboards[round];
-  const ei = lb.findIndex(e => e.nick === nick);
-  const entry = { nick, score, ts: Date.now() };
-  if (ei >= 0) lb[ei] = entry; else lb.push(entry);
-  lb.sort((a,b) => b.score - a.score); s.leaderboards[round] = lb; saveStorage(s);
+/* -------- Round State (cache-backed) -------- */
+function getRoundState() { return _roundState; }
+async function setRoundState(s) {
+  _roundState = s;
+  const { error } = await sb.from('round_state')
+    .upsert({ round: s.currentRound, state: s.roundState }, { onConflict: 'round' });
+  if (error) console.error('setRoundState:', error);
 }
 
-/* -------- Round State -------- */
-function getRoundState() {
-  try { return JSON.parse(localStorage.getItem(ROUND_STATE_KEY)) || { currentRound: CURRENT_ROUND, roundState: 'upcoming' }; }
-  catch { return { currentRound: CURRENT_ROUND, roundState: 'upcoming' }; }
+/* -------- Match Data (cache-backed) -------- */
+function getMatchData() { return _matchData; }
+
+/* -------- All Drafts (cache-backed) -------- */
+function getAllDrafts() { return _allDrafts; }
+
+/* row → entry */
+function draftFromRow(d) {
+  return {
+    nick:           d.nickname,
+    score:          d.score     || 0,
+    formation:      d.formation,
+    captainKey:     d.captain,
+    ct:             d.coach,
+    ctBonusApplied: d.ct_bonus_applied || false,
+    breakdown:      d.picks     || [],
+    ts:             d.ts        || 0,
+  };
 }
-function setRoundState(s) { try { localStorage.setItem(ROUND_STATE_KEY, JSON.stringify(s)); } catch {} }
-
-/* -------- Match Data -------- */
-function getMatchData() { try { return JSON.parse(localStorage.getItem(MATCH_DATA_KEY)) || {}; } catch { return {}; } }
-function saveMatchData(d) { try { localStorage.setItem(MATCH_DATA_KEY, JSON.stringify(d)); } catch {} }
-
-/* -------- All Drafts -------- */
-function getAllDrafts() { try { return JSON.parse(localStorage.getItem(ALL_DRAFTS_KEY)) || {}; } catch { return {}; } }
-function saveAllDrafts(d) { try { localStorage.setItem(ALL_DRAFTS_KEY, JSON.stringify(d)); } catch {} }
-function saveAllDraftEntry(round, entry) {
-  const all = getAllDrafts();
-  all[round] = all[round] || [];
-  const idx = all[round].findIndex(d => d.nick === entry.nick);
-  if (idx >= 0) all[round][idx] = entry; else all[round].push(entry);
-  saveAllDrafts(all);
+/* entry → row */
+function draftToRow(round, entry) {
+  return {
+    round,
+    nickname:        entry.nick,
+    coach:           entry.ct,
+    picks:           entry.breakdown || [],
+    formation:       entry.formation,
+    captain:         entry.captainKey,
+    score:           entry.score || 0,
+    ct_bonus_applied: entry.ctBonusApplied || false,
+    ts:              entry.ts || Date.now(),
+  };
 }
 
 /* -------- Admin Auth -------- */
@@ -335,7 +357,9 @@ function getRoundTeams() {
   return new Set(DATA.fixtures.matches.flatMap(m => [m.home, m.away]));
 }
 function buildPlayerPool() {
-  const roundTeams = getRoundTeams();
+  const roundTeams = _qualifiedTeams.length > 0
+    ? new Set(_qualifiedTeams)
+    : getRoundTeams();
   const pool = [];
   for (const sq of DATA.squads) {
     if (!roundTeams.has(sq.team)) continue;
@@ -629,18 +653,16 @@ function scorePlayerAdmin(p, ap, match) {
   return pts;
 }
 
-function recalculateAllScores(round) {
-  const all = getAllDrafts();
-  const roundDrafts = all[round] || [];
-  const md = getMatchData();
-  const roundMd = md[round] || {};
+async function recalculateAllScores(round) {
+  const roundDrafts = [...(_allDrafts[round] || [])];
+  const roundMd = (_matchData[round]) || {};
 
   roundDrafts.forEach(draft => {
-    const slotted   = draft.breakdown || [];
-    const ct        = draft.ct || {};
-    const userFDef  = FORMATIONS[draft.formation || '4-3-3'];
-    const ctDCA     = parseDCA(ct.formation || '');
-    const ctMulti   = (ctDCA && userFDef && userFDef.d===ctDCA.d && userFDef.c===ctDCA.c && userFDef.a===ctDCA.a)
+    const slotted  = draft.breakdown || [];
+    const ct       = draft.ct || {};
+    const userFDef = FORMATIONS[draft.formation || '4-3-3'];
+    const ctDCA    = parseDCA(ct.formation || '');
+    const ctMulti  = (ctDCA && userFDef && userFDef.d===ctDCA.d && userFDef.c===ctDCA.c && userFDef.a===ctDCA.a)
       ? CT_MULTIPLIER : 1.0;
     let rawTotal = 0;
     draft.breakdown = slotted.map(p => {
@@ -652,13 +674,26 @@ function recalculateAllScores(round) {
       rawTotal += finalPts;
       return { ...p, pts, finalPts, isCaptain: isCap };
     });
-    draft.score        = parseFloat((rawTotal * ctMulti).toFixed(1));
+    draft.score          = parseFloat((rawTotal * ctMulti).toFixed(1));
     draft.ctBonusApplied = ctMulti > 1;
   });
 
   roundDrafts.sort((a, b) => b.score - a.score);
-  all[round] = roundDrafts;
-  saveAllDrafts(all);
+  _allDrafts[round] = roundDrafts;
+
+  // Write updated scores back to Supabase
+  for (const draft of roundDrafts) {
+    const { error } = await sb.from('drafts')
+      .update({
+        score:           draft.score,
+        picks:           draft.breakdown,
+        ct_bonus_applied: draft.ctBonusApplied,
+        updated_at:      new Date().toISOString(),
+      })
+      .eq('round', round)
+      .eq('nickname', draft.nick);
+    if (error) console.error('recalc update error:', error);
+  }
 }
 
 function calcPerfectXIAdmin(round) {
@@ -738,9 +773,9 @@ function showHome() {
   const roundState = rs.roundState;
   const allDraftsRound = getAllDrafts()[CURRENT_ROUND] || [];
   const showScore = roundState !== 'upcoming';
-  const rawLb = allDraftsRound.length > 0
-    ? (roundState === 'upcoming' ? [...allDraftsRound].sort((a,b)=>(a.ts||0)-(b.ts||0)) : [...allDraftsRound])
-    : getLeaderboard(CURRENT_ROUND);
+  const rawLb = roundState === 'upcoming'
+    ? [...allDraftsRound].sort((a,b)=>(a.ts||0)-(b.ts||0))
+    : [...allDraftsRound];
   const lb        = rawLb.slice(0,5);
   const roundName = ROUND_NAMES[CURRENT_ROUND];
   const liveBadge = roundState === 'live'
@@ -1383,7 +1418,7 @@ function confirmFormation() {
     score:result.total, breakdown:result.breakdown, ct:result.ct,
     captainKey:S.captainKey, ctBonusApplied:result.ctBonusApplied, formation:S.formation,
   });
-  // Save to all_drafts with zeroed scores — admin recalculates the real pts later
+  // Store with score:0 — admin recalculates real pts later
   const draftEntry = {
     nick,
     score: 0,
@@ -1394,10 +1429,14 @@ function confirmFormation() {
     ctBonusApplied: false,
     ts: Date.now(),
   };
-  saveAllDraftEntry(CURRENT_ROUND, draftEntry);
-  saveLeaderboardEntry(CURRENT_ROUND, nick, 0);
+  // Update local cache immediately so result screen works offline
+  _allDrafts[CURRENT_ROUND] = _allDrafts[CURRENT_ROUND] || [];
+  const idx = _allDrafts[CURRENT_ROUND].findIndex(d => d.nick === draftEntry.nick);
+  if (idx >= 0) _allDrafts[CURRENT_ROUND][idx] = draftEntry; else _allDrafts[CURRENT_ROUND].push(draftEntry);
   saveDraftState('result');
   showResult(false);
+  // Async Supabase submit — non-blocking
+  submitDraftToSupabase(CURRENT_ROUND, draftEntry);
 }
 
 /* ============================================================
@@ -1541,14 +1580,9 @@ function lbHtml() {
   const nick       = getNickname();
   const allDraftsRound = getAllDrafts()[CURRENT_ROUND] || [];
 
-  let lb;
-  if (allDraftsRound.length > 0) {
-    lb = roundState === 'upcoming'
-      ? [...allDraftsRound].sort((a,b) => (a.ts||0) - (b.ts||0))
-      : [...allDraftsRound];
-  } else {
-    lb = getLeaderboard(CURRENT_ROUND);
-  }
+  const lb = roundState === 'upcoming'
+    ? [...allDraftsRound].sort((a,b) => (a.ts||0) - (b.ts||0))
+    : [...allDraftsRound];
 
   const myI = lb.findIndex(e => e.nick === nick);
   const showScore = roundState !== 'upcoming';
@@ -1596,6 +1630,7 @@ async function init() {
   </div>`);
   try {
     await loadData();
+    await loadSupabaseState();
     if (DEV_MODE) injectDevBadge();
 
     // Admin page routing
@@ -1685,8 +1720,8 @@ function updateDesktopNav() {
 }
 
 function updateDesktopSidebar() {
-  const sb = document.getElementById('d-sidebar');
-  if (!sb) return;
+  const sidebarEl = document.getElementById('d-sidebar');
+  if (!sidebarEl) return;
   const rs  = getRoundState();
   const rn  = ROUND_NAMES[rs.currentRound] || rs.currentRound;
   const allDR  = getAllDrafts()[rs.currentRound] || [];
@@ -1696,7 +1731,7 @@ function updateDesktopSidebar() {
     ? [...allDR].sort((a,b) => (a.ts||0)-(b.ts||0))
     : [...allDR];
 
-  sb.innerHTML = `
+  sidebarEl.innerHTML = `
     <div class="section-head" style="margin-bottom:12px;">${esc(rn)}</div>
     ${lb.length === 0 ? `<div class="subtitle">Nessun draft ancora.</div>` : `
       <div class="flex-col gap-8">
@@ -1722,11 +1757,12 @@ let _publicPollTimer = null;
 
 function startPublicPolling() {
   stopPublicPolling();
-  _publicPollTimer = setInterval(() => {
-    if (getRoundState().roundState === 'live' && document.getElementById('s-result')) {
+  _publicPollTimer = setInterval(async () => {
+    await refreshFromSupabase();
+    if (_roundState.roundState === 'live' && document.getElementById('s-result')) {
       showResult(true);
     }
-  }, 60000);
+  }, 30000);
   document.addEventListener('visibilitychange', onVisibilityChange);
 }
 
@@ -1735,9 +1771,10 @@ function stopPublicPolling() {
   document.removeEventListener('visibilitychange', onVisibilityChange);
 }
 
-function onVisibilityChange() {
-  if (!document.hidden && document.getElementById('s-result')) {
-    showResult(true);
+async function onVisibilityChange() {
+  if (!document.hidden) {
+    await refreshFromSupabase();
+    if (document.getElementById('s-result')) showResult(true);
   }
 }
 
@@ -1985,33 +2022,31 @@ function renderMatchEditPanel(match, matchData) {
 }
 
 function saveMatchField(matchId, field, value) {
-  const md    = getMatchData();
   const round = getRoundState().currentRound;
-  md[round] = md[round] || {};
-  md[round][matchId] = md[round][matchId] || { homeScore: null, awayScore: null, completed: false, players: {} };
-  md[round][matchId][field] = value;
-  saveMatchData(md);
+  _matchData[round] = _matchData[round] || {};
+  _matchData[round][matchId] = _matchData[round][matchId] || { homeScore: null, awayScore: null, completed: false, players: {} };
+  _matchData[round][matchId][field] = value;
   scheduleAdminRecalc();
 }
 
 function savePlayerField(matchId, pKey, field, value) {
-  const md    = getMatchData();
   const round = getRoundState().currentRound;
-  md[round] = md[round] || {};
-  md[round][matchId] = md[round][matchId] || { homeScore: null, awayScore: null, completed: false, players: {} };
-  md[round][matchId].players = md[round][matchId].players || {};
-  md[round][matchId].players[pKey] = md[round][matchId].players[pKey] ||
+  _matchData[round] = _matchData[round] || {};
+  _matchData[round][matchId] = _matchData[round][matchId] || { homeScore: null, awayScore: null, completed: false, players: {} };
+  _matchData[round][matchId].players = _matchData[round][matchId].players || {};
+  _matchData[round][matchId].players[pKey] = _matchData[round][matchId].players[pKey] ||
     { played: false, goals: 0, assists: 0, yellow: false, red: false, penScored: false, penMissed: false, ownGoal: false, penSaved: false, goalsConceded: 0 };
-  md[round][matchId].players[pKey][field] = value;
-  saveMatchData(md);
+  _matchData[round][matchId].players[pKey][field] = value;
   scheduleAdminRecalc();
 }
 
 function scheduleAdminRecalc() {
   updateSaveIndicator('saving');
   clearTimeout(_adminSaveTimer);
-  _adminSaveTimer = setTimeout(() => {
-    recalculateAllScores(getRoundState().currentRound);
+  _adminSaveTimer = setTimeout(async () => {
+    const round = getRoundState().currentRound;
+    await saveMatchDataToSupabase(round);
+    await recalculateAllScores(round);
     updateSaveIndicator('saved');
   }, 500);
 }
@@ -2098,6 +2133,24 @@ function renderAdminSettingsTab() {
         </div>
       </div>
       <div>
+        <div class="section-head">Nazionali qualificate (round successivo)</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">
+          Inserisci i codici team separati da virgola — sblocca il draft per il round selezionato.
+        </div>
+        <select id="qt-round-select"
+          style="width:100%;padding:10px;background:var(--panel);border:1px solid var(--border);
+                 border-radius:var(--radius-sm);color:var(--text);font-size:13px;margin-bottom:8px;">
+          ${Object.entries(ROUND_NAMES).map(([k,v]) =>
+            `<option value="${k}">${esc(v)}</option>`).join('')}
+        </select>
+        <textarea id="qt-input" placeholder="Es: BRA,ARG,FRA,ESP,ITA,GER"
+          style="width:100%;padding:10px;background:var(--panel);border:1px solid var(--border);
+                 border-radius:var(--radius-sm);color:var(--text);font-size:13px;
+                 font-family:var(--font-body);resize:vertical;min-height:64px;"></textarea>
+        <button class="btn btn-ghost" style="width:100%;margin-top:8px;"
+          onclick="saveQualifiedTeamsForNextRound()">Salva e sblocca round →</button>
+      </div>
+      <div>
         <div class="section-head">Azioni</div>
         <button class="btn btn-ghost" style="width:100%;margin-bottom:8px;"
           onclick="adminForceRecalc()">↻ Ricalcola punteggi ora</button>
@@ -2111,38 +2164,161 @@ function renderAdminSettingsTab() {
     </div>`;
 }
 
-function updateRoundSetting(field, value) {
-  const rs = getRoundState();
-  rs[field] = value;
-  setRoundState(rs);
-  if (field === 'roundState' && value === 'completed') {
-    recalculateAllScores(rs.currentRound);
+async function updateRoundSetting(field, value) {
+  if (field === 'currentRound') {
+    _roundState.currentRound = value;
+    await loadRoundDataFromSupabase(value);
+  } else {
+    _roundState.roundState = value;
+    await setRoundState(_roundState);
+    if (value === 'completed') await recalculateAllScores(_roundState.currentRound);
   }
   showAdminPanel('settings');
   showToast(`${field}: ${value}`);
 }
 
-function adminForceRecalc() {
+async function adminForceRecalc() {
   const round = getRoundState().currentRound;
-  recalculateAllScores(round);
+  await recalculateAllScores(round);
   showToast('Punteggi ricalcolati!');
   updateSaveIndicator('saved');
 }
 
-function resetRoundDrafts() {
+async function resetRoundDrafts() {
   if (!DEV_MODE) return;
   if (!confirm('Cancella tutti i draft del round corrente?')) return;
   if (!confirm('Conferma: azione irreversibile.')) return;
-  const rs  = getRoundState();
-  const all = getAllDrafts();
-  delete all[rs.currentRound];
-  saveAllDrafts(all);
+  const round = getRoundState().currentRound;
+  _allDrafts[round] = [];
+  const { error } = await sb.from('drafts').delete().eq('round', round);
+  if (error) console.error('resetRoundDrafts:', error);
   const s = loadStorage();
-  if (s.leaderboards) delete s.leaderboards[rs.currentRound];
-  if (s.drafts)       delete s.drafts[rs.currentRound];
+  if (s.drafts) delete s.drafts[round];
   saveStorage(s);
   showToast('Draft resettati!');
   showAdminPanel('settings');
 }
+
+/* ============================================================
+   SUPABASE HELPERS
+   ============================================================ */
+
+/** Load all state for a given round from Supabase into cache */
+async function loadRoundDataFromSupabase(round) {
+  // match_data
+  const { data: mdRows } = await sb.from('match_data').select('*').eq('round', round);
+  _matchData[round] = {};
+  for (const m of (mdRows || [])) {
+    _matchData[round][m.match_id] = {
+      homeScore: m.home_score,
+      awayScore: m.away_score,
+      completed: m.completed,
+      players:   m.player_stats || {},
+    };
+  }
+  // drafts
+  const { data: draftRows } = await sb.from('drafts').select('*')
+    .eq('round', round).order('score', { ascending: false });
+  _allDrafts[round] = (draftRows || []).map(draftFromRow);
+}
+
+/** Load everything needed on app start */
+async function loadSupabaseState() {
+  // Round state for current round
+  const { data: rs } = await sb.from('round_state').select('*').eq('round', CURRENT_ROUND).single();
+  if (rs) _roundState = { currentRound: CURRENT_ROUND, roundState: rs.state };
+
+  await loadRoundDataFromSupabase(CURRENT_ROUND);
+
+  // Qualified teams for current round
+  const { data: qt } = await sb.from('qualified_teams').select('team_code').eq('round', CURRENT_ROUND);
+  _qualifiedTeams = (qt || []).map(r => r.team_code);
+}
+
+/** Refresh round-state + drafts from Supabase (called by polling and visibilitychange) */
+async function refreshFromSupabase() {
+  try {
+    const { data: rs } = await sb.from('round_state').select('*').eq('round', CURRENT_ROUND).single();
+    if (rs) _roundState = { currentRound: _roundState.currentRound, roundState: rs.state };
+
+    const { data: draftRows } = await sb.from('drafts').select('*')
+      .eq('round', CURRENT_ROUND).order('score', { ascending: false });
+    _allDrafts[CURRENT_ROUND] = (draftRows || []).map(draftFromRow);
+
+    updateDesktopUI();
+  } catch (e) { console.warn('refreshFromSupabase:', e); }
+}
+
+/** Write local _matchData[round] to Supabase (called after debounce) */
+async function saveMatchDataToSupabase(round) {
+  const roundMd = _matchData[round] || {};
+  for (const [matchId, md] of Object.entries(roundMd)) {
+    const fixture = (DATA.fixtures?.matches || []).find(m => m.id === matchId);
+    const { error } = await sb.from('match_data').upsert({
+      round,
+      match_id:    matchId,
+      home_team:   fixture?.home  || '',
+      away_team:   fixture?.away  || '',
+      home_score:  md.homeScore   ?? null,
+      away_score:  md.awayScore   ?? null,
+      completed:   md.completed   || false,
+      player_stats: md.players    || {},
+    }, { onConflict: 'round,match_id' });
+    if (error) console.error('saveMatchData upsert:', error);
+  }
+}
+
+/** Submit a completed draft to Supabase; retry on reconnect if offline */
+async function submitDraftToSupabase(round, entry) {
+  try {
+    const { error } = await sb.from('drafts')
+      .upsert(draftToRow(round, entry), { onConflict: 'round,nickname' });
+    if (error) throw error;
+    localStorage.removeItem('fantapick_pending_draft');
+  } catch (e) {
+    console.warn('submitDraftToSupabase failed, queuing:', e);
+    try { localStorage.setItem('fantapick_pending_draft', JSON.stringify({ round, entry })); } catch {}
+    showOfflineBanner();
+  }
+}
+
+/** Admin: save qualified teams for a given round */
+async function saveQualifiedTeamsForNextRound() {
+  const roundSel  = document.getElementById('qt-round-select')?.value;
+  const rawInput  = document.getElementById('qt-input')?.value || '';
+  const teamCodes = rawInput.split(',').map(s => s.trim().toUpperCase()).filter(Boolean);
+  if (!roundSel || !teamCodes.length) { showToast('Seleziona round e inserisci le nazionali!'); return; }
+
+  await sb.from('qualified_teams').delete().eq('round', roundSel);
+  if (teamCodes.length) {
+    const { error } = await sb.from('qualified_teams')
+      .insert(teamCodes.map(code => ({ round: roundSel, team_code: code })));
+    if (error) { showToast('Errore nel salvataggio!'); console.error(error); return; }
+  }
+  showToast(`✓ ${teamCodes.length} nazionali salvate per ${ROUND_NAMES[roundSel] || roundSel}`);
+}
+
+/* -------- Offline banner -------- */
+function showOfflineBanner() {
+  if (document.getElementById('offline-banner')) return;
+  const el = document.createElement('div');
+  el.id = 'offline-banner';
+  el.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:rgba(239,68,68,0.92);color:#fff;' +
+    'font-size:12px;text-align:center;padding:10px 16px;z-index:9999;font-family:var(--font-body);';
+  el.textContent = 'Connessione assente — il draft verrà salvato al ripristino della connessione.';
+  document.body.appendChild(el);
+}
+function hideOfflineBanner() { document.getElementById('offline-banner')?.remove(); }
+
+window.addEventListener('online', async () => {
+  hideOfflineBanner();
+  const pending = localStorage.getItem('fantapick_pending_draft');
+  if (pending) {
+    try {
+      const { round, entry } = JSON.parse(pending);
+      await submitDraftToSupabase(round, entry);
+    } catch {}
+  }
+});
 
 document.addEventListener('DOMContentLoaded', init);
