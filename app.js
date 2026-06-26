@@ -1,10 +1,22 @@
 'use strict';
 
 /* ============================================================
+   ENVIRONMENT
+   ============================================================ */
+const IS_LOCAL = ['localhost','127.0.0.1'].includes(location.hostname)
+              || location.search.includes('env=local');
+
+/* ============================================================
    SUPABASE
    ============================================================ */
-const SUPABASE_URL     = 'https://pngglilremuetaphpuem.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBuZ2dsaWxyZW11ZXRhcGhwdWVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0OTYxNzYsImV4cCI6MjA5ODA3MjE3Nn0.gzk0PkPKAHSz1iMiIGVIopJWGytTohtwOsrE-tSlhJA';
+const SUPABASE_URL = IS_LOCAL
+  ? 'http://127.0.0.1:54321'
+  : 'https://pngglilremuetaphpuem.supabase.co';
+
+const SUPABASE_ANON_KEY = IS_LOCAL
+  ? 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxvY2FsaG9zdCIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNjQxNzY5MjAwLCJleHAiOjE5NTczNDUyMDB9.dc_X5iR_VP_qroesVQ7oU7fJzSKvb8B4A8qs01OFbG0'
+  : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBuZ2dsaWxyZW11ZXRhcGhwdWVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0OTYxNzYsImV4cCI6MjA5ODA3MjE3Nn0.gzk0PkPKAHSz1iMiIGVIopJWGytTohtwOsrE-tSlhJA';
+
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 /* ============================================================
@@ -1615,10 +1627,16 @@ function copyShare() {
    INIT
    ============================================================ */
 function injectDevBadge() {
-  const b=document.createElement('div');
-  b.textContent='DEV';
-  b.style.cssText='position:fixed;bottom:12px;right:12px;background:#ef4444;color:#fff;font-size:10px;font-family:monospace;font-weight:700;padding:3px 7px;border-radius:5px;z-index:9999;pointer-events:none;letter-spacing:1px;';
-  document.body.appendChild(b);
+  const mk = (txt, bg, fg, side) => {
+    const b = document.createElement('div');
+    b.textContent = txt;
+    b.style.cssText = `position:fixed;bottom:8px;${side}:8px;background:${bg};color:${fg};` +
+      `font-size:10px;font-family:monospace;font-weight:700;padding:3px 7px;` +
+      `border-radius:4px;z-index:9999;pointer-events:none;letter-spacing:1px;`;
+    document.body.appendChild(b);
+  };
+  if (IS_LOCAL) mk('🟡 LOCAL', '#f0b429', '#000', 'left');
+  if (DEV_MODE)  mk('🔴 DEV',  '#ef4444', '#fff', 'right');
 }
 
 async function init() {
@@ -1631,7 +1649,7 @@ async function init() {
   try {
     await loadData();
     await loadSupabaseState();
-    if (DEV_MODE) injectDevBadge();
+    if (DEV_MODE || IS_LOCAL) injectDevBadge();
 
     // Admin page routing
     if (new URLSearchParams(location.search).get('page') === 'admin') {
