@@ -1,0 +1,22 @@
+{
+  "round": "r32",
+  "roundName": "Sedicesimi di Finale",
+  "matches": [
+    {"id": "r32_01", "home": "Brazil",      "away": "Egypt",       "date": "2026-07-01", "venue": "MetLife Stadium, New York"},
+    {"id": "r32_02", "home": "Argentina",   "away": "Costa Rica",  "date": "2026-07-01", "venue": "Rose Bowl, Los Angeles"},
+    {"id": "r32_03", "home": "France",      "away": "Nigeria",     "date": "2026-07-02", "venue": "AT&T Stadium, Dallas"},
+    {"id": "r32_04", "home": "England",     "away": "Senegal",     "date": "2026-07-02", "venue": "Gillette Stadium, Boston"},
+    {"id": "r32_05", "home": "Spain",       "away": "Serbia",      "date": "2026-07-03", "venue": "SoFi Stadium, Los Angeles"},
+    {"id": "r32_06", "home": "Germany",     "away": "Chile",       "date": "2026-07-03", "venue": "Estadio Azteca, Mexico City"},
+    {"id": "r32_07", "home": "Portugal",    "away": "Colombia",    "date": "2026-07-04", "venue": "BC Place, Vancouver"},
+    {"id": "r32_08", "home": "Netherlands", "away": "Ecuador",     "date": "2026-07-04", "venue": "Mercedes-Benz Stadium, Atlanta"},
+    {"id": "r32_09", "home": "Italy",       "away": "Switzerland", "date": "2026-07-05", "venue": "Levi's Stadium, San Francisco"},
+    {"id": "r32_10", "home": "Belgium",     "away": "South Korea", "date": "2026-07-05", "venue": "Lincoln Financial Field, Philadelphia"},
+    {"id": "r32_11", "home": "Croatia",     "away": "Morocco",     "date": "2026-07-06", "venue": "Arrowhead Stadium, Kansas City"},
+    {"id": "r32_12", "home": "Uruguay",     "away": "Austria",     "date": "2026-07-06", "venue": "NRG Stadium, Houston"},
+    {"id": "r32_13", "home": "Mexico",      "away": "Poland",      "date": "2026-07-07", "venue": "Estadio Akron, Guadalajara"},
+    {"id": "r32_14", "home": "Denmark",     "away": "Japan",       "date": "2026-07-07", "venue": "BMO Field, Toronto"},
+    {"id": "r32_15", "home": "Sweden",      "away": "USA",         "date": "2026-07-08", "venue": "Allegiant Stadium, Las Vegas"},
+    {"id": "r32_16", "home": "Wales",       "away": "Canada",      "date": "2026-07-08", "venue": "Estadio BBVA, Monterrey"}
+  ]
+}

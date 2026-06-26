@@ -1,0 +1,642 @@
+[
+  {
+    "team": "Brazil", "flag": "🇧🇷", "coach": "Dorival Júnior", "formation": "4-3-3",
+    "players": [
+      {"name": "Ederson", "role": "P", "stars": 5},
+      {"name": "Alisson", "role": "P", "stars": 5},
+      {"name": "Marquinhos", "role": "D", "stars": 5},
+      {"name": "Éder Militão", "role": "D", "stars": 4},
+      {"name": "Gabriel Magalhães", "role": "D", "stars": 4},
+      {"name": "Danilo", "role": "D", "stars": 4},
+      {"name": "Guilherme Arana", "role": "D", "stars": 3},
+      {"name": "Casemiro", "role": "C", "stars": 4},
+      {"name": "Bruno Guimarães", "role": "C", "stars": 5},
+      {"name": "Lucas Paquetá", "role": "C", "stars": 4},
+      {"name": "Andreas Pereira", "role": "C", "stars": 3},
+      {"name": "Gerson", "role": "C", "stars": 3},
+      {"name": "Vinicius Jr.", "role": "A", "stars": 5},
+      {"name": "Rodrygo", "role": "A", "stars": 4},
+      {"name": "Endrick", "role": "A", "stars": 4}
+    ]
+  },
+  {
+    "team": "Canada", "flag": "🇨🇦", "coach": "Jesse Marsch", "formation": "3-5-2",
+    "players": [
+      {"name": "Borjan", "role": "P", "stars": 3},
+      {"name": "Crepeau", "role": "P", "stars": 3},
+      {"name": "Johnston", "role": "D", "stars": 3},
+      {"name": "Vitória", "role": "D", "stars": 3},
+      {"name": "Miller", "role": "D", "stars": 3},
+      {"name": "Adekugbe", "role": "D", "stars": 3},
+      {"name": "Laryea", "role": "D", "stars": 3},
+      {"name": "Eustáquio", "role": "C", "stars": 4},
+      {"name": "Piette", "role": "C", "stars": 3},
+      {"name": "Ahmed", "role": "C", "stars": 3},
+      {"name": "Buchanan", "role": "C", "stars": 4},
+      {"name": "Osorio", "role": "C", "stars": 3},
+      {"name": "Davies", "role": "D", "stars": 5},
+      {"name": "David", "role": "A", "stars": 5},
+      {"name": "Larin", "role": "A", "stars": 3}
+    ]
+  },
+  {
+    "team": "Argentina", "flag": "🇦🇷", "coach": "Lionel Scaloni", "formation": "4-3-3",
+    "players": [
+      {"name": "E. Martínez", "role": "P", "stars": 5},
+      {"name": "Armani", "role": "P", "stars": 3},
+      {"name": "N. Molina", "role": "D", "stars": 4},
+      {"name": "Cristian Romero", "role": "D", "stars": 5},
+      {"name": "Lisandro Martínez", "role": "D", "stars": 5},
+      {"name": "Tagliafico", "role": "D", "stars": 3},
+      {"name": "Acuña", "role": "D", "stars": 3},
+      {"name": "De Paul", "role": "C", "stars": 4},
+      {"name": "Paredes", "role": "C", "stars": 3},
+      {"name": "Mac Allister", "role": "C", "stars": 5},
+      {"name": "Enzo Fernández", "role": "C", "stars": 4},
+      {"name": "Di María", "role": "A", "stars": 4},
+      {"name": "Messi", "role": "A", "stars": 5},
+      {"name": "Lautaro Martínez", "role": "A", "stars": 5},
+      {"name": "Julián Álvarez", "role": "A", "stars": 4}
+    ]
+  },
+  {
+    "team": "Morocco", "flag": "🇲🇦", "coach": "Walid Regragui", "formation": "4-3-3",
+    "players": [
+      {"name": "Bounou", "role": "P", "stars": 5},
+      {"name": "Tagnaouti", "role": "P", "stars": 3},
+      {"name": "Hakimi", "role": "D", "stars": 5},
+      {"name": "Saïss", "role": "D", "stars": 4},
+      {"name": "Aguerd", "role": "D", "stars": 4},
+      {"name": "Mazraoui", "role": "D", "stars": 4},
+      {"name": "Attiat-Allah", "role": "D", "stars": 3},
+      {"name": "Amrabat", "role": "C", "stars": 4},
+      {"name": "Ounahi", "role": "C", "stars": 4},
+      {"name": "Ziyech", "role": "A", "stars": 4},
+      {"name": "Sabiri", "role": "C", "stars": 3},
+      {"name": "Aouar", "role": "C", "stars": 3},
+      {"name": "Boufal", "role": "A", "stars": 3},
+      {"name": "En-Nesyri", "role": "A", "stars": 4},
+      {"name": "Benrahma", "role": "A", "stars": 3}
+    ]
+  },
+  {
+    "team": "France", "flag": "🇫🇷", "coach": "Didier Deschamps", "formation": "4-5-1",
+    "players": [
+      {"name": "Maignan", "role": "P", "stars": 5},
+      {"name": "Lloris", "role": "P", "stars": 4},
+      {"name": "Koundé", "role": "D", "stars": 4},
+      {"name": "Varane", "role": "D", "stars": 4},
+      {"name": "Upamecano", "role": "D", "stars": 4},
+      {"name": "T. Hernández", "role": "D", "stars": 4},
+      {"name": "Pavard", "role": "D", "stars": 3},
+      {"name": "Tchouaméni", "role": "C", "stars": 4},
+      {"name": "Kanté", "role": "C", "stars": 5},
+      {"name": "Camavinga", "role": "C", "stars": 4},
+      {"name": "Griezmann", "role": "C", "stars": 5},
+      {"name": "Dembélé", "role": "A", "stars": 4},
+      {"name": "Mbappé", "role": "A", "stars": 5},
+      {"name": "Giroud", "role": "A", "stars": 4},
+      {"name": "Thuram", "role": "A", "stars": 4}
+    ]
+  },
+  {
+    "team": "Japan", "flag": "🇯🇵", "coach": "Hajime Moriyasu", "formation": "4-5-1",
+    "players": [
+      {"name": "Gonda", "role": "P", "stars": 3},
+      {"name": "Osako", "role": "P", "stars": 2},
+      {"name": "Yoshida", "role": "D", "stars": 4},
+      {"name": "Tomiyasu", "role": "D", "stars": 4},
+      {"name": "Itakura", "role": "D", "stars": 3},
+      {"name": "Nagatomo", "role": "D", "stars": 3},
+      {"name": "Sugawara", "role": "D", "stars": 3},
+      {"name": "Wataru Endō", "role": "C", "stars": 4},
+      {"name": "Morita", "role": "C", "stars": 4},
+      {"name": "Kubo", "role": "C", "stars": 5},
+      {"name": "Doan", "role": "A", "stars": 4},
+      {"name": "Mitoma", "role": "A", "stars": 5},
+      {"name": "Kamada", "role": "C", "stars": 4},
+      {"name": "Minamino", "role": "A", "stars": 4},
+      {"name": "Ueda", "role": "A", "stars": 3}
+    ]
+  },
+  {
+    "team": "England", "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "coach": "Gareth Southgate", "formation": "4-3-3",
+    "players": [
+      {"name": "Pickford", "role": "P", "stars": 4},
+      {"name": "Ramsdale", "role": "P", "stars": 3},
+      {"name": "Trippier", "role": "D", "stars": 4},
+      {"name": "M. Guéhi", "role": "D", "stars": 4},
+      {"name": "Stones", "role": "D", "stars": 4},
+      {"name": "Shaw", "role": "D", "stars": 4},
+      {"name": "Alexander-Arnold", "role": "D", "stars": 5},
+      {"name": "Bellingham", "role": "C", "stars": 5},
+      {"name": "Rice", "role": "C", "stars": 5},
+      {"name": "Foden", "role": "C", "stars": 5},
+      {"name": "Henderson", "role": "C", "stars": 3},
+      {"name": "Saka", "role": "A", "stars": 5},
+      {"name": "Kane", "role": "A", "stars": 5},
+      {"name": "Sterling", "role": "A", "stars": 3},
+      {"name": "Rashford", "role": "A", "stars": 4}
+    ]
+  },
+  {
+    "team": "Colombia", "flag": "🇨🇴", "coach": "Néstor Lorenzo", "formation": "4-5-1",
+    "players": [
+      {"name": "Camilo Vargas", "role": "P", "stars": 3},
+      {"name": "Ospina", "role": "P", "stars": 4},
+      {"name": "D. Sánchez", "role": "D", "stars": 3},
+      {"name": "Lucumí", "role": "D", "stars": 3},
+      {"name": "Cuesta", "role": "D", "stars": 3},
+      {"name": "Mojica", "role": "D", "stars": 3},
+      {"name": "Muñoz", "role": "D", "stars": 3},
+      {"name": "Mateus Uribe", "role": "C", "stars": 3},
+      {"name": "Lerma", "role": "C", "stars": 3},
+      {"name": "J. Rodríguez", "role": "C", "stars": 5},
+      {"name": "Castaño", "role": "C", "stars": 3},
+      {"name": "Cuadrado", "role": "C", "stars": 4},
+      {"name": "Luis Díaz", "role": "A", "stars": 5},
+      {"name": "Borré", "role": "A", "stars": 3},
+      {"name": "Córdoba", "role": "A", "stars": 3}
+    ]
+  },
+  {
+    "team": "Spain", "flag": "🇪🇸", "coach": "Luis de la Fuente", "formation": "4-3-3",
+    "players": [
+      {"name": "Unai Simón", "role": "P", "stars": 4},
+      {"name": "Raya", "role": "P", "stars": 4},
+      {"name": "Carvajal", "role": "D", "stars": 4},
+      {"name": "Laporte", "role": "D", "stars": 4},
+      {"name": "Pau Torres", "role": "D", "stars": 4},
+      {"name": "Gayà", "role": "D", "stars": 3},
+      {"name": "Nacho", "role": "D", "stars": 3},
+      {"name": "Pedri", "role": "C", "stars": 5},
+      {"name": "Gavi", "role": "C", "stars": 5},
+      {"name": "Rodri", "role": "C", "stars": 5},
+      {"name": "Fabián Ruiz", "role": "C", "stars": 4},
+      {"name": "Yamal", "role": "A", "stars": 5},
+      {"name": "Morata", "role": "A", "stars": 4},
+      {"name": "Ferran Torres", "role": "A", "stars": 3},
+      {"name": "Olmo", "role": "A", "stars": 4}
+    ]
+  },
+  {
+    "team": "Poland", "flag": "🇵🇱", "coach": "Michał Probierz", "formation": "4-4-2",
+    "players": [
+      {"name": "Bułka", "role": "P", "stars": 3},
+      {"name": "Fabiański", "role": "P", "stars": 3},
+      {"name": "Bereszyński", "role": "D", "stars": 3},
+      {"name": "Bednarek", "role": "D", "stars": 3},
+      {"name": "Salamon", "role": "D", "stars": 3},
+      {"name": "Wieteska", "role": "D", "stars": 3},
+      {"name": "Cash", "role": "D", "stars": 3},
+      {"name": "Krychowiak", "role": "C", "stars": 3},
+      {"name": "Zieliński", "role": "C", "stars": 5},
+      {"name": "Szymański", "role": "C", "stars": 4},
+      {"name": "Klich", "role": "C", "stars": 3},
+      {"name": "Grosicki", "role": "C", "stars": 3},
+      {"name": "Lewandowski", "role": "A", "stars": 5},
+      {"name": "Piątek", "role": "A", "stars": 3},
+      {"name": "Świderski", "role": "A", "stars": 3}
+    ]
+  },
+  {
+    "team": "Germany", "flag": "🇩🇪", "coach": "Julian Nagelsmann", "formation": "4-5-1",
+    "players": [
+      {"name": "ter Stegen", "role": "P", "stars": 5},
+      {"name": "Trapp", "role": "P", "stars": 3},
+      {"name": "Kimmich", "role": "D", "stars": 5},
+      {"name": "Rüdiger", "role": "D", "stars": 5},
+      {"name": "Schlotterbeck", "role": "D", "stars": 4},
+      {"name": "Raum", "role": "D", "stars": 4},
+      {"name": "Tah", "role": "D", "stars": 3},
+      {"name": "Kroos", "role": "C", "stars": 5},
+      {"name": "Goretzka", "role": "C", "stars": 4},
+      {"name": "Musiala", "role": "C", "stars": 5},
+      {"name": "Wirtz", "role": "C", "stars": 5},
+      {"name": "Gnabry", "role": "A", "stars": 4},
+      {"name": "Havertz", "role": "A", "stars": 4},
+      {"name": "Füllkrug", "role": "A", "stars": 4},
+      {"name": "Moukoko", "role": "A", "stars": 3}
+    ]
+  },
+  {
+    "team": "South Korea", "flag": "🇰🇷", "coach": "Hong Myung-bo", "formation": "4-5-1",
+    "players": [
+      {"name": "Kim Seung-gyu", "role": "P", "stars": 3},
+      {"name": "Jo Hyeon-woo", "role": "P", "stars": 3},
+      {"name": "Kim Min-Jae", "role": "D", "stars": 5},
+      {"name": "Kim Young-gwon", "role": "D", "stars": 3},
+      {"name": "Kim Jin-su", "role": "D", "stars": 3},
+      {"name": "Lee Ki-je", "role": "D", "stars": 3},
+      {"name": "Moon Seon-min", "role": "D", "stars": 3},
+      {"name": "Jung Woo-young", "role": "C", "stars": 3},
+      {"name": "Hwang In-beom", "role": "C", "stars": 4},
+      {"name": "Lee Jae-sung", "role": "C", "stars": 4},
+      {"name": "Hwang Hee-chan", "role": "A", "stars": 4},
+      {"name": "Son", "role": "A", "stars": 5},
+      {"name": "Cho Gue-sung", "role": "A", "stars": 3},
+      {"name": "Oh Hyeon-gyu", "role": "A", "stars": 3},
+      {"name": "Bae Jun-ho", "role": "C", "stars": 4}
+    ]
+  },
+  {
+    "team": "Portugal", "flag": "🇵🇹", "coach": "Roberto Martínez", "formation": "4-3-3",
+    "players": [
+      {"name": "Diogo Costa", "role": "P", "stars": 4},
+      {"name": "Rui Patrício", "role": "P", "stars": 3},
+      {"name": "Cancelo", "role": "D", "stars": 4},
+      {"name": "Rúben Dias", "role": "D", "stars": 5},
+      {"name": "Danilo Pereira", "role": "D", "stars": 3},
+      {"name": "Nuno Mendes", "role": "D", "stars": 4},
+      {"name": "Semedo", "role": "D", "stars": 3},
+      {"name": "Rúben Neves", "role": "C", "stars": 4},
+      {"name": "Bernardo Silva", "role": "C", "stars": 5},
+      {"name": "Bruno Fernandes", "role": "C", "stars": 5},
+      {"name": "Vitinha", "role": "C", "stars": 4},
+      {"name": "Ronaldo", "role": "A", "stars": 5},
+      {"name": "Diogo Jota", "role": "A", "stars": 4},
+      {"name": "Rafael Leão", "role": "A", "stars": 5},
+      {"name": "Gonçalo Ramos", "role": "A", "stars": 4}
+    ]
+  },
+  {
+    "team": "Ecuador", "flag": "🇪🇨", "coach": "Félix Sánchez", "formation": "4-4-2",
+    "players": [
+      {"name": "Domínguez", "role": "P", "stars": 3},
+      {"name": "Galíndez", "role": "P", "stars": 3},
+      {"name": "Preciado", "role": "D", "stars": 3},
+      {"name": "Hincapié", "role": "D", "stars": 4},
+      {"name": "Torres", "role": "D", "stars": 3},
+      {"name": "Estupiñán", "role": "D", "stars": 4},
+      {"name": "Arreaga", "role": "D", "stars": 3},
+      {"name": "Caicedo", "role": "C", "stars": 5},
+      {"name": "Gruezo", "role": "C", "stars": 3},
+      {"name": "Ibarra", "role": "C", "stars": 3},
+      {"name": "Plata", "role": "C", "stars": 3},
+      {"name": "V. Valencia", "role": "A", "stars": 3},
+      {"name": "E. Valencia", "role": "A", "stars": 3},
+      {"name": "Sarmiento", "role": "A", "stars": 3},
+      {"name": "Mercado", "role": "A", "stars": 3}
+    ]
+  },
+  {
+    "team": "Netherlands", "flag": "🇳🇱", "coach": "Ronald Koeman", "formation": "4-3-3",
+    "players": [
+      {"name": "Flekken", "role": "P", "stars": 4},
+      {"name": "Bijlow", "role": "P", "stars": 3},
+      {"name": "Dumfries", "role": "D", "stars": 4},
+      {"name": "de Vrij", "role": "D", "stars": 4},
+      {"name": "van Dijk", "role": "D", "stars": 5},
+      {"name": "Blind", "role": "D", "stars": 3},
+      {"name": "Timber", "role": "D", "stars": 4},
+      {"name": "F. de Jong", "role": "C", "stars": 5},
+      {"name": "de Roon", "role": "C", "stars": 3},
+      {"name": "Klaassen", "role": "C", "stars": 3},
+      {"name": "Xavi Simons", "role": "C", "stars": 5},
+      {"name": "Depay", "role": "A", "stars": 4},
+      {"name": "Gakpo", "role": "A", "stars": 4},
+      {"name": "Bergwijn", "role": "A", "stars": 3},
+      {"name": "Weghorst", "role": "A", "stars": 3}
+    ]
+  },
+  {
+    "team": "Chile", "flag": "🇨🇱", "coach": "Ricardo Gareca", "formation": "4-3-3",
+    "players": [
+      {"name": "Claudio Bravo", "role": "P", "stars": 3},
+      {"name": "Arias", "role": "P", "stars": 3},
+      {"name": "Isla", "role": "D", "stars": 3},
+      {"name": "Medel", "role": "D", "stars": 3},
+      {"name": "Maripán", "role": "D", "stars": 3},
+      {"name": "Mena", "role": "D", "stars": 3},
+      {"name": "Paulo Díaz", "role": "D", "stars": 3},
+      {"name": "Vidal", "role": "C", "stars": 3},
+      {"name": "Aránguiz", "role": "C", "stars": 3},
+      {"name": "Pulgar", "role": "C", "stars": 3},
+      {"name": "Palacios", "role": "C", "stars": 3},
+      {"name": "Alexis Sánchez", "role": "A", "stars": 4},
+      {"name": "Brereton Díaz", "role": "A", "stars": 4},
+      {"name": "Vargas", "role": "A", "stars": 3},
+      {"name": "Pavón", "role": "A", "stars": 3}
+    ]
+  },
+  {
+    "team": "Italy", "flag": "🇮🇹", "coach": "Luciano Spalletti", "formation": "3-5-2",
+    "players": [
+      {"name": "Donnarumma", "role": "P", "stars": 5},
+      {"name": "Meret", "role": "P", "stars": 3},
+      {"name": "Acerbi", "role": "D", "stars": 3},
+      {"name": "Bastoni", "role": "D", "stars": 5},
+      {"name": "Di Lorenzo", "role": "D", "stars": 4},
+      {"name": "Dimarco", "role": "D", "stars": 4},
+      {"name": "Gatti", "role": "D", "stars": 3},
+      {"name": "Barella", "role": "C", "stars": 5},
+      {"name": "Jorginho", "role": "C", "stars": 3},
+      {"name": "Frattesi", "role": "C", "stars": 4},
+      {"name": "Pellegrini", "role": "C", "stars": 4},
+      {"name": "Zaccagni", "role": "C", "stars": 3},
+      {"name": "Immobile", "role": "A", "stars": 4},
+      {"name": "Retegui", "role": "A", "stars": 4},
+      {"name": "Chiesa", "role": "A", "stars": 4}
+    ]
+  },
+  {
+    "team": "Serbia", "flag": "🇷🇸", "coach": "Dragan Stojković", "formation": "3-5-2",
+    "players": [
+      {"name": "Rajković", "role": "P", "stars": 3},
+      {"name": "Dmitrović", "role": "P", "stars": 3},
+      {"name": "Milenković", "role": "D", "stars": 3},
+      {"name": "Pavlović", "role": "D", "stars": 3},
+      {"name": "Veljković", "role": "D", "stars": 3},
+      {"name": "Spajić", "role": "D", "stars": 3},
+      {"name": "Živković", "role": "D", "stars": 3},
+      {"name": "Milinković-Savić", "role": "C", "stars": 5},
+      {"name": "Ilić", "role": "C", "stars": 3},
+      {"name": "Lukić", "role": "C", "stars": 3},
+      {"name": "Tošić", "role": "C", "stars": 3},
+      {"name": "Vlahović", "role": "A", "stars": 5},
+      {"name": "Mitrović", "role": "A", "stars": 5},
+      {"name": "Jović", "role": "A", "stars": 4},
+      {"name": "Tadić", "role": "A", "stars": 4}
+    ]
+  },
+  {
+    "team": "Belgium", "flag": "🇧🇪", "coach": "Domenico Tedesco", "formation": "4-3-3",
+    "players": [
+      {"name": "Courtois", "role": "P", "stars": 5},
+      {"name": "Mignolet", "role": "P", "stars": 3},
+      {"name": "Castagne", "role": "D", "stars": 3},
+      {"name": "Faes", "role": "D", "stars": 3},
+      {"name": "Theate", "role": "D", "stars": 3},
+      {"name": "T. Hazard", "role": "D", "stars": 3},
+      {"name": "Sels", "role": "D", "stars": 3},
+      {"name": "De Bruyne", "role": "C", "stars": 5},
+      {"name": "Witsel", "role": "C", "stars": 3},
+      {"name": "Tielemans", "role": "C", "stars": 4},
+      {"name": "Onana", "role": "C", "stars": 4},
+      {"name": "Doku", "role": "A", "stars": 4},
+      {"name": "Lukaku", "role": "A", "stars": 5},
+      {"name": "Mertens", "role": "A", "stars": 4},
+      {"name": "Batshuayi", "role": "A", "stars": 3}
+    ]
+  },
+  {
+    "team": "USA", "flag": "🇺🇸", "coach": "Gregg Berhalter", "formation": "4-3-3",
+    "players": [
+      {"name": "Matt Turner", "role": "P", "stars": 4},
+      {"name": "Steffen", "role": "P", "stars": 3},
+      {"name": "Dest", "role": "D", "stars": 4},
+      {"name": "Long", "role": "D", "stars": 3},
+      {"name": "Richards", "role": "D", "stars": 3},
+      {"name": "Robinson", "role": "D", "stars": 4},
+      {"name": "Zimmerman", "role": "D", "stars": 3},
+      {"name": "Adams", "role": "C", "stars": 4},
+      {"name": "McKennie", "role": "C", "stars": 4},
+      {"name": "Reyna", "role": "C", "stars": 5},
+      {"name": "Musah", "role": "C", "stars": 4},
+      {"name": "Pulisic", "role": "A", "stars": 5},
+      {"name": "Weah", "role": "A", "stars": 4},
+      {"name": "Balogun", "role": "A", "stars": 4},
+      {"name": "Ferreira", "role": "A", "stars": 3}
+    ]
+  },
+  {
+    "team": "Croatia", "flag": "🇭🇷", "coach": "Zlatko Dalić", "formation": "4-3-3",
+    "players": [
+      {"name": "Livaković", "role": "P", "stars": 4},
+      {"name": "Ivušić", "role": "P", "stars": 3},
+      {"name": "Ćaleta-Car", "role": "D", "stars": 3},
+      {"name": "Lovren", "role": "D", "stars": 3},
+      {"name": "Gvardiol", "role": "D", "stars": 5},
+      {"name": "Sosa", "role": "D", "stars": 3},
+      {"name": "Erlic", "role": "D", "stars": 3},
+      {"name": "Modrić", "role": "C", "stars": 5},
+      {"name": "Brozović", "role": "C", "stars": 4},
+      {"name": "Kovačić", "role": "C", "stars": 4},
+      {"name": "Šutalo", "role": "C", "stars": 3},
+      {"name": "Perišić", "role": "A", "stars": 4},
+      {"name": "Vlašić", "role": "A", "stars": 4},
+      {"name": "Budimir", "role": "A", "stars": 3},
+      {"name": "Ivanušec", "role": "A", "stars": 3}
+    ]
+  },
+  {
+    "team": "Austria", "flag": "🇦🇹", "coach": "Ralf Rangnick", "formation": "4-5-1",
+    "players": [
+      {"name": "Pentz", "role": "P", "stars": 3},
+      {"name": "Lindner", "role": "P", "stars": 3},
+      {"name": "Posch", "role": "D", "stars": 3},
+      {"name": "Alaba", "role": "D", "stars": 5},
+      {"name": "Trauner", "role": "D", "stars": 3},
+      {"name": "Wöber", "role": "D", "stars": 3},
+      {"name": "Ullmann", "role": "D", "stars": 3},
+      {"name": "Baumgartner", "role": "C", "stars": 4},
+      {"name": "Sabitzer", "role": "C", "stars": 4},
+      {"name": "Laimer", "role": "C", "stars": 4},
+      {"name": "Grillitsch", "role": "C", "stars": 3},
+      {"name": "Gregoritsch", "role": "C", "stars": 3},
+      {"name": "Arnautović", "role": "A", "stars": 4},
+      {"name": "Onisiwo", "role": "A", "stars": 3},
+      {"name": "Seiwald", "role": "C", "stars": 4}
+    ]
+  },
+  {
+    "team": "Uruguay", "flag": "🇺🇾", "coach": "Marcelo Bielsa", "formation": "4-3-3",
+    "players": [
+      {"name": "Rochet", "role": "P", "stars": 3},
+      {"name": "Muslera", "role": "P", "stars": 4},
+      {"name": "R. Araújo", "role": "D", "stars": 5},
+      {"name": "Giménez", "role": "D", "stars": 4},
+      {"name": "Olivera", "role": "D", "stars": 3},
+      {"name": "Cáceres", "role": "D", "stars": 3},
+      {"name": "Viña", "role": "D", "stars": 3},
+      {"name": "Bentancur", "role": "C", "stars": 4},
+      {"name": "Torreira", "role": "C", "stars": 4},
+      {"name": "Valverde", "role": "C", "stars": 5},
+      {"name": "De Arrascaeta", "role": "C", "stars": 4},
+      {"name": "Darwin Núñez", "role": "A", "stars": 5},
+      {"name": "L. Suárez", "role": "A", "stars": 4},
+      {"name": "F. Torres", "role": "A", "stars": 4},
+      {"name": "Pellistri", "role": "A", "stars": 3}
+    ]
+  },
+  {
+    "team": "Switzerland", "flag": "🇨🇭", "coach": "Murat Yakin", "formation": "4-5-1",
+    "players": [
+      {"name": "Sommer", "role": "P", "stars": 4},
+      {"name": "Kobel", "role": "P", "stars": 4},
+      {"name": "Widmer", "role": "D", "stars": 3},
+      {"name": "Schär", "role": "D", "stars": 4},
+      {"name": "Akanji", "role": "D", "stars": 4},
+      {"name": "Rodríguez", "role": "D", "stars": 3},
+      {"name": "Stergiou", "role": "D", "stars": 3},
+      {"name": "Freuler", "role": "C", "stars": 3},
+      {"name": "Xhaka", "role": "C", "stars": 4},
+      {"name": "Seferović", "role": "A", "stars": 3},
+      {"name": "Vargas", "role": "C", "stars": 3},
+      {"name": "Shaqiri", "role": "C", "stars": 4},
+      {"name": "Embolo", "role": "A", "stars": 4},
+      {"name": "Okafor", "role": "A", "stars": 4},
+      {"name": "Ndoye", "role": "A", "stars": 3}
+    ]
+  },
+  {
+    "team": "Mexico", "flag": "🇲🇽", "coach": "Jaime Lozano", "formation": "4-5-1",
+    "players": [
+      {"name": "Ochoa", "role": "P", "stars": 4},
+      {"name": "Talavera", "role": "P", "stars": 3},
+      {"name": "Sánchez", "role": "D", "stars": 3},
+      {"name": "Moreno", "role": "D", "stars": 3},
+      {"name": "Montes", "role": "D", "stars": 3},
+      {"name": "Gallardo", "role": "D", "stars": 3},
+      {"name": "Araujo", "role": "D", "stars": 3},
+      {"name": "Edson Álvarez", "role": "C", "stars": 5},
+      {"name": "Pineda", "role": "C", "stars": 3},
+      {"name": "Antuna", "role": "C", "stars": 3},
+      {"name": "Herrera", "role": "C", "stars": 3},
+      {"name": "Alvarado", "role": "C", "stars": 3},
+      {"name": "H. Lozano", "role": "A", "stars": 4},
+      {"name": "Jiménez", "role": "A", "stars": 4},
+      {"name": "Henry Martín", "role": "A", "stars": 3}
+    ]
+  },
+  {
+    "team": "Senegal", "flag": "🇸🇳", "coach": "Aliou Cissé", "formation": "4-3-3",
+    "players": [
+      {"name": "Mendy", "role": "P", "stars": 4},
+      {"name": "Gomis", "role": "P", "stars": 3},
+      {"name": "Sabaly", "role": "D", "stars": 3},
+      {"name": "Koulibaly", "role": "D", "stars": 5},
+      {"name": "Diallo", "role": "D", "stars": 3},
+      {"name": "Jakobs", "role": "D", "stars": 3},
+      {"name": "Ciss", "role": "D", "stars": 3},
+      {"name": "Guèye", "role": "C", "stars": 4},
+      {"name": "Kouyaté", "role": "C", "stars": 3},
+      {"name": "Ciss Nampalys", "role": "C", "stars": 3},
+      {"name": "Diatta", "role": "C", "stars": 3},
+      {"name": "Mané", "role": "A", "stars": 5},
+      {"name": "Ismaïla Sarr", "role": "A", "stars": 4},
+      {"name": "Dia", "role": "A", "stars": 4},
+      {"name": "Diedhiou", "role": "A", "stars": 3}
+    ]
+  },
+  {
+    "team": "Denmark", "flag": "🇩🇰", "coach": "Kasper Hjulmand", "formation": "4-3-3",
+    "players": [
+      {"name": "Christensen", "role": "P", "stars": 3},
+      {"name": "Schmeichel", "role": "P", "stars": 4},
+      {"name": "Mæhle", "role": "D", "stars": 4},
+      {"name": "A. Christensen", "role": "D", "stars": 4},
+      {"name": "Andersen", "role": "D", "stars": 4},
+      {"name": "Vestergaard", "role": "D", "stars": 3},
+      {"name": "Bah", "role": "D", "stars": 3},
+      {"name": "Eriksen", "role": "C", "stars": 5},
+      {"name": "Højbjerg", "role": "C", "stars": 4},
+      {"name": "Delaney", "role": "C", "stars": 3},
+      {"name": "Nørgaard", "role": "C", "stars": 3},
+      {"name": "Damsgaard", "role": "A", "stars": 4},
+      {"name": "Braithwaite", "role": "A", "stars": 3},
+      {"name": "Dolberg", "role": "A", "stars": 3},
+      {"name": "Lindstrøm", "role": "A", "stars": 3}
+    ]
+  },
+  {
+    "team": "Nigeria", "flag": "🇳🇬", "coach": "José Peseiro", "formation": "4-5-1",
+    "players": [
+      {"name": "Nwabali", "role": "P", "stars": 3},
+      {"name": "Uzoho", "role": "P", "stars": 3},
+      {"name": "Omeruo", "role": "D", "stars": 3},
+      {"name": "Ajayi", "role": "D", "stars": 3},
+      {"name": "Collins", "role": "D", "stars": 3},
+      {"name": "Zaidu", "role": "D", "stars": 3},
+      {"name": "Ola Aina", "role": "D", "stars": 3},
+      {"name": "Ndidi", "role": "C", "stars": 4},
+      {"name": "Iheanacho", "role": "C", "stars": 3},
+      {"name": "Chukwueze", "role": "C", "stars": 4},
+      {"name": "Simon", "role": "C", "stars": 4},
+      {"name": "Lookman", "role": "A", "stars": 5},
+      {"name": "Osimhen", "role": "A", "stars": 5},
+      {"name": "Awoniyi", "role": "A", "stars": 4},
+      {"name": "Nwakali", "role": "C", "stars": 3}
+    ]
+  },
+  {
+    "team": "Sweden", "flag": "🇸🇪", "coach": "Jon Dahl Tomasson", "formation": "4-4-2",
+    "players": [
+      {"name": "Olsen", "role": "P", "stars": 3},
+      {"name": "Nordfeldt", "role": "P", "stars": 2},
+      {"name": "Nilsson-Lindelöf", "role": "D", "stars": 4},
+      {"name": "Augustinsson", "role": "D", "stars": 3},
+      {"name": "Granqvist", "role": "D", "stars": 3},
+      {"name": "Hien", "role": "D", "stars": 3},
+      {"name": "Krafth", "role": "D", "stars": 3},
+      {"name": "Svanberg", "role": "C", "stars": 3},
+      {"name": "Ekdal", "role": "C", "stars": 3},
+      {"name": "Forsberg", "role": "C", "stars": 4},
+      {"name": "Kulusevski", "role": "A", "stars": 5},
+      {"name": "Isak", "role": "A", "stars": 5},
+      {"name": "Gyökeres", "role": "A", "stars": 5},
+      {"name": "Berg", "role": "A", "stars": 3},
+      {"name": "Elanga", "role": "C", "stars": 4}
+    ]
+  },
+  {
+    "team": "Costa Rica", "flag": "🇨🇷", "coach": "Luis Fernando Suárez", "formation": "5-4-1",
+    "players": [
+      {"name": "Navas", "role": "P", "stars": 5},
+      {"name": "Sequeira", "role": "P", "stars": 3},
+      {"name": "Waston", "role": "D", "stars": 3},
+      {"name": "Calvo", "role": "D", "stars": 3},
+      {"name": "Oviedo", "role": "D", "stars": 3},
+      {"name": "Duarte", "role": "D", "stars": 3},
+      {"name": "Fuller", "role": "D", "stars": 3},
+      {"name": "Borges", "role": "C", "stars": 3},
+      {"name": "Tejeda", "role": "C", "stars": 3},
+      {"name": "Torres", "role": "C", "stars": 3},
+      {"name": "Galo", "role": "C", "stars": 3},
+      {"name": "Contreras", "role": "C", "stars": 3},
+      {"name": "Campbell", "role": "A", "stars": 4},
+      {"name": "Bryan Ruiz", "role": "A", "stars": 3},
+      {"name": "Venegas", "role": "A", "stars": 3}
+    ]
+  },
+  {
+    "team": "Wales", "flag": "🏴󠁧󠁢󠁷󠁬󠁳󠁿", "coach": "Rob Page", "formation": "4-5-1",
+    "players": [
+      {"name": "Danny Ward", "role": "P", "stars": 3},
+      {"name": "Hennessey", "role": "P", "stars": 3},
+      {"name": "Rodon", "role": "D", "stars": 4},
+      {"name": "Mepham", "role": "D", "stars": 3},
+      {"name": "Davies", "role": "D", "stars": 3},
+      {"name": "Williams", "role": "D", "stars": 3},
+      {"name": "C. Roberts", "role": "D", "stars": 3},
+      {"name": "Ramsey", "role": "C", "stars": 4},
+      {"name": "Ampadu", "role": "C", "stars": 3},
+      {"name": "Allen", "role": "C", "stars": 3},
+      {"name": "Dan James", "role": "A", "stars": 4},
+      {"name": "Brennan Johnson", "role": "A", "stars": 4},
+      {"name": "Bale", "role": "A", "stars": 4},
+      {"name": "T. Roberts", "role": "C", "stars": 3},
+      {"name": "Moore", "role": "A", "stars": 3}
+    ]
+  },
+  {
+    "team": "Egypt", "flag": "🇪🇬", "coach": "Rui Vitória", "formation": "4-5-1",
+    "players": [
+      {"name": "El-Shenawy", "role": "P", "stars": 3},
+      {"name": "Gabaski", "role": "P", "stars": 3},
+      {"name": "Ahmed Hegazi", "role": "D", "stars": 3},
+      {"name": "El-Mohamady", "role": "D", "stars": 3},
+      {"name": "Ashraf", "role": "D", "stars": 3},
+      {"name": "Omar Kamal", "role": "D", "stars": 3},
+      {"name": "Gomaa", "role": "D", "stars": 3},
+      {"name": "Elneny", "role": "C", "stars": 3},
+      {"name": "Hamdi", "role": "C", "stars": 3},
+      {"name": "Trezeguet", "role": "C", "stars": 3},
+      {"name": "Zizo", "role": "C", "stars": 3},
+      {"name": "Salah", "role": "A", "stars": 5},
+      {"name": "Marmoush", "role": "A", "stars": 4},
+      {"name": "Mostafa Mohamed", "role": "A", "stars": 3},
+      {"name": "Afsha", "role": "C", "stars": 3}
+    ]
+  }
+]
