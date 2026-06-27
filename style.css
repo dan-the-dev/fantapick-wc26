@@ -997,3 +997,36 @@ body {
 /* Result columns: default stacking (mobile) */
 .result-main { display: block; }
 .result-col-left, .result-col-right { display: block; }
+
+/* -------- NICKNAME SCREEN -------- */
+.nickname-screen {
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+.nick-screen-input {
+  width: 100%;
+  max-width: 320px;
+  padding: 14px 18px;
+  background: var(--panel);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 20px;
+  font-family: var(--font-title);
+  font-weight: 700;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.2s;
+  letter-spacing: 0.5px;
+}
+.nick-screen-input:focus { border-color: var(--gold); }
+.nick-screen-hint {
+  display: block;
+  font-size: 12px;
+  height: 16px;
+  margin-top: -8px;
+}
+.nick-screen-hint.ok  { color: var(--good); }
+.nick-screen-hint.err { color: var(--bad); }

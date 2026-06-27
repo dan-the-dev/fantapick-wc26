@@ -246,6 +246,12 @@ function getNickname()      { return loadStorage().nickname || null; }
 function setNickname(n) {
   const s = loadStorage(); s.nickname = n.trim().slice(0,20) || 'Anonimo'; saveStorage(s); return s.nickname;
 }
+function validateNickname(val) {
+  if (val.length < 2)  return { ok: false, message: 'Minimo 2 caratteri' };
+  if (val.length > 20) return { ok: false, message: 'Massimo 20 caratteri' };
+  if (!/^[a-zA-Z0-9_\-.]+$/.test(val)) return { ok: false, message: 'Solo lettere, numeri, _ - .' };
+  return { ok: true, message: '✓' };
+}
 function getCompletedDraft(round) { return (loadStorage().drafts || {})[round] || null; }
 function saveCompletedDraft(round, data) {
   const s = loadStorage(); s.drafts = s.drafts || {}; s.drafts[round] = data; saveStorage(s);
@@ -853,33 +859,42 @@ function initDraftState() {
   S.swapsLeft = 3; S.swapTargetSlotIdx = null; S.restored = false;
 }
 
-function showNicknamePrompt(cb) {
-  window._nickCb = cb;
-  render(`
-    <div class="screen" style="justify-content:center;align-items:center;" id="s-nick">
-      <div class="flex-col gap-16" style="width:100%;">
-        <div class="center">
-          <div class="eyebrow">Benvenuto</div>
-          <div class="title" style="margin-top:6px;">Inserisci<br>il tuo nome</div>
-          <div class="subtitle" style="margin-top:8px;">Verrà usato nella classifica.</div>
+function showNicknameScreen() {
+  return new Promise(resolve => {
+    render(`
+      <div class="screen nickname-screen" id="s-nickname">
+        <div style="text-align:center;">
+          <div class="eyebrow">Mondiale 2026</div>
+          <div class="title" style="margin-top:4px;">FANTA<span style="color:var(--gold)">PICK</span><br>WC26</div>
         </div>
-        <input id="nick-input" type="text" maxlength="20" placeholder="Es. Zio Fanta"
-          style="width:100%;padding:16px;background:var(--panel);border:1.5px solid var(--border);
-                 border-radius:var(--radius);color:var(--text);font-size:18px;font-family:var(--font-body);
-                 outline:none;text-align:center;"
-          autocomplete="off" autocorrect="off" spellcheck="false"
-          onkeydown="if(event.key==='Enter')submitNickname()">
-        <button class="btn btn-primary" onclick="submitNickname()">Continua →</button>
-      </div>
-    </div>`);
-  animIn('#s-nick');
-  setTimeout(()=>document.getElementById('nick-input')?.focus(), 350);
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-title);font-size:30px;font-weight:900;line-height:1.1;">Come ti chiami?</div>
+          <div class="subtitle" style="margin-top:6px;">Il tuo nickname apparirà in classifica.</div>
+        </div>
+        <input id="nick-screen-input" type="text" maxlength="20" placeholder="Es. Tifoso_Milano"
+          class="nick-screen-input"
+          autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+        <span class="nick-screen-hint" id="nick-screen-hint"></span>
+        <button id="nick-screen-btn" class="btn btn-primary" disabled>Inizia →</button>
+      </div>`);
+    animIn('#s-nickname');
+    const input = document.getElementById('nick-screen-input');
+    const btn   = document.getElementById('nick-screen-btn');
+    const hint  = document.getElementById('nick-screen-hint');
+    setTimeout(() => input?.focus(), 350);
+    input.addEventListener('input', () => {
+      const v = validateNickname(input.value.trim());
+      btn.disabled = !v.ok;
+      hint.textContent = v.message;
+      hint.className = 'nick-screen-hint ' + (v.ok ? 'ok' : 'err');
+    });
+    input.addEventListener('keydown', e => { if (e.key === 'Enter' && !btn.disabled) btn.click(); });
+    btn.addEventListener('click', () => { setNickname(input.value.trim()); resolve(); });
+  });
 }
-function submitNickname() {
-  const val=(document.getElementById('nick-input')?.value||'').trim();
-  if (!val){showToast('Inserisci un nome!');return;}
-  setNickname(val); window._nickCb?.();
-}
+/* kept for any legacy callers — delegates to showNicknameScreen then cb */
+function showNicknamePrompt(cb) { showNicknameScreen().then(cb); }
+function submitNickname() { /* no-op — handled inside showNicknameScreen */ }
 
 /* ============================================================
    CT PICK
@@ -1658,6 +1673,9 @@ async function init() {
     await loadData();
     await loadSupabaseState();
     if (DEV_MODE || IS_LOCAL) injectDevBadge();
+
+    // Nickname gate — must be set before any screen is shown
+    if (!getNickname()) await showNicknameScreen();
 
     // Admin page routing
     if (new URLSearchParams(location.search).get('page') === 'admin') {
