@@ -330,14 +330,16 @@ function draftFromRow(d) {
 function draftToRow(round, entry) {
   return {
     round,
-    nickname:        entry.nick,
-    coach:           entry.ct,
-    picks:           entry.breakdown || [],
-    formation:       entry.formation,
-    captain:         entry.captainKey,
-    score:           entry.score || 0,
+    nickname:         entry.nick,
+    coach:            entry.ct,
+    picks:            entry.breakdown || [],
+    formation:        entry.formation,
+    captain:          entry.captainKey,
+    score:            entry.score || 0,
     ct_bonus_applied: entry.ctBonusApplied || false,
-    ts:              entry.ts || Date.now(),
+    swap_count:       entry.swapsUsed || 0,
+    retry_used:       entry.retryUsed || false,
+    ts:               entry.ts || Date.now(),
   };
 }
 
@@ -1442,6 +1444,8 @@ function confirmFormation() {
     formation: S.formation,
     captainKey: S.captainKey,
     ctBonusApplied: false,
+    swapsUsed: Math.max(0, 3 - (S.swapsLeft ?? 3)),
+    retryUsed: S.retryUsed || false,
     ts: Date.now(),
   };
   // Update local cache immediately so result screen works offline
