@@ -1465,9 +1465,10 @@ function confirmFormation() {
   if (!isFormationValid()){showToast('Completa la formazione e scegli il capitano!');return;}
   const result=computeResult(); S.resultData=result;
   const nick=getNickname()||'Anonimo';
+  // Always save zeroed scores — admin recalculates real pts later via Supabase
   saveCompletedDraft(CURRENT_ROUND,{
-    score:result.total, breakdown:result.breakdown, ct:result.ct,
-    captainKey:S.captainKey, ctBonusApplied:result.ctBonusApplied, formation:S.formation,
+    score:0, breakdown:result.breakdown.map(p=>({...p,pts:0,finalPts:0})),
+    ct:result.ct, captainKey:S.captainKey, ctBonusApplied:false, formation:S.formation,
   });
   // Store with score:0 — admin recalculates real pts later
   const draftEntry = {
@@ -1546,8 +1547,8 @@ function showResult(fromStorage) {
   const upcomingNote = isUpcoming ? `
     <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--radius-sm);
                 padding:16px;text-align:center;margin:8px 0;">
-      <div style="font-size:22px;margin-bottom:8px;">⏳</div>
-      <div style="font-size:13px;color:var(--muted);">Le partite non sono ancora iniziate.<br>Il tuo punteggio si aggiornerà in tempo reale.</div>
+      <div style="font-size:13px;font-weight:700;color:var(--good);margin-bottom:6px;">Rosa confermata ✓</div>
+      <div style="font-size:13px;color:var(--muted);">Le partite non sono ancora iniziate.<br>I tuoi punteggi si aggiorneranno in tempo reale.</div>
     </div>` : '';
 
   let perfectXISection = '';
@@ -1579,7 +1580,7 @@ function showResult(fromStorage) {
         <div class="result-col-left">
           <div style="margin:12px 0 4px;">
             <div style="display:flex;align-items:center;justify-content:center;">
-              <div class="score-big" id="score-anim">0.0</div>
+              <div class="score-big" id="score-anim">${isUpcoming ? '—' : '0.0'}</div>
               ${liveBadge}
             </div>
             <div class="score-label">punti totali</div>
@@ -1588,7 +1589,7 @@ function showResult(fromStorage) {
           ${upcomingNote}
           <div class="divider"></div>
           <div class="section-head">La tua squadra</div>
-          <div class="flex-col">${displayBreakdown.map(p=>breakdownRowHtml(p)).join('')}</div>
+          <div class="flex-col">${displayBreakdown.map(p=>breakdownRowHtml(p,isUpcoming)).join('')}</div>
           <div class="divider"></div>
           <div class="section-head">Condividi</div>
           <div class="share-box" onclick="copyShare()" title="Tocca per copiare">${esc(share)}</div>
@@ -1606,22 +1607,24 @@ function showResult(fromStorage) {
     </div>`);
   animIn('#s-result');
   const scoreEl = document.getElementById('score-anim');
-  if (scoreEl) {
+  if (scoreEl && !isUpcoming) {
     const obj = {val:0};
     gsap.to(obj, {val:displayScore, duration:1.4, ease:'power2.out', delay:0.3, onUpdate:()=>{scoreEl.textContent=obj.val.toFixed(1);}});
   }
   gsap.from('.breakdown-row', {opacity:0, x:-14, stagger:0.05, duration:0.3, delay:0.5});
 }
 
-function breakdownRowHtml(p) {
-  const pts=p.finalPts!=null?p.finalPts:(p.pts||0);
+function breakdownRowHtml(p, upcoming = false) {
+  const pts = p.finalPts != null ? p.finalPts : (p.pts || 0);
+  const ptsDisplay = upcoming ? '—' : fmtPts(pts);
+  const ptsCssClass = upcoming ? 'pts-zero' : ptsCls(pts);
   return `
     <div class="breakdown-row">
       ${p.isCaptain?'<span style="font-size:14px;flex:none;">👑</span>':''}
       <span class="role-badge ${roleClass(p.role)}">${roleName(p.role)}</span>
       <span style="font-size:13px;color:var(--muted);width:22px;flex:none;">${esc(p.flag||'')}</span>
       <span class="breakdown-name">${esc(p.name)}</span>
-      <span class="breakdown-pts ${ptsCls(pts)}">${fmtPts(pts)}</span>
+      <span class="breakdown-pts ${ptsCssClass}">${ptsDisplay}</span>
     </div>`;
 }
 function ptsCls(pts){ return pts>0?'pts-positive':pts<0?'pts-negative':'pts-zero'; }
