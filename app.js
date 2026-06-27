@@ -257,6 +257,15 @@ function getCompletedDraft(round) { return (loadStorage().drafts || {})[round] |
 function saveCompletedDraft(round, data) {
   const s = loadStorage(); s.drafts = s.drafts || {}; s.drafts[round] = data; saveStorage(s);
 }
+
+function getDraftAccess() {
+  const state = getRoundState().roundState;
+  const hasDraftLocal = !!getCompletedDraft(CURRENT_ROUND);
+  const nick = getNickname();
+  const hasDraftRemote = nick && !!(getAllDrafts()[CURRENT_ROUND] || []).find(d => d.nick === nick);
+  const canDraft = DEV_MODE || state === 'upcoming';
+  return { state, hasDraft: hasDraftLocal || hasDraftRemote, canDraft };
+}
 /* -------- Draft state persistence -------- */
 function saveDraftState(phase) {
   if (DEV_MODE || !DATA.squads) return;
@@ -806,8 +815,37 @@ function restoreBannerHtml(phase) {
 /* ============================================================
    HOME SCREEN
    ============================================================ */
+function showLockedScreen(state) {
+  const cfg = {
+    live: {
+      icon: '🔴',
+      title: 'Partite in corso',
+      body: 'Il draft per questo turno è chiuso.',
+      sub: 'Dovevi draftare prima del fischio d\'inizio.<br>Puoi seguire la classifica in tempo reale.',
+    },
+    completed: {
+      icon: '✅',
+      title: 'Turno completato',
+      body: 'Il draft per questo turno è chiuso.',
+      sub: 'Partecipa al prossimo turno.',
+    },
+  };
+  const msg = cfg[state] || cfg.completed;
+  render(`
+    <div class="screen" id="s-locked" style="align-items:center;justify-content:center;text-align:center;">
+      <div style="font-size:56px;margin-bottom:16px;">${msg.icon}</div>
+      <div class="title" style="font-size:28px;">${msg.title}</div>
+      <div class="subtitle" style="margin-top:10px;">${msg.body}</div>
+      <div class="subtitle" style="margin-top:6px;color:var(--muted);font-size:13px;">${msg.sub}</div>
+      <div class="flex-col" style="margin-top:32px;width:100%;max-width:320px;">
+        <button class="btn btn-primary" onclick="showLeaderboard()">Vedi classifica</button>
+      </div>
+    </div>`);
+  animIn('#s-locked');
+}
+
 function showHome() {
-  const completed = DEV_MODE ? null : getCompletedDraft(CURRENT_ROUND);
+  const access    = getDraftAccess();
   const rs        = getRoundState();
   const roundState = rs.roundState;
   const allDraftsRound = getAllDrafts()[CURRENT_ROUND] || [];
@@ -831,12 +869,15 @@ function showHome() {
         </div>`).join('')}
     </div>
     <button class="btn btn-ghost w-full" style="margin-top:8px;font-size:12px;" onclick="showLeaderboard()">Classifica completa →</button>`;
-  const cta = completed
+  const cta = access.hasDraft
     ? `<button class="btn btn-primary" onclick="showResult(true)">Vedi il tuo risultato</button>
-       <button class="btn btn-ghost mt-8 w-full" style="margin-top:8px" onclick="startNewDraft()">↺ Nuovo Draft</button>
+       ${access.canDraft ? '<button class="btn btn-ghost w-full" style="margin-top:8px" onclick="startNewDraft()">↺ Nuovo Draft</button>' : ''}
        <button class="btn btn-ghost w-full" style="margin-top:6px;font-size:12px;" onclick="showLeaderboard()">Classifica completa →</button>`
-    : `<button class="btn btn-primary" onclick="startDraft()">Inizia il Draft</button>
-       <button class="btn btn-ghost w-full" style="margin-top:8px;font-size:12px;" onclick="showLeaderboard()">Classifica →</button>`;
+    : access.canDraft
+    ? `<button class="btn btn-primary" onclick="startDraft()">Inizia il Draft</button>
+       <button class="btn btn-ghost w-full" style="margin-top:8px;font-size:12px;" onclick="showLeaderboard()">Classifica →</button>`
+    : `<button class="btn btn-primary" disabled style="opacity:0.5;cursor:default;">Draft chiuso</button>
+       <button class="btn btn-ghost w-full" style="margin-top:8px;" onclick="showLeaderboard()">Vedi classifica →</button>`;
   render(`
     <div class="screen" id="s-home">
       <div style="margin-top:8px;">
@@ -854,10 +895,16 @@ function showHome() {
    DRAFT FLOW
    ============================================================ */
 function startDraft() {
+  const rs = getRoundState().roundState;
+  if (!DEV_MODE && rs !== 'upcoming') { showLockedScreen(rs); return; }
   if (!getNickname()) { showNicknamePrompt(()=>{ initDraftState(); showPickCT(); }); return; }
   initDraftState(); showPickCT();
 }
-function startNewDraft() { initDraftState(); showPickCT(); }
+function startNewDraft() {
+  const rs = getRoundState().roundState;
+  if (!DEV_MODE && rs !== 'upcoming') { showLockedScreen(rs); return; }
+  initDraftState(); showPickCT();
+}
 
 function initDraftState() {
   clearDraftState();
@@ -1706,6 +1753,14 @@ async function init() {
     }
 
     startPublicPolling();
+
+    // Draft access gate — blocks entry when round is live/completed
+    const access = getDraftAccess();
+    if (!access.canDraft) {
+      if (access.hasDraft) { showResult(true); return; }
+      showLockedScreen(access.state); return;
+    }
+
     const saved = loadSavedDraft();
     if (saved && saved.round === CURRENT_ROUND && !DEV_MODE) {
       if (saved.phase === 'result') { showResult(true); return; }
@@ -1825,8 +1880,12 @@ function startPublicPolling() {
   stopPublicPolling();
   _publicPollTimer = setInterval(async () => {
     await refreshFromSupabase();
-    if (_roundState.roundState === 'live' && document.getElementById('s-result')) {
-      showResult(true);
+    const rs = _roundState.roundState;
+    if (rs === 'live' && document.getElementById('s-result')) { showResult(true); return; }
+    if (rs !== 'upcoming' && document.getElementById('s-home')) {
+      const access = getDraftAccess();
+      if (!access.canDraft && !access.hasDraft) showLockedScreen(rs);
+      else showHome();
     }
   }, 30000);
   document.addEventListener('visibilitychange', onVisibilityChange);
@@ -1840,9 +1899,18 @@ function stopPublicPolling() {
 async function onVisibilityChange() {
   if (!document.hidden) {
     await refreshFromSupabase();
-    if (document.getElementById('s-result')) showResult(true);
+    if (document.getElementById('s-result')) { showResult(true); return; }
     if (document.getElementById('s-leaderboard') && _lbRoundState === 'live') {
-      await _lbRefreshPage();
+      await _lbRefreshPage(); return;
+    }
+    // If the user was on home and the round became live/completed while they were away
+    if (document.getElementById('s-home')) {
+      const access = getDraftAccess();
+      if (!access.canDraft && !access.hasDraft) {
+        showLockedScreen(access.state);
+      } else {
+        showHome(); // refresh CTA buttons to reflect new state
+      }
     }
   }
 }
