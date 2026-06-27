@@ -14,7 +14,7 @@ const SUPABASE_URL = IS_LOCAL
   : 'https://pngglilremuetaphpuem.supabase.co';
 
 const SUPABASE_ANON_KEY = IS_LOCAL
-  ? 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxvY2FsaG9zdCIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNjQxNzY5MjAwLCJleHAiOjE5NTczNDUyMDB9.dc_X5iR_VP_qroesVQ7oU7fJzSKvb8B4A8qs01OFbG0'
+  ? 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0'
   : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBuZ2dsaWxyZW11ZXRhcGhwdWVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0OTYxNzYsImV4cCI6MjA5ODA3MjE3Nn0.gzk0PkPKAHSz1iMiIGVIopJWGytTohtwOsrE-tSlhJA';
 
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -802,11 +802,14 @@ function showHome() {
           <span class="lb-nick">${esc(e.nick)}</span>
           <span class="lb-pts">${showScore ? `${e.score} pts` : '—'}</span>
         </div>`).join('')}
-    </div>`;
+    </div>
+    <button class="btn btn-ghost w-full" style="margin-top:8px;font-size:12px;" onclick="showLeaderboard()">Classifica completa →</button>`;
   const cta = completed
     ? `<button class="btn btn-primary" onclick="showResult(true)">Vedi il tuo risultato</button>
-       <button class="btn btn-ghost mt-8 w-full" style="margin-top:8px" onclick="startNewDraft()">↺ Nuovo Draft</button>`
-    : `<button class="btn btn-primary" onclick="startDraft()">Inizia il Draft</button>`;
+       <button class="btn btn-ghost mt-8 w-full" style="margin-top:8px" onclick="startNewDraft()">↺ Nuovo Draft</button>
+       <button class="btn btn-ghost w-full" style="margin-top:6px;font-size:12px;" onclick="showLeaderboard()">Classifica completa →</button>`
+    : `<button class="btn btn-primary" onclick="startDraft()">Inizia il Draft</button>
+       <button class="btn btn-ghost w-full" style="margin-top:8px;font-size:12px;" onclick="showLeaderboard()">Classifica →</button>`;
   render(`
     <div class="screen" id="s-home">
       <div style="margin-top:8px;">
@@ -1612,7 +1615,8 @@ function lbHtml() {
           <span class="lb-pts">${showScore ? `${e.score} pts` : '—'}</span>
         </div>`).join('')}
       ${myI>=10?`<div class="lb-row me"><span class="lb-rank">${myI+1}</span><span class="lb-nick">${esc(nick)}</span><span class="lb-pts">${showScore?`${lb[myI].score} pts`:'—'}</span></div>`:''}
-    </div>`;
+    </div>
+    <button class="btn btn-ghost w-full" style="margin-top:8px;font-size:12px;" onclick="showLeaderboard()">Classifica completa →</button>`;
 }
 function buildShareText(total, breakdown, roundName) {
   const emojis=(breakdown||[]).map(p=>{const pts=p.finalPts!=null?p.finalPts:(p.pts||0);return pts>0?'🟢':pts<0?'🔴':'🟡';}).join('');
@@ -1793,6 +1797,9 @@ async function onVisibilityChange() {
   if (!document.hidden) {
     await refreshFromSupabase();
     if (document.getElementById('s-result')) showResult(true);
+    if (document.getElementById('s-leaderboard') && _lbRoundState === 'live') {
+      await _lbRefreshPage();
+    }
   }
 }
 
@@ -2215,6 +2222,308 @@ async function resetRoundDrafts() {
   saveStorage(s);
   showToast('Draft resettati!');
   showAdminPanel('settings');
+}
+
+/* ============================================================
+   LEADERBOARD SCREEN
+   ============================================================ */
+const LB_PAGE_SIZE = 20;
+
+let _lbRound       = null;
+let _lbPage        = 0;
+let _lbEntries     = [];
+let _lbTotal       = 0;
+let _lbRoundState  = 'upcoming';
+let _lbProgress    = { completed: 0, total: 0 };
+let _lbAvailRounds = [];   // [{ id, label_it, order_num, state }]
+let _lbCumulative  = null; // null | [{ nickname, total, breakdown }]
+let _lbPollTimer   = null;
+
+async function showLeaderboard(round) {
+  render(`<div class="screen" style="align-items:center;justify-content:center;" id="s-lb-load">
+    <div class="flex-col gap-12" style="align-items:center;">
+      <div class="spinner"></div>
+      <div class="subtitle">Caricamento classifica…</div>
+    </div>
+  </div>`);
+  stopLbPolling();
+
+  try {
+    _lbAvailRounds = await _lbLoadAvailableRounds();
+    _lbRound = round
+      || _lbAvailRounds.find(r => r.id === CURRENT_ROUND)?.id
+      || _lbAvailRounds[0]?.id
+      || CURRENT_ROUND;
+    _lbPage    = 0;
+    _lbEntries = [];
+    await _lbFetchPage(0);
+
+    const completedIds = _lbAvailRounds.filter(r => r.state === 'completed').map(r => r.id);
+    _lbCumulative = await _lbLoadCumulative(completedIds);
+
+    _renderLeaderboard();
+    if (_lbRoundState === 'live') startLbPolling();
+  } catch(e) {
+    console.error('showLeaderboard:', e);
+    render(`<div class="screen" style="align-items:center;justify-content:center;">
+      <div class="center">
+        <div class="subtitle" style="color:var(--bad);">Errore nel caricamento.</div>
+        <button class="btn btn-ghost" style="margin-top:16px;" onclick="showHome()">← Home</button>
+      </div>
+    </div>`);
+  }
+}
+
+async function _lbFetchPage(page) {
+  const from = page * LB_PAGE_SIZE;
+  const to   = from + LB_PAGE_SIZE - 1;
+  const [
+    { data: entries, count },
+    { data: rsRow },
+    { data: mpRows },
+  ] = await Promise.all([
+    sb.from('drafts')
+      .select('nickname,score,formation,captain,created_at', { count: 'exact' })
+      .eq('round', _lbRound)
+      .order('score', { ascending: false })
+      .order('created_at', { ascending: true })
+      .range(from, to),
+    sb.from('round_state').select('state').eq('round', _lbRound).single(),
+    sb.from('match_data').select('completed').eq('round', _lbRound),
+  ]);
+  if (page === 0) _lbEntries = [];
+  _lbEntries    = [..._lbEntries, ...(entries || [])];
+  _lbTotal      = count || 0;
+  _lbRoundState = rsRow?.state || 'upcoming';
+  _lbProgress   = {
+    completed: (mpRows || []).filter(m => m.completed).length,
+    total:     (mpRows || []).length,
+  };
+}
+
+async function _lbLoadAvailableRounds() {
+  const [{ data: withDrafts }, { data: stateRows }, { data: meta }] = await Promise.all([
+    sb.from('drafts').select('round'),
+    sb.from('round_state').select('round,state'),
+    sb.from('rounds').select('id,label_it,order_num').order('order_num'),
+  ]);
+  const stateMap = Object.fromEntries((stateRows || []).map(r => [r.round, r.state]));
+  const draftSet = new Set((withDrafts || []).map(r => r.round));
+  return (meta || [])
+    .filter(r => draftSet.has(r.id) || (stateMap[r.id] && stateMap[r.id] !== 'upcoming'))
+    .map(r => ({ ...r, state: stateMap[r.id] || 'upcoming' }));
+}
+
+async function _lbLoadCumulative(completedIds) {
+  if (completedIds.length < 2) return null;
+  const { data } = await sb.from('drafts')
+    .select('nickname,round,score')
+    .in('round', completedIds);
+  if (!data) return null;
+  const map = {};
+  for (const { nickname, round, score } of data) {
+    if (!map[nickname]) map[nickname] = { total: 0, breakdown: {} };
+    map[nickname].total           += score || 0;
+    map[nickname].breakdown[round] = score || 0;
+  }
+  return Object.entries(map)
+    .map(([nickname, d]) => ({ nickname, ...d }))
+    .sort((a, b) => b.total - a.total);
+}
+
+function _renderLeaderboard() {
+  const nick    = getNickname();
+  const rs      = _lbRoundState;
+  const showPts = rs !== 'upcoming';
+
+  // -- Tabs --
+  const tabsHtml = _lbAvailRounds.length > 1 ? `
+    <div style="display:flex;gap:0;border-bottom:1px solid var(--border);margin:0 -18px 14px;
+                padding:0 18px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;">
+      ${_lbAvailRounds.map(r => `
+        <button onclick="switchLbRound('${r.id}')"
+          style="flex:none;padding:8px 14px;font-family:var(--font-title);font-size:11px;letter-spacing:1px;
+                 font-weight:700;background:none;border:none;cursor:pointer;text-transform:uppercase;
+                 white-space:nowrap;
+                 color:${r.id===_lbRound?'var(--gold)':'var(--muted)'};
+                 border-bottom:2px solid ${r.id===_lbRound?'var(--gold)':'transparent'};">
+          ${esc(r.label_it)}
+        </button>`).join('')}
+    </div>` : '';
+
+  // -- State badge + match progress --
+  const badgeCfg = {
+    upcoming:  { label: '⏳ In programma', bg: 'rgba(255,255,255,0.07)', color: 'var(--muted)' },
+    live:      { label: '🔴 Live',         bg: 'var(--bad)',             color: '#fff'         },
+    completed: { label: '✅ Completata',   bg: 'rgba(34,197,94,0.15)',   color: 'var(--good)'  },
+  };
+  const bc = badgeCfg[rs] || badgeCfg.upcoming;
+  const progressHtml = rs === 'live' && _lbProgress.total > 0
+    ? `<div style="font-size:11px;color:var(--muted);margin-top:4px;margin-bottom:10px;">
+         ${_lbProgress.completed} / ${_lbProgress.total} partite completate
+       </div>`
+    : '<div style="margin-bottom:12px;"></div>';
+
+  // -- Cumulative section --
+  let cumulativeHtml = '';
+  if (_lbCumulative && _lbCumulative.length > 0) {
+    const names = _lbAvailRounds.filter(r => r.state === 'completed').map(r => r.label_it).join(', ');
+    cumulativeHtml = `
+      <details style="margin-bottom:16px;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius-sm);">
+        <summary style="padding:12px 14px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;
+                        font-family:var(--font-title);font-size:11px;font-weight:700;letter-spacing:1px;
+                        text-transform:uppercase;color:var(--gold);list-style:none;user-select:none;">
+          <span>Classifica cumulativa</span>
+          <span style="font-weight:400;color:var(--muted);font-size:10px;text-transform:none;letter-spacing:0;">${esc(names)}</span>
+        </summary>
+        <div style="padding:0 14px 12px;">
+          ${_lbCumulative.slice(0, 10).map((e, i) => {
+            const isMe  = e.nickname === nick;
+            const medal = i===0?'🥇':i===1?'🥈':i===2?'🥉'
+              :`<span style="font-family:var(--font-title);font-weight:900;font-size:12px;color:var(--muted);">${i+1}</span>`;
+            return `
+              <div style="display:flex;align-items:center;gap:8px;padding:7px 0;
+                          border-bottom:1px solid rgba(26,58,106,0.4);">
+                <span style="width:22px;text-align:center;flex:none;">${medal}</span>
+                <span style="flex:1;font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;
+                             white-space:nowrap;${isMe?'color:var(--gold);':''}">${esc(e.nickname)}</span>
+                <span style="font-family:var(--font-title);font-weight:700;font-size:14px;color:var(--gold);flex:none;">
+                  ${e.total.toFixed(1)}
+                </span>
+              </div>`;
+          }).join('')}
+        </div>
+      </details>`;
+  }
+
+  // -- Upcoming placeholder --
+  const upcomingPlaceholder = rs === 'upcoming' ? `
+    <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--radius-sm);
+                padding:24px;text-align:center;margin-bottom:16px;">
+      <div style="font-size:28px;margin-bottom:8px;">⏳</div>
+      <div style="font-size:13px;color:var(--muted);">Le partite non sono ancora iniziate.<br>La classifica si aggiornerà in tempo reale.</div>
+    </div>` : '';
+
+  // -- Entries --
+  const entriesHtml = _lbEntries.length === 0 && rs !== 'upcoming'
+    ? `<div class="subtitle center" style="margin:24px 0;">Nessun draft per questo round.</div>`
+    : `<div class="flex-col gap-6">
+        ${_lbEntries.map((e, i) => {
+          const rank    = i + 1;
+          const isMe    = e.nickname === nick;
+          const medal   = rank===1?'🥇':rank===2?'🥈':rank===3?'🥉'
+            :`<span style="font-family:var(--font-title);font-weight:900;font-size:13px;
+                           color:${rank<=10?'var(--text)':'var(--muted)'};">${rank}</span>`;
+          const captName = e.captain ? e.captain.split('|')[0] : '—';
+          const fmt      = typeof e.formation === 'string' ? e.formation : '—';
+          return `
+            <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;
+                        background:${isMe?'rgba(240,180,41,0.08)':'var(--panel)'};
+                        border:1px solid ${isMe?'var(--gold)':'var(--border)'};
+                        border-radius:var(--radius-sm);">
+              <span style="width:26px;text-align:center;flex:none;">${medal}</span>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                  ${esc(e.nickname)}${isMe?'&thinsp;<span style="font-size:9px;color:var(--gold);font-family:var(--font-title);font-weight:700;letter-spacing:0.5px;">TU</span>':''}
+                </div>
+                <div style="font-size:10px;color:var(--muted);margin-top:1px;">${esc(fmt)} · cap: ${esc(captName)}</div>
+              </div>
+              <span style="font-family:var(--font-title);font-size:16px;font-weight:700;
+                           color:${showPts?'var(--gold)':'var(--muted)'};flex:none;min-width:40px;text-align:right;">
+                ${showPts ? (e.score ?? 0) : '—'}
+              </span>
+            </div>`;
+        }).join('')}
+      </div>`;
+
+  // -- Load more footer --
+  const loaded  = _lbEntries.length;
+  const hasMore = _lbTotal > loaded;
+  const footerHtml = `
+    <div style="margin-top:12px;text-align:center;">
+      ${hasMore
+        ? `<button class="btn btn-ghost w-full" onclick="lbLoadMore()">
+             Carica altri (${_lbTotal - loaded} rimanenti)
+           </button>`
+        : ''}
+      <div style="font-size:11px;color:var(--muted);margin-top:8px;">${_lbTotal} draft totali</div>
+    </div>`;
+
+  render(`
+    <div class="screen" id="s-leaderboard" style="padding-bottom:40px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;flex:none;">
+        <button onclick="showHome()"
+          style="background:none;border:none;color:var(--muted);font-size:22px;
+                 cursor:pointer;padding:4px;line-height:1;flex:none;">←</button>
+        <div style="flex:1;min-width:0;">
+          <div class="eyebrow">Mondiale 2026</div>
+          <div style="font-family:var(--font-title);font-size:24px;font-weight:900;line-height:1.1;">Classifica</div>
+        </div>
+        ${rs === 'live'
+          ? `<button onclick="lbRefresh()"
+               style="background:none;border:1px solid var(--border);border-radius:var(--radius-sm);
+                      color:var(--muted);font-size:11px;padding:6px 10px;cursor:pointer;white-space:nowrap;flex:none;">
+               ↻ Aggiorna
+             </button>`
+          : ''}
+      </div>
+      ${tabsHtml}
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:0;">
+        <span style="font-family:var(--font-title);font-size:10px;font-weight:700;letter-spacing:0.5px;
+                     padding:3px 10px;border-radius:99px;background:${bc.bg};color:${bc.color};">${bc.label}</span>
+      </div>
+      ${progressHtml}
+      ${cumulativeHtml}
+      ${upcomingPlaceholder}
+      ${entriesHtml}
+      ${footerHtml}
+      <button class="btn btn-ghost w-full" style="margin-top:24px;" onclick="showHome()">← Torna alla home</button>
+    </div>`);
+  animIn('#s-leaderboard');
+}
+
+async function switchLbRound(round) {
+  if (round === _lbRound) return;
+  stopLbPolling();
+  _lbRound   = round;
+  _lbPage    = 0;
+  _lbEntries = [];
+  await _lbFetchPage(0);
+  _renderLeaderboard();
+  if (_lbRoundState === 'live') startLbPolling();
+}
+
+async function lbLoadMore() {
+  _lbPage++;
+  await _lbFetchPage(_lbPage);
+  _renderLeaderboard();
+}
+
+async function lbRefresh() {
+  _lbPage    = 0;
+  _lbEntries = [];
+  await _lbFetchPage(0);
+  _renderLeaderboard();
+}
+
+async function _lbRefreshPage() {
+  await _lbFetchPage(0);
+  _lbPage    = 0;
+  _lbEntries = _lbEntries.slice(0, LB_PAGE_SIZE);
+  _renderLeaderboard();
+}
+
+function startLbPolling() {
+  stopLbPolling();
+  _lbPollTimer = setInterval(async () => {
+    if (!document.getElementById('s-leaderboard')) { stopLbPolling(); return; }
+    await _lbRefreshPage();
+    if (_lbRoundState === 'completed') stopLbPolling();
+  }, 60000);
+}
+
+function stopLbPolling() {
+  if (_lbPollTimer) { clearInterval(_lbPollTimer); _lbPollTimer = null; }
 }
 
 /* ============================================================
