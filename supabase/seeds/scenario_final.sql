@@ -2,6 +2,7 @@
 -- scenario_final.sql — Mondiale finito, classifiche complete
 -- Tutti i round completed, punteggi realistici, Perfect XI calcolabile
 -- Finale: France 1-0 Argentina
+-- player_stats: { events: [...] } (played null = all played)
 -- ============================================================
 
 update public.round_state set state = 'completed', updated_at = now();
@@ -11,17 +12,25 @@ insert into public.match_data
   (round, match_id, home_team, away_team, home_score, away_score, completed, winner_team, player_stats)
 values
   ('sf','sf_01','France','Spain',2,1,true,'France',
-   '{"Mbappé|France":{"played":true,"goals":2,"assists":0,"yellow":false,"red":false,"penScored":false,"penMissed":false,"ownGoal":false},
-     "Griezmann|France":{"played":true,"goals":0,"assists":1,"yellow":false,"red":false,"penScored":false,"penMissed":false,"ownGoal":false},
-     "Theo Hernández|France":{"played":true,"goals":0,"assists":1,"yellow":false,"red":false,"penScored":false,"penMissed":false,"ownGoal":false},
-     "Yamal|Spain":{"played":true,"goals":1,"assists":0,"yellow":false,"red":false,"penScored":false,"penMissed":false,"ownGoal":false},
-     "Pedri|Spain":{"played":true,"goals":0,"assists":1,"yellow":false,"red":false,"penScored":false,"penMissed":false,"ownGoal":false}}'::jsonb),
+   '{"events":[
+     {"id":"e1","type":"goal","playerKey":"Mbappé|France","playerName":"Mbappé","team":"France","minute":null},
+     {"id":"e2","type":"goal","playerKey":"Mbappé|France","playerName":"Mbappé","team":"France","minute":null},
+     {"id":"e3","type":"assist","playerKey":"Griezmann|France","playerName":"Griezmann","team":"France","minute":null},
+     {"id":"e4","type":"assist","playerKey":"Theo Hernández|France","playerName":"Theo Hernández","team":"France","minute":null},
+     {"id":"e5","type":"goal","playerKey":"Yamal|Spain","playerName":"Yamal","team":"Spain","minute":null},
+     {"id":"e6","type":"assist","playerKey":"Pedri|Spain","playerName":"Pedri","team":"Spain","minute":null}
+   ]}'::jsonb),
   ('sf','sf_02','Argentina','Portugal',3,2,true,'Argentina',
-   '{"Messi|Argentina":{"played":true,"goals":2,"assists":1,"yellow":false,"red":false,"penScored":true,"penMissed":false,"ownGoal":false},
-     "Lautaro Martínez|Argentina":{"played":true,"goals":1,"assists":0,"yellow":false,"red":false,"penScored":false,"penMissed":false,"ownGoal":false},
-     "Ronaldo|Portugal":{"played":true,"goals":2,"assists":0,"yellow":false,"red":false,"penScored":true,"penMissed":false,"ownGoal":false},
-     "Bruno Fernandes|Portugal":{"played":true,"goals":0,"assists":1,"yellow":false,"red":false,"penScored":false,"penMissed":false,"ownGoal":false},
-     "De Paul|Argentina":{"played":true,"goals":0,"assists":1,"yellow":false,"red":false,"penScored":false,"penMissed":false,"ownGoal":false}}'::jsonb)
+   '{"events":[
+     {"id":"e1","type":"goal","playerKey":"Messi|Argentina","playerName":"Messi","team":"Argentina","minute":null},
+     {"id":"e2","type":"pen_scored","playerKey":"Messi|Argentina","playerName":"Messi","team":"Argentina","minute":null},
+     {"id":"e3","type":"assist","playerKey":"Messi|Argentina","playerName":"Messi","team":"Argentina","minute":null},
+     {"id":"e4","type":"goal","playerKey":"Lautaro Martínez|Argentina","playerName":"Lautaro Martínez","team":"Argentina","minute":null},
+     {"id":"e5","type":"assist","playerKey":"De Paul|Argentina","playerName":"De Paul","team":"Argentina","minute":null},
+     {"id":"e6","type":"goal","playerKey":"Ronaldo|Portugal","playerName":"Ronaldo","team":"Portugal","minute":null},
+     {"id":"e7","type":"pen_scored","playerKey":"Ronaldo|Portugal","playerName":"Ronaldo","team":"Portugal","minute":null},
+     {"id":"e8","type":"assist","playerKey":"Bruno Fernandes|Portugal","playerName":"Bruno Fernandes","team":"Portugal","minute":null}
+   ]}'::jsonb)
 on conflict (round, match_id) do update
   set home_score=excluded.home_score, away_score=excluded.away_score,
       completed=excluded.completed, winner_team=excluded.winner_team,
@@ -32,15 +41,12 @@ insert into public.match_data
   (round, match_id, home_team, away_team, home_score, away_score, completed, winner_team, player_stats)
 values
   ('final','final_01','France','Argentina',1,0,true,'France',
-   '{"Mbappé|France":{"played":true,"goals":1,"assists":0,"yellow":false,"red":false,"penScored":false,"penMissed":false,"ownGoal":false},
-     "Griezmann|France":{"played":true,"goals":0,"assists":1,"yellow":false,"red":false,"penScored":false,"penMissed":false,"ownGoal":false},
-     "Maignan|France":{"played":true,"goals":0,"assists":0,"yellow":false,"red":false,"penScored":false,"penMissed":false,"ownGoal":false,"goalsConceded":0},
-     "Varane|France":{"played":true,"goals":0,"assists":0,"yellow":false,"red":false,"penScored":false,"penMissed":false,"ownGoal":false},
-     "Koundé|France":{"played":true,"goals":0,"assists":0,"yellow":false,"red":false,"penScored":false,"penMissed":false,"ownGoal":false},
-     "Theo Hernández|France":{"played":true,"goals":0,"assists":0,"yellow":false,"red":false,"penScored":false,"penMissed":false,"ownGoal":false},
-     "Messi|Argentina":{"played":true,"goals":0,"assists":0,"yellow":false,"red":false,"penScored":false,"penMissed":false,"ownGoal":false},
-     "Lautaro Martínez|Argentina":{"played":true,"goals":0,"assists":0,"yellow":true,"red":false,"penScored":false,"penMissed":false,"ownGoal":false},
-     "Di María|Argentina":{"played":true,"goals":0,"assists":0,"yellow":true,"red":false,"penScored":false,"penMissed":false,"ownGoal":false}}'::jsonb)
+   '{"events":[
+     {"id":"e1","type":"goal","playerKey":"Mbappé|France","playerName":"Mbappé","team":"France","minute":null},
+     {"id":"e2","type":"assist","playerKey":"Griezmann|France","playerName":"Griezmann","team":"France","minute":null},
+     {"id":"e3","type":"yellow_card","playerKey":"Lautaro Martínez|Argentina","playerName":"Lautaro Martínez","team":"Argentina","minute":null},
+     {"id":"e4","type":"yellow_card","playerKey":"Di María|Argentina","playerName":"Di María","team":"Argentina","minute":null}
+   ]}'::jsonb)
 on conflict (round, match_id) do update
   set home_score=excluded.home_score, away_score=excluded.away_score,
       completed=excluded.completed, winner_team=excluded.winner_team,

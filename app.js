@@ -70,6 +70,7 @@ let _roundState      = { currentRound: CURRENT_ROUND, roundState: 'upcoming' };
 let _matchData       = {};   // { [round]: { [matchId]: { homeScore, awayScore, completed, players } } }
 let _allDrafts       = {};   // { [round]: [ draftEntry, … ] } sorted by score desc
 let _qualifiedTeams  = [];   // array of team_code strings for CURRENT_ROUND
+let _pickerCtx       = null; // { matchId, eventType } for player-picker drawer
 
 /* ============================================================
    11 FORMATIONS  { d, c, a, slots[11:{r,pos}] }
@@ -648,28 +649,47 @@ function getAdminMatchForTeam(team, roundMd) {
     completed: md.completed || false, players: md.players || {} };
 }
 
-function scorePlayerAdmin(p, ap, match) {
-  if (!ap || !ap.played) return 0;
-  const { team, role } = p;
+/* player_stats format (JSONB):
+   { events: [{id, type, playerKey, playerName, team, minute}], played: [playerKey,...] }
+   played: null/undefined = all players of the match played (default) */
+function scorePlayerAdmin(p, matchPlayers, match) {
+  const pKey   = playerKey(p);
+  const events = (matchPlayers && matchPlayers.events) || [];
+  const played = matchPlayers && matchPlayers.played;
+  // null/undefined played = all played; explicit array = only listed players
+  if (Array.isArray(played) && !played.includes(pKey)) return 0;
+
   let pts = 0;
-  pts += (ap.goals || 0)          * SCORING.goal;
-  pts += (ap.assists || 0)        * SCORING.assist;
-  pts += (ap.penScored ? 1 : 0)  * SCORING.pen_goal;
-  pts += (ap.yellow ? 1 : 0)     * SCORING.yellow;
-  pts += (ap.red ? 1 : 0)        * SCORING.red;
-  pts += (ap.penMissed ? 1 : 0)  * SCORING.pen_miss;
-  pts += (ap.ownGoal ? 1 : 0)    * SCORING.own_goal;
-  if (role === 'P') {
-    pts += (ap.penSaved ? 1 : 0) * SCORING.pen_save;
-    const conceded = ap.goalsConceded || 0;
-    pts += conceded * SCORING.goal_conceded;
-    if (conceded === 0) pts += SCORING.clean_sheet;
+  for (const e of events.filter(ev => ev.playerKey === pKey)) {
+    switch (e.type) {
+      case 'goal':        pts += SCORING.goal;     break;
+      case 'assist':      pts += SCORING.assist;   break;
+      case 'pen_scored':  pts += SCORING.pen_goal; break;
+      case 'pen_missed':  pts += SCORING.pen_miss; break;
+      case 'pen_saved':   if (p.role === 'P') pts += SCORING.pen_save; break;
+      case 'yellow_card': pts += SCORING.yellow;   break;
+      case 'red_card':    pts += SCORING.red;      break;
+      case 'own_goal':    pts += SCORING.own_goal; break;
+    }
   }
-  const isHome = team === match.home;
-  const myGoals  = isHome ? match.homeScore : match.awayScore;
-  const oppGoals = isHome ? match.awayScore : match.homeScore;
-  if (myGoals > oppGoals) pts += SCORING.win;
-  else if (myGoals < oppGoals) pts += SCORING.loss;
+
+  // Goalkeeper: goals conceded derived from match score
+  if (p.role === 'P' && match.homeScore !== null && match.awayScore !== null) {
+    const isHome = p.team === match.home;
+    const gc = isHome ? (match.awayScore || 0) : (match.homeScore || 0);
+    pts += gc * SCORING.goal_conceded;
+    if (gc === 0) pts += SCORING.clean_sheet;
+  }
+
+  // Win/loss bonus
+  if (match.homeScore !== null && match.awayScore !== null) {
+    const isHome = p.team === match.home;
+    const mine = isHome ? match.homeScore : match.awayScore;
+    const opp  = isHome ? match.awayScore : match.homeScore;
+    if (mine > opp)  pts += SCORING.win;
+    else if (mine < opp) pts += SCORING.loss;
+  }
+
   return pts;
 }
 
@@ -687,8 +707,8 @@ async function recalculateAllScores(round) {
     let rawTotal = 0;
     draft.breakdown = slotted.map(p => {
       const match = getAdminMatchForTeam(p.team, roundMd);
-      const ap    = match ? match.players[playerKey(p)] : null;
-      const pts   = (ap && match) ? scorePlayerAdmin(p, ap, match) : 0;
+      const mp    = match ? (match.players || {}) : {};
+      const pts   = match ? scorePlayerAdmin(p, mp, match) : 0;
       const isCap = playerKey(p) === draft.captainKey;
       const finalPts = parseFloat((isCap ? pts * CAPTAIN_FACTOR : pts).toFixed(1));
       rawTotal += finalPts;
@@ -725,9 +745,8 @@ function calcPerfectXIAdmin(round) {
     if (!roundTeams.has(sq.team)) continue;
     for (const p of sq.players) {
       const match = getAdminMatchForTeam(sq.team, roundMd);
-      const pKey  = playerKey({...p, team: sq.team});
-      const ap    = match?.players[pKey];
-      const pts   = (ap && match) ? scorePlayerAdmin({...p, team: sq.team}, ap, match) : 0;
+      const mp    = match ? (match.players || {}) : {};
+      const pts   = match ? scorePlayerAdmin({...p, team: sq.team}, mp, match) : 0;
       allPlayers.push({...p, team: sq.team, flag: sq.flag, pts});
     }
   }
@@ -1865,6 +1884,7 @@ let _adminSaveTimer = null;
 
 function showAdminPanel(tab) {
   tab = tab || 'matches';
+  ensurePlayerPickerDrawer();
   const rs        = getRoundState();
   const roundName = ROUND_NAMES[rs.currentRound] || rs.currentRound;
   const stateLabel = { upcoming:'⏳ Upcoming', live:'🔴 Live', completed:'✅ Completed' }[rs.roundState] || rs.roundState;
@@ -1957,115 +1977,136 @@ function toggleMatchEdit(matchId) {
   }
 }
 
+const EVENT_TYPES = [
+  { type: 'goal',        label: '⚽ Gol'          },
+  { type: 'assist',      label: '🅰️ Assist'        },
+  { type: 'yellow_card', label: '🟨 Ammonizione'   },
+  { type: 'red_card',    label: '🟥 Espulsione'    },
+  { type: 'pen_scored',  label: '⚽ Rig. segnato'  },
+  { type: 'pen_missed',  label: '❌ Rig. sbagliato' },
+  { type: 'pen_saved',   label: '🥅 Rig. parato'   },
+  { type: 'own_goal',    label: '💀 Autogol'       },
+];
+
 function renderMatchEditPanel(match, matchData) {
   const hs        = matchData.homeScore;
   const as_       = matchData.awayScore;
   const completed = matchData.completed || false;
-  const players   = matchData.players || {};
+  const mp        = matchData.players || {};
+  const events    = mp.events  || [];
+  const played    = mp.played; // null = all played
+
+  const mid  = jsProp(match.id);
 
   const homeSq = DATA.squads.find(sq => sq.team === match.home);
   const awaySq = DATA.squads.find(sq => sq.team === match.away);
-  const homePl = (homeSq?.players || []).map(p => ({...p, team: match.home, flag: homeSq.flag}));
-  const awayPl = (awaySq?.players || []).map(p => ({...p, team: match.away, flag: awaySq.flag}));
-  const allPl  = [...homePl, ...awayPl];
+  const homePl = ([...(homeSq?.players || [])]).map(p => ({...p, team: match.home, flag: homeSq?.flag || ''}))
+    .sort((a,b) => ({P:0,D:1,C:2,A:3}[a.role]||4) - ({P:0,D:1,C:2,A:3}[b.role]||4));
+  const awayPl = ([...(awaySq?.players || [])]).map(p => ({...p, team: match.away, flag: awaySq?.flag || ''}))
+    .sort((a,b) => ({P:0,D:1,C:2,A:3}[a.role]||4) - ({P:0,D:1,C:2,A:3}[b.role]||4));
 
-  const rs = getRoundState();
-  const allDraftsRound = getAllDrafts()[rs.currentRound] || [];
-  const draftedKeys = new Set(allDraftsRound.flatMap(d => (d.breakdown||[]).map(p => playerKey(p))));
+  // score stepper
+  const hsVal = hs !== null && hs !== undefined ? hs : 0;
+  const asVal = as_ !== null && as_ !== undefined ? as_ : 0;
+  const scoreHtml = `
+    <div class="me-score-row">
+      <div class="me-team-name">${esc(match.home)}</div>
+      <div class="me-stepper">
+        <button onclick="changeMatchScore('${mid}',-1,0)">−</button>
+        <span id="me-hs-${mid}">${hs !== null && hs !== undefined ? hs : '—'}</span>
+        <button onclick="changeMatchScore('${mid}',+1,0)">+</button>
+      </div>
+      <span class="me-dash">–</span>
+      <div class="me-stepper">
+        <button onclick="changeMatchScore('${mid}',-1,1)">−</button>
+        <span id="me-as-${mid}">${as_ !== null && as_ !== undefined ? as_ : '—'}</span>
+        <button onclick="changeMatchScore('${mid}',+1,1)">+</button>
+      </div>
+      <div class="me-team-name">${esc(match.away)}</div>
+    </div>`;
 
-  const priorityPl = allPl.filter(p => draftedKeys.has(playerKey(p)));
-  const otherPl    = allPl.filter(p => !draftedKeys.has(playerKey(p)));
+  // status pills
+  const statuses = [
+    { v:'upcoming',  l:'⏳ In programma' },
+    { v:'live',      l:'🔴 Live'         },
+    { v:'completed', l:'✅ Completata'   },
+  ];
+  const curStatus = completed ? 'completed' : (hs !== null ? 'live' : 'upcoming');
+  const statusHtml = `
+    <div class="me-pills">
+      ${statuses.map(s => `
+        <button class="me-pill${s.v===curStatus?' active':''}" onclick="setMatchStatus('${mid}','${s.v}')">
+          ${s.l}
+        </button>`).join('')}
+    </div>`;
 
-  function playerRow(p) {
-    const pKey = playerKey(p);
-    const ap   = players[pKey] || {};
-    const inDraft = draftedKeys.has(pKey);
-    const isP  = p.role === 'P';
-    const mid  = jsProp(match.id);
-    const pk   = jsProp(pKey);
-
+  // presenze accordion for a team
+  function presenzaBlock(teamPlayers, teamName) {
+    const pKeys = teamPlayers.map(p => playerKey(p));
     return `
-      <div style="padding:8px 0;border-bottom:1px solid rgba(26,58,106,0.6);">
-        <div style="display:flex;align-items:center;gap:5px;margin-bottom:5px;flex-wrap:wrap;">
-          <span class="role-badge ${roleClass(p.role)}" style="font-size:9px;">${roleName(p.role)}</span>
-          <span>${esc(p.flag)}</span>
-          <span style="font-size:12px;font-weight:600;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${esc(p.name)}</span>
-          ${inDraft ? `<span style="font-size:9px;color:var(--gold);flex:none;">●draft</span>` : ''}
-          <label style="display:flex;align-items:center;gap:4px;font-size:11px;color:var(--muted);cursor:pointer;flex:none;">
-            <input type="checkbox" ${ap.played?'checked':''} onchange="savePlayerField('${mid}','${pk}','played',this.checked)">
-            giocato
-          </label>
+      <details class="me-presenze">
+        <summary>👥 Presenze ${esc(teamName)}</summary>
+        <div class="me-presenze-list">
+          ${teamPlayers.map(p => {
+            const pk = playerKey(p);
+            const isPlayed = !Array.isArray(played) || played.includes(pk);
+            return `
+              <label class="me-pres-row">
+                <input type="checkbox" ${isPlayed?'checked':''}
+                  onchange="togglePlayerPresence('${mid}','${jsProp(pk)}',this.checked)">
+                <span class="role-badge ${roleClass(p.role)}" style="font-size:9px;">${roleName(p.role)}</span>
+                <span style="font-size:12px;">${esc(p.name)}</span>
+              </label>`;
+          }).join('')}
         </div>
-        <div style="display:flex;flex-wrap:wrap;gap:5px;align-items:center;">
-          <label style="display:flex;align-items:center;gap:3px;font-size:10px;color:var(--muted);">
-            G<input type="number" min="0" max="10" value="${ap.goals||0}"
-              style="width:32px;padding:2px 4px;background:var(--bg);border:1px solid var(--border);border-radius:5px;color:var(--text);font-size:11px;text-align:center;"
-              onchange="savePlayerField('${mid}','${pk}','goals',+this.value)">
-          </label>
-          <label style="display:flex;align-items:center;gap:3px;font-size:10px;color:var(--muted);">
-            A<input type="number" min="0" max="10" value="${ap.assists||0}"
-              style="width:32px;padding:2px 4px;background:var(--bg);border:1px solid var(--border);border-radius:5px;color:var(--text);font-size:11px;text-align:center;"
-              onchange="savePlayerField('${mid}','${pk}','assists',+this.value)">
-          </label>
-          <label style="display:flex;align-items:center;gap:3px;font-size:10px;color:var(--muted);cursor:pointer;">
-            <input type="checkbox" ${ap.yellow?'checked':''} onchange="savePlayerField('${mid}','${pk}','yellow',this.checked)">🟨
-          </label>
-          <label style="display:flex;align-items:center;gap:3px;font-size:10px;color:var(--muted);cursor:pointer;">
-            <input type="checkbox" ${ap.red?'checked':''} onchange="savePlayerField('${mid}','${pk}','red',this.checked)">🟥
-          </label>
-          <label style="display:flex;align-items:center;gap:3px;font-size:10px;color:var(--muted);cursor:pointer;">
-            <input type="checkbox" ${ap.penScored?'checked':''} onchange="savePlayerField('${mid}','${pk}','penScored',this.checked)">Rig✓
-          </label>
-          <label style="display:flex;align-items:center;gap:3px;font-size:10px;color:var(--muted);cursor:pointer;">
-            <input type="checkbox" ${ap.penMissed?'checked':''} onchange="savePlayerField('${mid}','${pk}','penMissed',this.checked)">Rig✗
-          </label>
-          <label style="display:flex;align-items:center;gap:3px;font-size:10px;color:var(--muted);cursor:pointer;">
-            <input type="checkbox" ${ap.ownGoal?'checked':''} onchange="savePlayerField('${mid}','${pk}','ownGoal',this.checked)">AutoG
-          </label>
-          ${isP ? `
-            <label style="display:flex;align-items:center;gap:3px;font-size:10px;color:var(--muted);cursor:pointer;">
-              <input type="checkbox" ${ap.penSaved?'checked':''} onchange="savePlayerField('${mid}','${pk}','penSaved',this.checked)">RigP
-            </label>
-            <label style="display:flex;align-items:center;gap:3px;font-size:10px;color:var(--muted);">
-              SubG<input type="number" min="0" max="20" value="${ap.goalsConceded||0}"
-                style="width:32px;padding:2px 4px;background:var(--bg);border:1px solid var(--border);border-radius:5px;color:var(--text);font-size:11px;text-align:center;"
-                onchange="savePlayerField('${mid}','${pk}','goalsConceded',+this.value)">
-            </label>` : ''}
-        </div>
+      </details>`;
+  }
+
+  // event buttons for a team
+  function eventBtns(team) {
+    return `
+      <div class="me-event-grid">
+        ${EVENT_TYPES.map(et => `
+          <button class="me-evt-btn" onclick="openPlayerPicker('${mid}','${jsProp(team)}','${et.type}')">
+            ${et.label}
+          </button>`).join('')}
       </div>`;
   }
 
-  return `
-    <div style="margin-bottom:14px;">
-      <div style="font-family:var(--font-title);font-size:11px;font-weight:700;letter-spacing:1px;color:var(--muted);margin-bottom:8px;">RISULTATO</div>
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-        <span style="font-size:11px;color:var(--muted);min-width:50px;text-align:right;">${esc(match.home)}</span>
-        <input type="number" min="0" max="20" value="${hs !== null && hs !== undefined ? hs : ''}" placeholder="—"
-          style="width:48px;padding:8px 4px;background:var(--bg);border:1.5px solid var(--border-hi);border-radius:8px;
-                 color:var(--text);font-size:20px;font-family:var(--font-title);font-weight:700;text-align:center;"
-          onchange="saveMatchField('${jsProp(match.id)}','homeScore',this.value===''?null:+this.value)">
-        <span style="font-size:16px;color:var(--muted);">-</span>
-        <input type="number" min="0" max="20" value="${as_ !== null && as_ !== undefined ? as_ : ''}" placeholder="—"
-          style="width:48px;padding:8px 4px;background:var(--bg);border:1.5px solid var(--border-hi);border-radius:8px;
-                 color:var(--text);font-size:20px;font-family:var(--font-title);font-weight:700;text-align:center;"
-          onchange="saveMatchField('${jsProp(match.id)}','awayScore',this.value===''?null:+this.value)">
-        <span style="font-size:11px;color:var(--muted);min-width:50px;">${esc(match.away)}</span>
+  // two-column teams panel
+  const teamsHtml = `
+    <div class="me-teams">
+      <div class="me-team-col">
+        <div class="me-team-header">${esc(match.home)}</div>
+        ${presenzaBlock(homePl, match.home)}
+        ${eventBtns(match.home)}
       </div>
-      <label style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);cursor:pointer;">
-        <input type="checkbox" ${completed?'checked':''}
-          onchange="saveMatchField('${jsProp(match.id)}','completed',this.checked)">
-        Partita completata ✅
-      </label>
-    </div>
-    <div style="font-family:var(--font-title);font-size:11px;font-weight:700;letter-spacing:1px;color:var(--muted);margin-bottom:4px;">
-      GIOCATORI ${priorityPl.length > 0 ? '<span style="color:var(--gold);font-size:9px;">● = in almeno un draft</span>' : ''}
-    </div>
-    ${priorityPl.map(playerRow).join('')}
-    ${otherPl.length > 0 ? `
-      <details style="margin-top:4px;">
-        <summary style="font-size:11px;color:var(--muted);cursor:pointer;padding:8px 0;">Altri giocatori (${otherPl.length})</summary>
-        <div style="margin-top:4px;">${otherPl.map(playerRow).join('')}</div>
-      </details>` : ''}`;
+      <div class="me-team-col">
+        <div class="me-team-header">${esc(match.away)}</div>
+        ${presenzaBlock(awayPl, match.away)}
+        ${eventBtns(match.away)}
+      </div>
+    </div>`;
+
+  // event log
+  const logHtml = `
+    <div class="me-log-head">Log eventi (${events.length})</div>
+    ${events.length === 0
+      ? `<div style="font-size:12px;color:var(--muted);padding:6px 0;">Nessun evento registrato.</div>`
+      : events.map((e, idx) => {
+          const et = EVENT_TYPES.find(x => x.type === e.type);
+          return `
+            <div class="me-log-row">
+              <span class="me-log-min">${e.minute != null ? e.minute+"'" : '—'}</span>
+              <span class="me-log-icon">${et ? et.label.split(' ')[0] : '?'}</span>
+              <span class="me-log-name">${esc(e.playerName)}</span>
+              <span class="me-log-team">(${esc(e.team)})</span>
+              <button class="me-log-del" onclick="deleteMatchEvent('${mid}',${idx})">✕</button>
+            </div>`;
+        }).join('')}`;
+
+  return `${scoreHtml}${statusHtml}${teamsHtml}
+    <div style="border-top:1px solid var(--border);margin-top:14px;padding-top:12px;">${logHtml}</div>`;
 }
 
 function saveMatchField(matchId, field, value) {
@@ -2076,15 +2117,127 @@ function saveMatchField(matchId, field, value) {
   scheduleAdminRecalc();
 }
 
-function savePlayerField(matchId, pKey, field, value) {
-  const round = getRoundState().currentRound;
+function _ensureMatch(round, matchId) {
   _matchData[round] = _matchData[round] || {};
-  _matchData[round][matchId] = _matchData[round][matchId] || { homeScore: null, awayScore: null, completed: false, players: {} };
+  _matchData[round][matchId] = _matchData[round][matchId] ||
+    { homeScore: null, awayScore: null, completed: false, players: {} };
   _matchData[round][matchId].players = _matchData[round][matchId].players || {};
-  _matchData[round][matchId].players[pKey] = _matchData[round][matchId].players[pKey] ||
-    { played: false, goals: 0, assists: 0, yellow: false, red: false, penScored: false, penMissed: false, ownGoal: false, penSaved: false, goalsConceded: 0 };
-  _matchData[round][matchId].players[pKey][field] = value;
+  return _matchData[round][matchId];
+}
+
+function refreshMatchPanel(matchId) {
+  const el = document.getElementById(`edit-${matchId}`);
+  if (!el) return;
+  const rs      = getRoundState();
+  const matchMd = (_matchData[rs.currentRound] || {})[matchId] || {};
+  const fixture = (DATA.fixtures?.matches || []).find(m => m.id === matchId);
+  if (fixture) el.innerHTML = renderMatchEditPanel(fixture, matchMd);
+}
+
+function changeMatchScore(matchId, delta, side) {
+  const round = getRoundState().currentRound;
+  const md = _ensureMatch(round, matchId);
+  const field = side === 0 ? 'homeScore' : 'awayScore';
+  const cur = md[field] !== null && md[field] !== undefined ? md[field] : 0;
+  md[field] = Math.max(0, cur + delta);
+  refreshMatchPanel(matchId);
   scheduleAdminRecalc();
+}
+
+function setMatchStatus(matchId, status) {
+  const round = getRoundState().currentRound;
+  const md = _ensureMatch(round, matchId);
+  md.completed = (status === 'completed');
+  if (status !== 'upcoming' && md.homeScore === null) md.homeScore = 0;
+  if (status !== 'upcoming' && md.awayScore === null) md.awayScore = 0;
+  refreshMatchPanel(matchId);
+  scheduleAdminRecalc();
+}
+
+function togglePlayerPresence(matchId, pKey, present) {
+  const round = getRoundState().currentRound;
+  const md = _ensureMatch(round, matchId);
+  const fixture = (DATA.fixtures?.matches || []).find(m => m.id === matchId);
+  if (!fixture) return;
+
+  // Build full played list if not yet set (first interaction)
+  if (!Array.isArray(md.players.played)) {
+    const homeSq = DATA.squads.find(sq => sq.team === fixture.home);
+    const awaySq = DATA.squads.find(sq => sq.team === fixture.away);
+    md.players.played = [
+      ...(homeSq?.players || []).map(p => playerKey({...p, team: fixture.home})),
+      ...(awaySq?.players || []).map(p => playerKey({...p, team: fixture.away})),
+    ];
+  }
+  if (present) {
+    if (!md.players.played.includes(pKey)) md.players.played.push(pKey);
+  } else {
+    md.players.played = md.players.played.filter(k => k !== pKey);
+  }
+  scheduleAdminRecalc();
+}
+
+function addMatchEvent(matchId, event) {
+  const round = getRoundState().currentRound;
+  const md = _ensureMatch(round, matchId);
+  md.players.events = md.players.events || [];
+  md.players.events.push({ id: Math.random().toString(36).slice(2), ...event });
+  refreshMatchPanel(matchId);
+  scheduleAdminRecalc();
+}
+
+function deleteMatchEvent(matchId, idx) {
+  const round = getRoundState().currentRound;
+  const md = (_matchData[round] || {})[matchId];
+  if (!md) return;
+  md.players.events = (md.players.events || []).filter((_, i) => i !== idx);
+  refreshMatchPanel(matchId);
+  scheduleAdminRecalc();
+}
+
+/* ---------- Player Picker Drawer ---------- */
+function ensurePlayerPickerDrawer() {
+  if (document.getElementById('player-picker-drawer')) return;
+  const el = document.createElement('div');
+  el.id = 'player-picker-drawer';
+  el.innerHTML = '<div id="player-picker-inner"></div>';
+  el.onclick = e => { if (e.target === el) closePlayerPicker(); };
+  document.body.appendChild(el);
+}
+
+function openPlayerPicker(matchId, team, eventType) {
+  _pickerCtx = { matchId, team, eventType };
+  const sq = DATA.squads.find(s => s.team === team);
+  const players = ([...(sq?.players || [])])
+    .sort((a,b) => ({P:0,D:1,C:2,A:3}[a.role]||4) - ({P:0,D:1,C:2,A:3}[b.role]||4));
+  const et = EVENT_TYPES.find(x => x.type === eventType);
+  const inner = document.getElementById('player-picker-inner');
+  if (!inner) return;
+  inner.innerHTML = `
+    <div class="picker-header">
+      <span style="font-family:var(--font-title);font-size:14px;font-weight:700;">${et?.label || eventType} — ${esc(team)}</span>
+      <button class="picker-close" onclick="closePlayerPicker()">✕</button>
+    </div>
+    <div class="picker-list">
+      ${players.map(p => `
+        <div class="picker-row" onclick="confirmPickerPlayer('${jsProp(playerKey({...p,team}))}','${jsProp(p.name)}','${jsProp(team)}')">
+          <span class="role-badge ${roleClass(p.role)}" style="font-size:10px;">${roleName(p.role)}</span>
+          <span class="picker-name">${esc(p.name)}</span>
+        </div>`).join('')}
+    </div>`;
+  document.getElementById('player-picker-drawer').classList.add('open');
+}
+
+function closePlayerPicker() {
+  document.getElementById('player-picker-drawer')?.classList.remove('open');
+  _pickerCtx = null;
+}
+
+function confirmPickerPlayer(pKey, playerName, team) {
+  if (!_pickerCtx) return;
+  const { matchId, eventType } = _pickerCtx;
+  closePlayerPicker();
+  addMatchEvent(matchId, { type: eventType, playerKey: pKey, playerName, team, minute: null });
 }
 
 function scheduleAdminRecalc() {
