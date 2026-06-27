@@ -703,8 +703,14 @@ function scorePlayerAdmin(p, matchPlayers, match) {
 }
 
 async function recalculateAllScores(round) {
-  const roundDrafts = [...(_allDrafts[round] || [])];
-  const roundMd = (_matchData[round]) || {};
+  // Re-fetch drafts from Supabase — the local cache may be stale (new submissions since page load)
+  const { data: draftRows, error: draftErr } = await sb.from('drafts').select('*').eq('round', round);
+  if (draftErr) { showAdminError('Lettura draft', draftErr.message); return; }
+
+  const roundDrafts = (draftRows || []).map(draftFromRow);
+  const roundMd     = (_matchData[round]) || {}; // already up-to-date (just saved)
+
+  if (!roundDrafts.length) return;
 
   roundDrafts.forEach(draft => {
     const slotted  = draft.breakdown || [];
@@ -730,19 +736,19 @@ async function recalculateAllScores(round) {
   roundDrafts.sort((a, b) => b.score - a.score);
   _allDrafts[round] = roundDrafts;
 
-  // Write updated scores back to Supabase
-  for (const draft of roundDrafts) {
-    const { error } = await sb.from('drafts')
-      .update({
-        score:           draft.score,
-        picks:           draft.breakdown,
-        ct_bonus_applied: draft.ctBonusApplied,
-        updated_at:      new Date().toISOString(),
-      })
-      .eq('round', round)
-      .eq('nickname', draft.nick);
-    if (error) console.error('recalc update error:', error);
-  }
+  // Write updated scores back to Supabase in parallel
+  await Promise.all(roundDrafts.map(draft =>
+    adminSupabaseCall(
+      () => sb.from('drafts')
+        .update({ score: draft.score, picks: draft.breakdown, ct_bonus_applied: draft.ctBonusApplied, updated_at: new Date().toISOString() })
+        .eq('round', round)
+        .eq('nickname', draft.nick),
+      `Score ${draft.nick}`
+    )
+  ));
+
+  const recalcEl = document.getElementById('admin-recalc-status');
+  if (recalcEl) recalcEl.textContent = `Ricalcolato ${new Date().toLocaleTimeString('it-IT')}`;
 }
 
 function calcPerfectXIAdmin(round) {
@@ -1956,6 +1962,7 @@ let _adminSaveTimer = null;
 function showAdminPanel(tab) {
   tab = tab || 'matches';
   ensurePlayerPickerDrawer();
+  ensureAdminErrorBanner();
   const rs        = getRoundState();
   const roundName = ROUND_NAMES[rs.currentRound] || rs.currentRound;
   const stateLabel = { upcoming:'⏳ Upcoming', live:'🔴 Live', completed:'✅ Completed' }[rs.roundState] || rs.roundState;
@@ -1970,7 +1977,10 @@ function showAdminPanel(tab) {
             <div style="font-size:11px;color:var(--muted);margin-top:2px;">${stateLabel}</div>
           </div>
           <div style="display:flex;align-items:center;gap:10px;">
-            <span id="admin-save-status" style="font-size:11px;color:var(--good);"></span>
+            <div style="text-align:right;font-size:11px;line-height:1.4;">
+              <div id="admin-save-status" style="color:var(--good);min-height:1em;"></div>
+              <div id="admin-recalc-status" style="color:var(--muted);"></div>
+            </div>
             <button class="btn btn-ghost" style="font-size:11px;padding:6px 10px;" onclick="showHome()">Esci</button>
           </div>
         </div>
@@ -2325,8 +2335,45 @@ function scheduleAdminRecalc() {
 function updateSaveIndicator(state) {
   const el = document.getElementById('admin-save-status');
   if (!el) return;
-  el.textContent = state === 'saving' ? 'Salvando...' : 'Salvato ✓';
-  el.style.color  = state === 'saving' ? 'var(--muted)' : 'var(--good)';
+  if (state === 'saving')  { el.textContent = 'Salvando…'; el.style.color = 'var(--muted)'; }
+  else if (state === 'saved')  { el.textContent = 'Salvato ✓'; el.style.color = 'var(--good)'; }
+  else if (state === 'error')  { el.textContent = 'Errore salvataggio'; el.style.color = 'var(--bad)'; }
+}
+
+function ensureAdminErrorBanner() {
+  if (document.getElementById('admin-error-banner')) return;
+  const el = document.createElement('div');
+  el.id = 'admin-error-banner';
+  el.style.cssText = 'display:none;position:fixed;top:0;left:0;right:0;background:var(--bad);color:#fff;' +
+    'padding:12px 16px;text-align:center;font-weight:700;font-size:13px;z-index:9999;' +
+    'font-family:var(--font-body);cursor:pointer;';
+  el.onclick = () => { el.style.display = 'none'; };
+  document.body.appendChild(el);
+}
+
+function showAdminError(operation, message) {
+  updateSaveIndicator('error');
+  const banner = document.getElementById('admin-error-banner');
+  if (!banner) return;
+  banner.textContent = `❌ Errore: ${operation} — ${message}`;
+  banner.style.display = 'block';
+  setTimeout(() => { banner.style.display = 'none'; }, 6000);
+}
+
+async function adminSupabaseCall(operation, description) {
+  try {
+    const result = await operation();
+    if (result.error) {
+      console.error(`[ADMIN] ERRORE ${description}:`, result.error);
+      showAdminError(description, result.error.message);
+      return null;
+    }
+    return result.data;
+  } catch (err) {
+    console.error(`[ADMIN] ECCEZIONE ${description}:`, err);
+    showAdminError(description, err.message);
+    return null;
+  }
 }
 
 /* -------- Tab 2: Draft registrati -------- */
@@ -2827,17 +2874,25 @@ async function saveMatchDataToSupabase(round) {
   const roundMd = _matchData[round] || {};
   for (const [matchId, md] of Object.entries(roundMd)) {
     const fixture = (DATA.fixtures?.matches || []).find(m => m.id === matchId);
-    const { error } = await sb.from('match_data').upsert({
-      round,
-      match_id:    matchId,
-      home_team:   fixture?.home  || '',
-      away_team:   fixture?.away  || '',
-      home_score:  md.homeScore   ?? null,
-      away_score:  md.awayScore   ?? null,
-      completed:   md.completed   || false,
-      player_stats: md.players    || {},
-    }, { onConflict: 'round,match_id' });
-    if (error) console.error('saveMatchData upsert:', error);
+    const hs = md.homeScore ?? null;
+    const as_ = md.awayScore ?? null;
+    const winner = (md.completed && hs !== null && as_ !== null)
+      ? (hs > as_ ? (fixture?.home || null) : as_ > hs ? (fixture?.away || null) : null)
+      : null;
+    await adminSupabaseCall(
+      () => sb.from('match_data').upsert({
+        round,
+        match_id:     matchId,
+        home_team:    fixture?.home  || '',
+        away_team:    fixture?.away  || '',
+        home_score:   hs,
+        away_score:   as_,
+        completed:    md.completed   || false,
+        winner_team:  winner,
+        player_stats: md.players    || {},
+      }, { onConflict: 'round,match_id' }),
+      `Salvataggio ${matchId}`
+    );
   }
 }
 
