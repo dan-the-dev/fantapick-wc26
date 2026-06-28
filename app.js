@@ -679,7 +679,8 @@ function getAdminMatchForTeam(team, roundMd) {
   if (!md) return null;
   return { id: fixture.id, home: fixture.home, away: fixture.away,
     homeScore: md.homeScore ?? 0, awayScore: md.awayScore ?? 0,
-    completed: md.completed || false, players: md.players || {} };
+    completed: md.completed || false, winnerTeam: md.winnerTeam || null,
+    players: md.players || {} };
 }
 
 /* player_stats format (JSONB):
@@ -715,12 +716,17 @@ function scorePlayerAdmin(p, matchPlayers, match) {
   }
 
   // Win/loss bonus
-  if (match.homeScore !== null && match.awayScore !== null) {
+  if (match.homeScore !== null && match.awayScore !== null
+      && (p.team === match.home || p.team === match.away)) {
     const isHome = p.team === match.home;
     const mine = isHome ? match.homeScore : match.awayScore;
     const opp  = isHome ? match.awayScore : match.homeScore;
-    if (mine > opp)  pts += SCORING.win;
+    if (mine > opp) pts += SCORING.win;
     else if (mine < opp) pts += SCORING.loss;
+    else if (match.winnerTeam) {
+      if (p.team === match.winnerTeam) pts += SCORING.win;
+      else pts += SCORING.loss;
+    }
   }
 
   return pts;
@@ -2331,7 +2337,9 @@ function renderAdminMatchesTab() {
     const live      = !completed && hs !== null && hs !== undefined;
     const icon      = completed ? '✅' : live ? '🔴' : '⏳';
     const dateStr   = m.date ? m.date.slice(5).replace('-','/') : '';
-    const scoreStr  = (hs !== null && hs !== undefined) ? `${hs} - ${as_ !== null && as_ !== undefined ? as_ : '?'}` : '— - —';
+    const scoreStr  = (hs !== null && hs !== undefined)
+      ? `${hs} - ${as_ !== null && as_ !== undefined ? as_ : '?'}${hs === as_ && matchMd.winnerTeam ? ` (${esc(matchMd.winnerTeam)} rig.)` : ''}`
+      : '— - —';
 
     return `
       <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:10px;">
@@ -2419,6 +2427,21 @@ function renderMatchEditPanel(match, matchData) {
       <div class="me-team-name">${esc(match.away)}</div>
     </div>`;
 
+  const isTied = hs !== null && hs !== undefined && as_ !== null && as_ !== undefined && hs === as_;
+  const winnerTeam = matchData.winnerTeam || null;
+  const shootoutHtml = isTied ? `
+    <div style="margin-top:12px;padding:10px 12px;background:rgba(240,180,41,0.06);border:1px solid rgba(240,180,41,0.18);border-radius:8px;">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">Pareggio — passa il turno ai rigori:</div>
+      <div class="me-pills">
+        <button class="me-pill${winnerTeam === match.home ? ' active' : ''}"
+          onclick="setShootoutWinner('${mid}','${jsProp(match.home)}')">${esc(match.home)}</button>
+        <button class="me-pill${winnerTeam === match.away ? ' active' : ''}"
+          onclick="setShootoutWinner('${mid}','${jsProp(match.away)}')">${esc(match.away)}</button>
+        <button class="me-pill${!winnerTeam ? ' active' : ''}"
+          onclick="setShootoutWinner('${mid}',null)">Nessuno</button>
+      </div>
+    </div>` : '';
+
   // status pills
   const statuses = [
     { v:'upcoming',  l:'⏳ In programma' },
@@ -2499,14 +2522,14 @@ function renderMatchEditPanel(match, matchData) {
             </div>`;
         }).join('')}`;
 
-  return `${scoreHtml}${statusHtml}${teamsHtml}
+  return `${scoreHtml}${shootoutHtml}${statusHtml}${teamsHtml}
     <div style="border-top:1px solid var(--border);margin-top:14px;padding-top:12px;">${logHtml}</div>`;
 }
 
 function saveMatchField(matchId, field, value) {
   const round = getRoundState().currentRound;
   _matchData[round] = _matchData[round] || {};
-  _matchData[round][matchId] = _matchData[round][matchId] || { homeScore: null, awayScore: null, completed: false, players: {} };
+  _matchData[round][matchId] = _matchData[round][matchId] || { homeScore: null, awayScore: null, completed: false, winnerTeam: null, players: {} };
   _matchData[round][matchId][field] = value;
   scheduleAdminRecalc();
 }
@@ -2514,7 +2537,7 @@ function saveMatchField(matchId, field, value) {
 function _ensureMatch(round, matchId) {
   _matchData[round] = _matchData[round] || {};
   _matchData[round][matchId] = _matchData[round][matchId] ||
-    { homeScore: null, awayScore: null, completed: false, players: {} };
+    { homeScore: null, awayScore: null, completed: false, winnerTeam: null, players: {} };
   _matchData[round][matchId].players = _matchData[round][matchId].players || {};
   return _matchData[round][matchId];
 }
@@ -2534,6 +2557,15 @@ function changeMatchScore(matchId, delta, side) {
   const field = side === 0 ? 'homeScore' : 'awayScore';
   const cur = md[field] !== null && md[field] !== undefined ? md[field] : 0;
   md[field] = Math.max(0, cur + delta);
+  if (md.homeScore !== md.awayScore) md.winnerTeam = null;
+  refreshMatchPanel(matchId);
+  scheduleAdminRecalc();
+}
+
+function setShootoutWinner(matchId, team) {
+  const round = getRoundState().currentRound;
+  const md = _ensureMatch(round, matchId);
+  md.winnerTeam = team || null;
   refreshMatchPanel(matchId);
   scheduleAdminRecalc();
 }
@@ -3330,6 +3362,7 @@ async function loadRoundDataFromSupabase(round) {
       homeScore: m.home_score,
       awayScore: m.away_score,
       completed: m.completed,
+      winnerTeam: m.winner_team || null,
       players:   m.player_stats || {},
     };
   }
@@ -3373,8 +3406,10 @@ async function saveMatchDataToSupabase(round) {
     const fixture = (DATA.fixtures?.matches || []).find(m => m.id === matchId);
     const hs = md.homeScore ?? null;
     const as_ = md.awayScore ?? null;
-    const winner = (md.completed && hs !== null && as_ !== null)
-      ? (hs > as_ ? (fixture?.home || null) : as_ > hs ? (fixture?.away || null) : null)
+    const winner = (hs !== null && as_ !== null)
+      ? (hs > as_ ? (fixture?.home || null)
+        : as_ > hs ? (fixture?.away || null)
+        : (md.winnerTeam || null))
       : null;
     await adminSupabaseCall(
       () => sb.from('match_data').upsert({
