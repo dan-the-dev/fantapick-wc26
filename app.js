@@ -257,6 +257,18 @@ function getCompletedDraft(round) { return (loadStorage().drafts || {})[round] |
 function saveCompletedDraft(round, data) {
   const s = loadStorage(); s.drafts = s.drafts || {}; s.drafts[round] = data; saveStorage(s);
 }
+function clearCompletedDraft(round) {
+  const s = loadStorage();
+  if (s.drafts) { delete s.drafts[round]; saveStorage(s); }
+  try { localStorage.removeItem('fantapick_pending_draft'); } catch {}
+}
+function parseFormationModule(formation) {
+  if (!formation) return '4-3-3';
+  if (typeof formation === 'object' && formation.module) return formation.module;
+  const s = String(formation).replace(/^"|"$/g, '');
+  return FORMATIONS[s] ? s : '4-3-3';
+}
+function formatFormationLabel(formation) { return parseFormationModule(formation); }
 
 function getDraftAccess() {
   const state = getRoundState().roundState;
@@ -332,6 +344,7 @@ function getAllDrafts() { return _allDrafts; }
 /* row → entry */
 function draftFromRow(d) {
   return {
+    id:             d.id,
     nick:           d.nickname,
     score:          d.score     || 0,
     formation:      d.formation,
@@ -716,7 +729,7 @@ async function recalculateAllScores(round) {
   roundDrafts.forEach(draft => {
     const slotted  = draft.breakdown || [];
     const ct       = draft.ct || {};
-    const userFDef = FORMATIONS[draft.formation || '4-3-3'];
+    const userFDef = FORMATIONS[parseFormationModule(draft.formation)];
     const ctDCA    = parseDCA(ct.formation || '');
     const ctMulti  = (ctDCA && userFDef && userFDef.d===ctDCA.d && userFDef.c===ctDCA.c && userFDef.a===ctDCA.a)
       ? CT_MULTIPLIER : 1.0;
@@ -877,12 +890,16 @@ function showHome() {
         </div>`).join('')}
     </div>
     <button class="btn btn-ghost w-full" style="margin-top:8px;font-size:12px;" onclick="showLeaderboard()">Classifica completa →</button>`;
+  const telegramLink = `<a href="https://t.me/fantapick" target="_blank" rel="noopener noreferrer" class="home-telegram-link">
+    <span class="home-telegram-icon" aria-hidden="true">💬</span> Unisciti alla community → t.me/fantapick
+  </a>`;
   const cta = access.hasDraft
     ? `<button class="btn btn-primary" onclick="showResult(true)">Vedi il tuo risultato</button>
        ${access.canDraft ? '<button class="btn btn-ghost w-full" style="margin-top:8px" onclick="startNewDraft()">↺ Nuovo Draft</button>' : ''}
        <button class="btn btn-ghost w-full" style="margin-top:6px;font-size:12px;" onclick="showLeaderboard()">Classifica completa →</button>`
     : access.canDraft
     ? `<button class="btn btn-primary" onclick="startDraft()">Inizia il Draft</button>
+       ${telegramLink}
        <button class="btn btn-ghost w-full" style="margin-top:8px;font-size:12px;" onclick="showLeaderboard()">Classifica →</button>`
     : `<button class="btn btn-primary" disabled style="opacity:0.5;cursor:default;">Draft chiuso</button>
        <button class="btn btn-ghost w-full" style="margin-top:8px;" onclick="showLeaderboard()">Vedi classifica →</button>`;
@@ -909,16 +926,67 @@ function showHome() {
 /* ============================================================
    DRAFT FLOW
    ============================================================ */
-function startDraft() {
+function startDraft() { requestStartDraft(); }
+function startNewDraft() { requestStartDraft(); }
+
+function requestStartDraft() {
   const rs = getRoundState().roundState;
   if (!DEV_MODE && rs !== 'upcoming') { showLockedScreen(rs); return; }
-  if (!getNickname()) { showNicknamePrompt(()=>{ initDraftState(); showPickCT(); }); return; }
-  initDraftState(); showPickCT();
+  const proceed = () => {
+    if (getDraftAccess().hasDraft) showReplaceDraftModal();
+    else { initDraftState(); showPickCT(); }
+  };
+  if (!getNickname()) { showNicknamePrompt(proceed); return; }
+  proceed();
 }
-function startNewDraft() {
-  const rs = getRoundState().roundState;
-  if (!DEV_MODE && rs !== 'upcoming') { showLockedScreen(rs); return; }
-  initDraftState(); showPickCT();
+
+function showReplaceDraftModal() {
+  if (document.getElementById('replace-draft-modal')) return;
+  const el = document.createElement('div');
+  el.id = 'replace-draft-modal';
+  el.className = 'fp-modal-overlay';
+  el.innerHTML = `
+    <div class="fp-modal" role="dialog" aria-labelledby="replace-draft-title">
+      <div class="fp-modal-title" id="replace-draft-title">Hai già una squadra per questo turno</div>
+      <p class="fp-modal-text">Se rifai il draft, la tua squadra attuale viene sostituita e perdi il punteggio accumulato finora. Vuoi continuare?</p>
+      <div class="fp-modal-actions">
+        <button class="btn btn-primary w-full" onclick="confirmReplaceDraft()">Rifai il draft</button>
+        <button class="btn btn-ghost w-full" style="margin-top:8px;" onclick="closeReplaceDraftModal();showLeaderboard();">Torna alla classifica</button>
+      </div>
+    </div>`;
+  el.addEventListener('click', e => { if (e.target === el) closeReplaceDraftModal(); });
+  document.body.appendChild(el);
+  requestAnimationFrame(() => el.classList.add('open'));
+}
+
+function closeReplaceDraftModal() {
+  document.getElementById('replace-draft-modal')?.remove();
+}
+
+async function deleteExistingDraft(round, nick) {
+  if (!nick) return;
+  const cached = (_allDrafts[round] || []).find(d => d.nick === nick);
+  if (cached?.id) {
+    const { error } = await sb.from('drafts').delete().eq('id', cached.id);
+    if (error) console.warn('deleteExistingDraft by id:', error);
+  } else {
+    const { error } = await sb.from('drafts').delete().eq('round', round).eq('nickname', nick);
+    if (error) console.warn('deleteExistingDraft:', error);
+  }
+}
+
+async function confirmReplaceDraft() {
+  closeReplaceDraftModal();
+  const nick = getNickname();
+  await deleteExistingDraft(CURRENT_ROUND, nick);
+  clearCompletedDraft(CURRENT_ROUND);
+  clearDraftState();
+  if (nick) {
+    _allDrafts[CURRENT_ROUND] = (_allDrafts[CURRENT_ROUND] || []).filter(d => d.nick !== nick);
+  }
+  S.resultData = null;
+  initDraftState();
+  showPickCT();
 }
 
 function initDraftState() {
@@ -1170,8 +1238,7 @@ function showFormationScreen() {
       </div>
 
       <div class="pitch-wrap" id="pitch" style="min-height:326px;margin-top:8px;flex:none;">
-        ${pitchSvg()}
-        ${fd.slots.map((slot,i)=>slotNodeHtml(slot,i)).join('')}
+        ${renderFormationPitchHtml({ module: S.formation, slotAssign: S.slotAssign, captainKey: S.captainKey })}
       </div>
 
       <div class="flex items-center justify-between" style="margin-top:10px;">
@@ -1204,22 +1271,49 @@ function isAssigned(p) {
   return S.slotAssign.some(sp=>sp&&playerKey(sp)===key);
 }
 
-function slotNodeHtml(slot, slotIdx) {
-  const p=S.slotAssign[slotIdx];
-  const [px,py]=slot.pos;
-  const roleColorMap={P:'var(--role-p)',D:'var(--role-d)',C:'var(--role-c)',A:'var(--role-a)'};
+function renderFormationPitchHtml({ module, slotAssign, captainKey, readOnly = false }) {
+  const fd = FORMATIONS[module];
+  if (!fd) return '';
+  return `${pitchSvg()}${fd.slots.map((slot, i) => slotNodeHtml(slot, i, { readOnly, slotAssign, captainKey })).join('')}`;
+}
+
+function draftToSlotAssign(draft) {
+  const formation = draft.formation;
+  if (formation && typeof formation === 'object' && Array.isArray(formation.slots)) {
+    return formation.slots.map(p => p || null);
+  }
+  const module = parseFormationModule(formation);
+  const picks = draft.breakdown || [];
+  if (picks.length === 11) return picks.slice();
+  const used = new Set();
+  return FORMATIONS[module].slots.map(slot => {
+    const p = picks.find(pl => pl.role === slot.r && !used.has(playerKey(pl)));
+    if (p) used.add(playerKey(p));
+    return p || null;
+  });
+}
+
+function slotNodeHtml(slot, slotIdx, opts = {}) {
+  const readOnly   = opts.readOnly || false;
+  const slotAssign = opts.slotAssign ?? S.slotAssign;
+  const captainKey = opts.captainKey ?? S.captainKey;
+  const p = slotAssign[slotIdx];
+  const [px, py] = slot.pos;
+  const roleColorMap = { P:'var(--role-p)', D:'var(--role-d)', C:'var(--role-c)', A:'var(--role-a)' };
+  const nodeCls = readOnly ? 'slot-node slot-node-readonly' : 'slot-node';
+  const clickAttr = readOnly ? '' : `onclick="tapSlot(${slotIdx})"`;
   if (!p) {
-    // Check if there are any unassigned bench players of this role
-    const hasCandidate = S.drafted.some(d => d.role===slot.r && !isAssigned(d));
+    if (readOnly) return '';
+    const hasCandidate = S.drafted.some(d => d.role === slot.r && !isAssigned(d));
     const emptyStyle = hasCandidate
       ? `border-color:${roleColorMap[slot.r]}35;color:${roleColorMap[slot.r]}55;border-style:dashed;`
-      : (S.swapsLeft>0
+      : (S.swapsLeft > 0
           ? `border-color:var(--gold)30;color:var(--gold)60;border-style:dashed;`
           : `border-color:var(--bad)25;color:var(--bad)40;border-style:dashed;`);
-    const swapHint = !hasCandidate && S.swapsLeft>0
+    const swapHint = !hasCandidate && S.swapsLeft > 0
       ? `<span style="position:absolute;top:-10px;font-size:9px;color:var(--gold);font-family:var(--font-title);">⇄</span>` : '';
     return `
-      <div class="slot-node" id="slot-${slotIdx}" style="left:${px}%;top:${py}%;" onclick="tapSlot(${slotIdx})">
+      <div class="${nodeCls}" id="slot-${slotIdx}" style="left:${px}%;top:${py}%;" ${clickAttr}>
         <div class="slot-circle" style="${emptyStyle}position:relative;">
           ${swapHint}
           <span style="font-size:9px;">${roleName(slot.r)}</span>
@@ -1227,14 +1321,15 @@ function slotNodeHtml(slot, slotIdx) {
         <div class="slot-label" style="opacity:0.4">—</div>
       </div>`;
   }
-  const isCap=playerKey(p)===S.captainKey;
-  const fClass={P:'filled-p',D:'filled-d',C:'filled-c',A:'filled-a'}[p.role]||'';
+  const isCap = playerKey(p) === captainKey;
+  const fClass = { P:'filled-p', D:'filled-d', C:'filled-c', A:'filled-a' }[p.role] || '';
+  const removeBtn = readOnly ? '' : `<button class="slot-remove" onclick="event.stopPropagation();removeFromSlot(${slotIdx})">×</button>`;
   return `
-    <div class="slot-node" id="slot-${slotIdx}" style="left:${px}%;top:${py}%;" onclick="tapSlot(${slotIdx})">
-      <div class="slot-circle filled ${fClass} ${isCap?'captain-slot':''}">
-        ${isCap?'<span class="slot-crown">👑</span>':''}
+    <div class="${nodeCls}" id="slot-${slotIdx}" style="left:${px}%;top:${py}%;" ${clickAttr}>
+      <div class="slot-circle filled ${fClass} ${isCap ? 'captain-slot' : ''}">
+        ${isCap ? '<span class="slot-crown">👑</span>' : ''}
         <span style="font-size:10px;">${roleName(p.role)}</span>
-        <button class="slot-remove" onclick="event.stopPropagation();removeFromSlot(${slotIdx})">×</button>
+        ${removeBtn}
       </div>
       <div class="slot-label">${esc(p.name.split(' ').pop())}</div>
     </div>`;
@@ -1599,7 +1694,7 @@ async function confirmFormation() {
     score: 0,
     breakdown: result.breakdown.map(p => ({...p, pts:0, finalPts:0})),
     ct: result.ct,
-    formation: S.formation,
+    formation: { module: S.formation, slots: S.slotAssign },
     captainKey: S.captainKey,
     ctBonusApplied: false,
     swapsUsed: Math.max(0, 3 - (S.swapsLeft ?? 3)),
@@ -1615,7 +1710,8 @@ async function confirmFormation() {
   // Save locally — result screen works even if Supabase fails
   saveCompletedDraft(CURRENT_ROUND, {
     score: 0, breakdown: draftEntry.breakdown,
-    ct: result.ct, captainKey: S.captainKey, ctBonusApplied: false, formation: S.formation,
+    ct: result.ct, captainKey: S.captainKey, ctBonusApplied: false,
+    formation: { module: S.formation, slots: S.slotAssign },
   });
 
   // Update local cache immediately
@@ -1699,12 +1795,23 @@ function showResult(fromStorage) {
     ? `<span style="background:var(--bad);color:#fff;font-family:var(--font-title);font-size:10px;font-weight:700;
                     padding:2px 8px;border-radius:5px;letter-spacing:1px;margin-left:10px;">LIVE 🔴</span>` : '';
 
+  const telegramBannerHtml = `
+    <div class="lb-telegram-banner" style="text-align:left;">
+      <div class="lb-telegram-text">Discuti il draft e segui gli aggiornamenti live</div>
+      <a href="https://t.me/fantapick" target="_blank" rel="noopener noreferrer" class="lb-telegram-link">
+        👉 Unisciti al gruppo Telegram → t.me/fantapick
+      </a>
+    </div>`;
+
   const upcomingNote = isUpcoming ? `
     <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--radius-sm);
                 padding:16px;text-align:center;margin:8px 0;">
       <div style="font-size:13px;font-weight:700;color:var(--good);margin-bottom:6px;">Rosa confermata ✓</div>
       <div style="font-size:13px;color:var(--muted);">Le partite non sono ancora iniziate.<br>I tuoi punteggi si aggiorneranno in tempo reale.</div>
+      <div style="margin-top:14px;">${telegramBannerHtml}</div>
     </div>` : '';
+
+  const liveTelegramNote = isLive ? `<div style="margin:8px 0;">${telegramBannerHtml}</div>` : '';
 
   let perfectXISection = '';
   if (isCompleted) {
@@ -1742,6 +1849,7 @@ function showResult(fromStorage) {
             ${displayCtBonus?'<div class="center" style="font-size:12px;color:var(--good);margin-top:6px;">✓ Bonus CT ×1.25 applicato!</div>':''}
           </div>
           ${upcomingNote}
+          ${liveTelegramNote}
           <div class="divider"></div>
           <div class="section-head">La tua squadra</div>
           <div class="flex-col">${displayBreakdown.map(p=>breakdownRowHtml(p,isUpcoming)).join('')}</div>
@@ -2597,10 +2705,11 @@ function renderAdminDraftsTab() {
               </span>
             </div>
             <div style="font-size:11px;color:var(--muted);">
-              CT: ${esc(d.ct?.name||'—')} · ${esc(d.formation||'—')} · Cap: ${esc(capName)}
+              CT: ${esc(d.ct?.name||'—')} · ${esc(formatFormationLabel(d.formation))} · Cap: ${esc(capName)}
               ${d.ctBonusApplied ? ' · <span style="color:var(--good);">×1.25✓</span>' : ''}
             </div>
-            <div style="margin-top:6px;">
+            <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;">
+              <button class="btn btn-ghost" style="font-size:10px;padding:4px 10px;" onclick="showAdminDraftSquad(${i})">Vedi squadra</button>
               <button class="btn btn-ghost" style="font-size:10px;padding:4px 10px;" onclick="toggleDraftDetail('dd-${i}')">Dettaglio ▾</button>
             </div>
             <div id="dd-${i}" style="display:none;margin-top:8px;">
@@ -2615,6 +2724,43 @@ function toggleDraftDetail(id) {
   const el = document.getElementById(id);
   if (!el) return;
   el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+
+function showAdminDraftSquad(idx) {
+  const rs = getRoundState();
+  const round = rs.currentRound;
+  const draft = (getAllDrafts()[round] || [])[idx];
+  if (!draft) return;
+  closeAdminDraftSquadModal();
+
+  const module = parseFormationModule(draft.formation);
+  const slotAssign = draftToSlotAssign(draft);
+  const roundName = ROUND_NAMES[round] || round;
+  const showScore = rs.roundState !== 'upcoming';
+
+  const el = document.createElement('div');
+  el.id = 'admin-draft-squad-modal';
+  el.className = 'draft-squad-overlay';
+  el.innerHTML = `
+    <div class="draft-squad-modal" role="dialog" aria-labelledby="draft-squad-title">
+      <button class="draft-squad-close" type="button" aria-label="Chiudi" onclick="closeAdminDraftSquadModal()">×</button>
+      <div class="draft-squad-header">
+        <div class="draft-squad-title" id="draft-squad-title">${esc(draft.nick)}</div>
+        <div class="draft-squad-meta">${esc(roundName)} · ${showScore ? `${draft.score} pts` : '—'}</div>
+        <div class="draft-squad-meta">CT: <b style="color:var(--text)">${esc(draft.ct?.name || '—')}</b> · <span style="color:var(--gold)">${esc(module)}</span></div>
+      </div>
+      <div class="pitch-wrap draft-squad-pitch">
+        ${renderFormationPitchHtml({ module, slotAssign, captainKey: draft.captainKey, readOnly: true })}
+      </div>
+    </div>`;
+  el.addEventListener('click', e => { if (e.target === el) closeAdminDraftSquadModal(); });
+  document.body.appendChild(el);
+  requestAnimationFrame(() => el.classList.add('open'));
+  gsap.from('#admin-draft-squad-modal .slot-node', { opacity: 0, scale: 0.4, stagger: 0.03, duration: 0.35, ease: 'back.out(1.5)' });
+}
+
+function closeAdminDraftSquadModal() {
+  document.getElementById('admin-draft-squad-modal')?.remove();
 }
 
 /* -------- Tab 3: Impostazioni -------- */
@@ -3039,7 +3185,7 @@ function _renderLeaderboard() {
             :`<span style="font-family:var(--font-title);font-weight:900;font-size:13px;
                            color:${rank<=10?'var(--text)':'var(--muted)'};">${rank}</span>`;
           const captName = e.captain ? e.captain.split('|')[0] : '—';
-          const fmt      = typeof e.formation === 'string' ? e.formation : '—';
+          const fmt      = formatFormationLabel(e.formation);
           return `
             <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;
                         background:${isMe?'rgba(240,180,41,0.08)':'var(--panel)'};
@@ -3073,6 +3219,14 @@ function _renderLeaderboard() {
       <div style="font-size:11px;color:var(--muted);margin-top:8px;">${_lbTotal} draft totali</div>
     </div>`;
 
+  const telegramBanner = `
+    <div class="lb-telegram-banner">
+      <div class="lb-telegram-text">Discuti il draft e segui gli aggiornamenti live</div>
+      <a href="https://t.me/fantapick" target="_blank" rel="noopener noreferrer" class="lb-telegram-link">
+        👉 Unisciti al gruppo Telegram → t.me/fantapick
+      </a>
+    </div>`;
+
   render(`
     <div class="screen" id="s-leaderboard" style="padding-bottom:40px;">
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;flex:none;">
@@ -3101,6 +3255,7 @@ function _renderLeaderboard() {
       ${upcomingPlaceholder}
       ${entriesHtml}
       ${footerHtml}
+      ${telegramBanner}
       <button class="btn btn-ghost w-full" style="margin-top:24px;" onclick="showHome()">← Torna alla home</button>
     </div>`);
   animIn('#s-leaderboard');
