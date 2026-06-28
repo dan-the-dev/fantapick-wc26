@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
-# Usage: bash supabase/seeds/seed.sh [scenario]
+# Usage: bash supabase/seeds/seed.sh [scenario] [db_url]
 # Scenarios: reset (default), r16, qf, sf, final
 
 set -e
 
 SCENARIO=${1:-reset}
+DB_URL="${2:-postgresql://postgres:postgres@127.0.0.1:54322/postgres}"
 VALID=("reset" "r16" "qf" "sf" "final")
 
 if [[ ! " ${VALID[*]} " =~ " ${SCENARIO} " ]]; then
@@ -12,8 +13,6 @@ if [[ ! " ${VALID[*]} " =~ " ${SCENARIO} " ]]; then
   echo "   Validi: ${VALID[*]}"
   exit 1
 fi
-
-DB_URL="postgresql://postgres:postgres@127.0.0.1:54322/postgres"
 SEEDS_DIR="$(dirname "$0")"
 
 echo "🗑️  Reset database..."

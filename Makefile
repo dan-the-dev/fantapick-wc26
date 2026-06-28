@@ -1,7 +1,7 @@
 .PHONY: dev db-start db-stop db-reset \
         seed seed-reset seed-r16 seed-qf seed-sf seed-final \
         seed-fake-drafts seed-fake-drafts-prod \
-        seed-reset-prod \
+        seed-reset-local seed-reset-prod \
         push-schema
 
 # ── Dev server ───────────────────────────────────────────────
@@ -43,16 +43,12 @@ seed-fake-drafts:
 seed-fake-drafts-prod:
 	psql "$(PROD_DB_URL)" -f supabase/seeds/seed_fake_drafts.sql
 
+seed-reset-local:
+	bash supabase/seeds/seed.sh reset "postgresql://postgres:postgres@127.0.0.1:54322/postgres"
+
 seed-reset-prod:
-	@echo "⚠️  Reset PRODUZIONE — truncate drafts/match_data/qualified_teams, round_state → upcoming"
-	psql "$(PROD_DB_URL)" -c "\
-	  truncate public.drafts restart identity cascade; \
-	  truncate public.match_data restart identity cascade; \
-	  truncate public.qualified_teams; \
-	  update public.round_state set state = 'upcoming', updated_at = now();"
-	psql "$(PROD_DB_URL)" -f supabase/seeds/_base.sql
-	psql "$(PROD_DB_URL)" -f supabase/seeds/match_data_r32.sql
-	@echo "✅ Produzione resettata per r32"
+	@echo "⚠️  Reset PRODUZIONE — assicurati di avere DB_PASS settato"
+	bash supabase/seeds/seed.sh reset "postgresql://postgres.pngglilremuetaphpuem:$(DB_PASS)@aws-1-eu-north-1.pooler.supabase.com:5432/postgres"
 
 # ── Push schema to production ────────────────────────────────
 # Set PROD_DB_URL in your shell first:

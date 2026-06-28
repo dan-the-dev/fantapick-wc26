@@ -1189,7 +1189,7 @@ function showFormationScreen() {
 
       <button class="btn btn-primary" id="confirm-btn" ${valid?'':'disabled'}
         onclick="confirmFormation()" style="margin-top:10px;flex:none;">
-        ${valid?'Conferma e Calcola →':`${filled}/11 slot${S.captainKey?'':' · scegli capitano'}`}
+        ${valid?'Conferma →':`${filled}/11 slot${S.captainKey?'':' · scegli capitano'}`}
       </button>
       ${S.retryUsed?'':`<button class="btn btn-ghost w-full" style="margin-top:8px;flex:none;" onclick="doRetry()">↺ Retry draft</button>`}
     </div>`);
@@ -1353,7 +1353,7 @@ function updateConfirmBtn() {
   if (!btn) return;
   const valid=isFormationValid(), filled=S.slotAssign.filter(Boolean).length;
   btn.disabled=!valid;
-  btn.textContent=valid?'Conferma e Calcola →':`${filled}/11 slot${S.captainKey?'':' · scegli capitano'}`;
+  btn.textContent=valid?'Conferma →':`${filled}/11 slot${S.captainKey?'':' · scegli capitano'}`;
 }
 function isFormationValid() {
   if (S.slotAssign.some(p=>!p)) return false;
@@ -1630,7 +1630,7 @@ async function confirmFormation() {
 
   if (!ok) {
     if (DEV_MODE) console.error('[DRAFT] Save failed — staying on formation screen, showing error');
-    if (btn) { btn.disabled = false; btn.textContent = 'Conferma e Calcola →'; }
+    if (btn) { btn.disabled = false; btn.textContent = 'Conferma →'; }
     let errEl = document.getElementById('confirm-save-error');
     if (!errEl) {
       errEl = document.createElement('div');
