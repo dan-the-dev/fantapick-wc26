@@ -785,6 +785,7 @@ function calcPerfectXIAdmin(round) {
    RENDER CORE
    ============================================================ */
 function render(html) {
+  document.getElementById('pill-banner')?.remove();
   document.getElementById('app').innerHTML = html;
   updateDesktopUI();
 }
@@ -888,7 +889,14 @@ function showHome() {
   render(`
     <div class="screen" id="s-home">
       <div style="margin-top:8px;">
-        <div class="eyebrow">Mondiale 2026</div>
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;">
+          <div class="eyebrow">Mondiale 2026</div>
+          <button onclick="showRules()"
+            style="background:none;border:1px solid var(--border);color:var(--muted);font-family:var(--font-title);
+                   font-size:11px;font-weight:700;padding:4px 10px;border-radius:6px;cursor:pointer;letter-spacing:0.5px;flex:none;">
+            ? Regolamento
+          </button>
+        </div>
         <div class="title" style="margin-top:4px;">FANTA<span style="color:var(--gold)">PICK</span><br>WC26</div>
         <div class="subtitle" style="margin-top:10px;">Scegli il CT e i tuoi <b style="color:var(--text)">11 giocatori</b> per i <b style="color:var(--text)">${esc(roundName)}</b>. Massimizza il punteggio.</div>
       </div>
@@ -994,6 +1002,7 @@ function showPickCT() {
     </div>`);
   animIn('#s-ct');
   gsap.from('#ct-list .ct-card',{opacity:0,y:18,stagger:0.08,duration:0.3,delay:0.1});
+  maybeShowPill(0);
 }
 function pickCT(i) {
   S.selectedCT=S.ctOptions[i]; S.pickIndex=1; S.candidatesCache=null;
@@ -1038,6 +1047,7 @@ function showPickPlayer() {
     </div>`);
   animIn('#s-pick');
   gsap.from('#cards-grid .pick-card-h',{opacity:0,y:14,stagger:0.07,duration:0.28,delay:0.05});
+  maybeShowPill(pickN);
 }
 function playerCardHtml(p, i) {
   const fix = getPlayerFixture(p);
@@ -1357,59 +1367,101 @@ function isFormationValid() {
 
 
 function showSlotDrawer(slotIdx) {
-  const targetRole=FORMATIONS[S.formation].slots[slotIdx].r;
-  S.swapTargetSlotIdx=slotIdx;
-  const frame=document.getElementById('frame');
+  const targetRole = FORMATIONS[S.formation].slots[slotIdx].r;
+  const roleFullName = { P:'Portiere', D:'Difensore', C:'Centrocampista', A:'Attaccante' }[targetRole] || targetRole;
+  S.swapTargetSlotIdx = slotIdx;
+  const frame = document.getElementById('frame');
 
-  const overlay=document.createElement('div');
-  overlay.id='swap-overlay';
-  overlay.style.cssText='position:absolute;inset:0;z-index:50;display:flex;flex-direction:column;justify-content:flex-end;background:rgba(0,0,0,0);';
-  overlay.addEventListener('click', e=>{ if(e.target===overlay) closeSwapDrawer(); });
-  overlay.innerHTML=`
+  // Pre-compute which players are already assigned to a slot
+  const assignedKeys = new Set(S.slotAssign.filter(Boolean).map(playerKey));
+
+  // Sort: 1) compatible + free, 2) in campo (any role), 3) incompatible + free
+  const compatFree   = [];
+  const inCampoList  = [];
+  const incompatFree = [];
+  S.drafted.forEach((p, i) => {
+    const compat = p.role === targetRole;
+    const inC    = assignedKeys.has(playerKey(p));
+    if (inC)         inCampoList.push({ p, i });
+    else if (compat) compatFree.push({ p, i });
+    else             incompatFree.push({ p, i });
+  });
+
+  const swapLabel = S.swapsLeft === 1 ? '1 swap disponibile' : `${S.swapsLeft} swap disponibili`;
+
+  const sep1 = (compatFree.length > 0 && inCampoList.length > 0)
+    ? `<div style="height:1px;background:var(--border);margin:4px 0;"></div>` : '';
+  const sep2 = incompatFree.length > 0
+    ? `<div style="font-family:var(--font-title);font-size:10px;color:var(--muted2);letter-spacing:1.5px;
+                   text-transform:uppercase;padding:10px 0 4px;margin-top:2px;border-top:1px solid var(--border);">
+         Ruolo diverso
+       </div>` : '';
+
+  const rowHtml = (p, i, compat, inC) => slotDrawerRowHtml(p, i, slotIdx, compat, inC);
+
+  const overlay = document.createElement('div');
+  overlay.id = 'swap-overlay';
+  overlay.style.cssText = 'position:absolute;inset:0;z-index:50;display:flex;flex-direction:column;justify-content:flex-end;background:rgba(0,0,0,0);';
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeSwapDrawer(); });
+  overlay.innerHTML = `
     <div id="swap-drawer-panel" style="position:relative;background:var(--bg);border-radius:24px 24px 0 0;
          padding:20px 18px 40px;max-height:80vh;overflow-y:auto;-webkit-overflow-scrolling:touch;">
       <div style="width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 16px;"></div>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;">
         <div>
-          <div style="font-family:var(--font-title);font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);text-transform:uppercase;">
-            Slot <span class="role-badge ${roleClass(targetRole)}" style="margin-left:4px;">${roleName(targetRole)}</span>
+          <div style="font-family:var(--font-title);font-size:14px;font-weight:700;color:var(--text);">
+            Serve un <span class="role-badge ${roleClass(targetRole)}" style="margin-left:4px;">${roleFullName}</span>
           </div>
-          <div style="font-size:12px;color:var(--muted);margin-top:5px;">✓ gratis · ⇄ consuma 1 swap</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:5px;">${swapLabel} &nbsp;·&nbsp; ✓ gratis &nbsp;·&nbsp; ⇄ consuma 1</div>
         </div>
-        <span style="font-family:var(--font-title);font-size:14px;font-weight:700;color:${S.swapsLeft>0?'var(--gold)':'var(--muted2)'};">⇄ ${S.swapsLeft}</span>
+        <span style="font-family:var(--font-title);font-size:22px;font-weight:700;color:${S.swapsLeft > 0 ? 'var(--gold)' : 'var(--muted2)'};">⇄ ${S.swapsLeft}</span>
       </div>
-      <div class="flex-col" id="slot-drawer-list" style="margin-top:12px;">
-        ${S.drafted.map((p,i)=>slotDrawerRowHtml(p,i,slotIdx)).join('')}
+      <div class="flex-col" id="slot-drawer-list" style="margin-top:4px;">
+        ${compatFree.map(({ p, i }) => rowHtml(p, i, true, false)).join('')}
+        ${sep1}
+        ${inCampoList.map(({ p, i }) => rowHtml(p, i, p.role === targetRole, true)).join('')}
+        ${sep2}
+        ${incompatFree.map(({ p, i }) => rowHtml(p, i, false, false)).join('')}
       </div>
       <button class="btn btn-ghost w-full" style="margin-top:16px;" onclick="closeSwapDrawer()">Annulla</button>
     </div>`;
   frame.appendChild(overlay);
 
-  const panel=document.getElementById('swap-drawer-panel');
-  gsap.fromTo(panel,{y:'100%'},{y:0,duration:0.35,ease:'power3.out'});
-  gsap.fromTo(overlay,{opacity:0},{opacity:1,duration:0.25});
+  const panel = document.getElementById('swap-drawer-panel');
+  gsap.fromTo(panel, { y: '100%' }, { y: 0, duration: 0.35, ease: 'power3.out' });
+  gsap.fromTo(overlay, { opacity: 0 }, { opacity: 1, duration: 0.25 });
 }
 
-function slotDrawerRowHtml(p, i, slotIdx) {
-  const targetRole=FORMATIONS[S.formation].slots[slotIdx].r;
-  const canMove=p.role===targetRole;
-  const inCampo=isAssigned(p);
-  let moveBtn='';
-  if (canMove) {
-    moveBtn=inCampo
-      ?`<span style="flex:none;font-size:10px;color:var(--muted);padding:5px 8px;border:1px solid var(--border);border-radius:6px;font-family:var(--font-title);opacity:0.5;">In campo</span>`
-      :`<button class="btn btn-ghost" style="flex:none;font-size:11px;padding:5px 9px;border-color:var(--good);color:var(--good);"
-          onclick="assignFromDrawer(${i},${slotIdx})">✓</button>`;
+function slotDrawerRowHtml(p, i, slotIdx, compatible, inCampo) {
+  let moveBtn = '';
+  if (compatible) {
+    if (inCampo) {
+      moveBtn = `<button class="btn btn-ghost" disabled
+        style="flex:none;font-size:11px;padding:5px 8px;opacity:0.3;cursor:default;pointer-events:none;">
+        Metti qui</button>`;
+    } else {
+      moveBtn = `<button class="btn btn-ghost"
+        style="flex:none;font-size:11px;padding:5px 9px;border-color:var(--good);color:var(--good);"
+        onclick="assignFromDrawer(${i},${slotIdx})">Metti qui</button>`;
+    }
   }
-  const swapBtn=S.swapsLeft>0
-    ?`<button class="btn btn-ghost" style="flex:none;font-size:11px;padding:5px 9px;border-color:var(--bad);color:var(--bad);"
-        onclick="executeSacrifice(${i},${slotIdx})">⇄</button>`:'';
+  const inCampoBadge = inCampo
+    ? `<span style="flex:none;font-size:9px;font-family:var(--font-title);font-weight:700;letter-spacing:0.5px;
+                    color:var(--gold);background:rgba(240,180,41,0.12);border:1px solid rgba(240,180,41,0.28);
+                    padding:2px 6px;border-radius:4px;">In campo</span>`
+    : '';
+  const swapBtn = S.swapsLeft > 0
+    ? `<button class="btn btn-ghost"
+        style="flex:none;font-size:11px;padding:5px 9px;border-color:var(--bad);color:var(--bad);"
+        onclick="executeSacrifice(${i},${slotIdx})">⇄</button>`
+    : '';
   return `
     <div class="swap-drawer-row" id="sdr-${i}">
       <span class="role-badge ${roleClass(p.role)}">${roleName(p.role)}</span>
       <span style="font-size:14px;">${esc(p.flag)}</span>
-      <span style="flex:1;font-size:13px;font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#CBD5E0;">${esc(p.name)}</span>
-      <div style="display:flex;gap:4px;flex:none;align-items:center;">${moveBtn}${swapBtn}</div>
+      <span style="flex:1;font-size:13px;font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;
+                   white-space:nowrap;color:${inCampo ? 'var(--muted)' : '#CBD5E0'};">${esc(p.name)}</span>
+      <div style="display:flex;gap:4px;flex:none;align-items:center;">${inCampoBadge}${moveBtn}${swapBtn}</div>
     </div>`;
 }
 
@@ -1533,16 +1585,15 @@ function pickSwap(i) {
 /* ============================================================
    CONFIRM → RESULT
    ============================================================ */
-function confirmFormation() {
+async function confirmFormation() {
   if (!isFormationValid()){showToast('Completa la formazione e scegli il capitano!');return;}
-  const result=computeResult(); S.resultData=result;
-  const nick=getNickname()||'Anonimo';
-  // Always save zeroed scores — admin recalculates real pts later via Supabase
-  saveCompletedDraft(CURRENT_ROUND,{
-    score:0, breakdown:result.breakdown.map(p=>({...p,pts:0,finalPts:0})),
-    ct:result.ct, captainKey:S.captainKey, ctBonusApplied:false, formation:S.formation,
-  });
-  // Store with score:0 — admin recalculates real pts later
+
+  const nick = getNickname();
+  if (DEV_MODE) console.log('[DRAFT] confirmFormation — nick:', nick, '| captain:', S.captainKey, '| formation:', S.formation);
+  if (!nick) { showToast('Nickname mancante — torna alla home e riprova.'); return; }
+
+  const result = computeResult(); S.resultData = result;
+
   const draftEntry = {
     nick,
     score: 0,
@@ -1555,14 +1606,46 @@ function confirmFormation() {
     retryUsed: S.retryUsed || false,
     ts: Date.now(),
   };
-  // Update local cache immediately so result screen works offline
+
+  if (DEV_MODE) console.log('[DRAFT] Payload pre-submit:', JSON.stringify(draftEntry));
+
+  const btn = document.getElementById('confirm-btn');
+  if (btn) { btn.disabled = true; btn.textContent = 'Salvataggio…'; }
+
+  // Save locally — result screen works even if Supabase fails
+  saveCompletedDraft(CURRENT_ROUND, {
+    score: 0, breakdown: draftEntry.breakdown,
+    ct: result.ct, captainKey: S.captainKey, ctBonusApplied: false, formation: S.formation,
+  });
+
+  // Update local cache immediately
   _allDrafts[CURRENT_ROUND] = _allDrafts[CURRENT_ROUND] || [];
   const idx = _allDrafts[CURRENT_ROUND].findIndex(d => d.nick === draftEntry.nick);
   if (idx >= 0) _allDrafts[CURRENT_ROUND][idx] = draftEntry; else _allDrafts[CURRENT_ROUND].push(draftEntry);
+
   saveDraftState('result');
+
+  if (DEV_MODE) console.log('[DRAFT] Sending to Supabase…');
+  const ok = await submitDraftToSupabase(CURRENT_ROUND, draftEntry);
+
+  if (!ok) {
+    if (DEV_MODE) console.error('[DRAFT] Save failed — staying on formation screen, showing error');
+    if (btn) { btn.disabled = false; btn.textContent = 'Conferma e Calcola →'; }
+    let errEl = document.getElementById('confirm-save-error');
+    if (!errEl) {
+      errEl = document.createElement('div');
+      errEl.id = 'confirm-save-error';
+      errEl.style.cssText = 'color:var(--bad);font-size:12px;text-align:center;margin-top:8px;' +
+        'padding:10px 14px;background:rgba(239,68,68,0.07);border-radius:8px;' +
+        'border:1px solid rgba(239,68,68,0.25);line-height:1.5;';
+      btn?.insertAdjacentElement('afterend', errEl);
+    }
+    errEl.textContent = '❌ Errore nel salvataggio — controlla la connessione e riprova.';
+    return;
+  }
+
+  if (DEV_MODE) console.log('[DRAFT] Save OK — transitioning to result screen');
   showResult(false);
-  // Async Supabase submit — non-blocking
-  submitDraftToSupabase(CURRENT_ROUND, draftEntry);
 }
 
 /* ============================================================
@@ -1673,6 +1756,7 @@ function showResult(fromStorage) {
           ${perfectXISection}
           ${lbHtml()}
           <button class="btn btn-ghost w-full" style="margin-top:16px;" onclick="showHome()">← Torna alla home</button>
+          <button class="btn btn-ghost w-full" style="margin-top:8px;font-size:12px;" onclick="showRules()">? Regolamento</button>
         </div>
 
       </div>
@@ -1743,6 +1827,97 @@ function copyShare() {
 /* ============================================================
    INIT
    ============================================================ */
+/* ============================================================
+   RULES PAGE
+   ============================================================ */
+function showRules() {
+  const sections = [
+    { title: 'Il Draft',
+      body: 'Scegli 11 giocatori da pool casuali di 4 alla volta.\nNessuno può avere tutti i migliori — questa è la parte bella.' },
+    { title: "L'Allenatore",
+      body: 'Il primo pick è sempre il CT. Se schierate nel suo modulo ricevi un bonus ×1.25 sui punti totali.\nVale la pena sacrificare una pick per averlo.' },
+    { title: 'La Formazione',
+      body: 'Dopo i 11 pick scegli modulo e posizioni liberamente.\nHai 3 Swap Draft: puoi sacrificare un giocatore e rifarne la pick su un ruolo specifico.' },
+    { title: 'Il Capitano',
+      body: 'Scegli 1 capitano prima di confermare. Il suo punteggio viene moltiplicato ×1.5.\nMettici chi ha più probabilità di fare gol o assist.' },
+    { title: 'Il Punteggio',
+      body: 'Bonus/malus puro — nessun voto in pagella.\n\n⚽ Gol +3 · 🅰️ Assist +1 · 🥅 Rigore parato +3 · 🔒 Porta inviolata +1\n🟨 Ammonizione −0.5 · 🟥 Espulsione −1 · 💀 Autogol −2\n🏆 Vittoria nazionale +1 · Sconfitta −1' },
+    { title: 'Le Stelle',
+      body: 'Le stelle indicano la qualità del giocatore (1–5).\nNon ignorare le 2 stelle — a volte sorprendono.\nNon prendere sempre il 5 stelle — gli altri fanno lo stesso.' },
+  ];
+  render(`
+    <div class="screen" id="s-rules">
+      <div class="eyebrow">Come si gioca</div>
+      <div style="font-family:var(--font-title);font-size:28px;font-weight:900;margin:4px 0 20px;line-height:1;">Regolamento</div>
+      <div class="flex-col gap-8" style="flex:1;">
+        ${sections.map((s, i) => `
+          <details class="rules-section" ${i === 0 ? 'open' : ''}>
+            <summary>${esc(s.title)}</summary>
+            <div class="rules-body" style="white-space:pre-line;">${esc(s.body)}</div>
+          </details>`).join('')}
+      </div>
+      <button class="btn btn-ghost w-full" style="margin-top:20px;flex:none;" onclick="showHome()">← Torna alla home</button>
+    </div>`);
+  animIn('#s-rules');
+}
+
+/* ============================================================
+   CONTEXTUAL PILLS
+   ============================================================ */
+const PILLS_KEY = 'fantapick_wc26_pills';
+const PILLS = {
+  0:  { always: true,  title: '🧠 Scegli bene il CT',  body: 'Se schierei nel suo modulo guadagni ×1.25 sui punti.\nVale una pick.' },
+  1:  { always: true,  title: '⭐ Le stelle contano',  body: '5 stelle = top player. Ma tutti vedono le stesse pick.\nA volte la scommessa vince.' },
+  3:  { always: false, title: '🔄 Ricorda gli Swap',   body: 'Hai 3 Swap Draft nella fase di formazione.\nPuoi sacrificare un giocatore e rifarne la pick per ruolo.' },
+  5:  { always: false, title: '🏆 Il Capitano',        body: 'Alla fine sceglierai un capitano — punteggio ×1.5.\nTienilo a mente mentre drafti.' },
+  7:  { always: false, title: '⚽ Gol e Assist',       body: 'Gol vale +3, assist +1.\nUn attaccante prolifico vale più di un difensore stellare.' },
+  9:  { always: true,  title: '🧤 Il Portiere',        body: 'Porta inviolata +1, rigore parato +3.\nSe la sua squadra è favorita, può fare la differenza.' },
+  11: { always: true,  title: '✅ Quasi fatto',        body: 'Ora scegli il modulo e posiziona i tuoi giocatori.\nPoi nomina il capitano e conferma.' },
+};
+
+function getShownPills() {
+  try { return new Set(JSON.parse(localStorage.getItem(PILLS_KEY)) || []); } catch { return new Set(); }
+}
+function markPillShown(idx) {
+  const s = getShownPills(); s.add(idx);
+  try { localStorage.setItem(PILLS_KEY, JSON.stringify([...s])); } catch {}
+}
+function maybeShowPill(pickIdx) {
+  const def = PILLS[pickIdx];
+  if (!def) return;
+  if (!def.always && Math.random() >= 0.5) return;
+  if (getShownPills().has(pickIdx)) return;
+  markPillShown(pickIdx);
+  setTimeout(() => showPill(def.title, def.body), 600);
+}
+function showPill(title, body) {
+  document.getElementById('pill-banner')?.remove();
+  const el = document.createElement('div');
+  el.id = 'pill-banner';
+  el.style.cssText = 'position:absolute;bottom:80px;left:14px;right:14px;z-index:100;' +
+    'background:linear-gradient(135deg,#0d2a52,#0a2248);border:1px solid var(--border-hi);' +
+    'border-left:3px solid var(--gold);border-radius:10px;padding:12px 14px;' +
+    'box-shadow:0 8px 24px rgba(0,0,0,0.5);pointer-events:auto;';
+  el.innerHTML = `
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;">
+      <div style="flex:1;">
+        <div style="font-family:var(--font-title);font-weight:700;font-size:13px;color:var(--text);margin-bottom:3px;">${esc(title)}</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.5;white-space:pre-line;">${esc(body)}</div>
+      </div>
+      <button onclick="closePill()" style="background:none;border:none;color:var(--muted);font-size:16px;
+              cursor:pointer;padding:0;line-height:1;flex:none;margin-top:1px;font-family:monospace;">✕</button>
+    </div>`;
+  const frame = document.getElementById('frame');
+  if (frame) frame.appendChild(el);
+  gsap.fromTo(el, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' });
+  setTimeout(() => closePill(), 9000);
+}
+function closePill() {
+  const el = document.getElementById('pill-banner');
+  if (!el) return;
+  gsap.to(el, { opacity: 0, y: 12, duration: 0.25, onComplete: () => el.remove() });
+}
+
 function injectDevBadge() {
   const mk = (txt, bg, fg, side) => {
     const b = document.createElement('div');
@@ -3052,17 +3227,27 @@ async function saveMatchDataToSupabase(round) {
   }
 }
 
-/** Submit a completed draft to Supabase; retry on reconnect if offline */
+/** Submit a completed draft to Supabase; retry on reconnect if offline. Returns true on success. */
 async function submitDraftToSupabase(round, entry) {
+  const row = draftToRow(round, entry);
+  if (DEV_MODE) console.log('[DRAFT] submitDraftToSupabase — payload:', JSON.stringify(row));
+  if (DEV_MODE) console.log('[DRAFT] nickname:', row.nickname, '| captain:', row.captain, '| formation:', row.formation);
   try {
+    if (DEV_MODE) console.log('[DRAFT] Calling sb.from(drafts).upsert…');
     const { error } = await sb.from('drafts')
-      .upsert(draftToRow(round, entry), { onConflict: 'round,nickname' });
-    if (error) throw error;
+      .upsert(row, { onConflict: 'round,nickname' });
+    if (error) {
+      if (DEV_MODE) console.error('[DRAFT] Supabase returned error:', error);
+      throw error;
+    }
+    if (DEV_MODE) console.log('[DRAFT] Supabase save OK — clearing pending draft');
     localStorage.removeItem('fantapick_pending_draft');
+    return true;
   } catch (e) {
-    console.warn('submitDraftToSupabase failed, queuing:', e);
+    console.warn('[DRAFT] submitDraftToSupabase failed:', e?.message || e);
     try { localStorage.setItem('fantapick_pending_draft', JSON.stringify({ round, entry })); } catch {}
     showOfflineBanner();
+    return false;
   }
 }
 

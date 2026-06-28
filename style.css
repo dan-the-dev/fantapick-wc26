@@ -1150,6 +1150,44 @@ body {
 }
 .me-log-del:hover { opacity: 1; }
 
+/* -------- RULES ACCORDION -------- */
+.rules-section {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.rules-section summary {
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text);
+  padding: 14px 16px;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  -webkit-tap-highlight-color: transparent;
+}
+.rules-section summary::after {
+  content: '›';
+  font-size: 20px;
+  color: var(--muted);
+  transition: transform 0.2s ease;
+  flex: none;
+}
+.rules-section[open] summary::after { transform: rotate(90deg); }
+.rules-section summary::-webkit-details-marker { display: none; }
+.rules-body {
+  padding: 4px 16px 16px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+  border-top: 1px solid var(--border);
+}
+
 /* -------- PLAYER PICKER DRAWER -------- */
 #player-picker-drawer {
   position: fixed;
