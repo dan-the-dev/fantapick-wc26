@@ -1,0 +1,672 @@
+Nome Team Bonus Gol Ruolo Nome Team Bonus Gol Ruolo
+Acevedo Messico 5 P Chaine Sudafrica 9 P
+Ochoa Messico 5 P Goss Sudafrica 9 P
+Rangel Messico 5 P Williams R. Sudafrica 9 P
+Gallardo Messico 8 D Kabini Sudafrica 13 D
+Sanchez J. Messico 9 D Makhanya Sudafrica 11 D
+Romo Messico 11 D Matuludi Sudafrica 12 D
+Chavez M. Messico 10 D Mbokazi Sudafrica 12 D
+Montes Messico 9 D Modiba Sudafrica 10 D
+Reyes Messico 9 D G Mudau Sudafrica 10 D
+Vasquez J. Messico 8 D I Ndamane Sudafrica 11 D
+Alvarez E. Messico 7 C R Okon Sudafrica 10 D
+Chavez L. Messico 9 C O Sibisi Sudafrica 10 D
+Fidalgo Messico 8 C N Cross Sudafrica 12 D
+Lira Messico 8 C E Sebelebele Sudafrica 13 D
+Pineda Messico 8 C Adams J. Sudafrica 10 C
+Vargas O. Messico 7 C A Mbatha Sudafrica 11 C
+Mora Messico 8 C Mokoena Sudafrica 8 C
+Gutierrez B. Messico 8 C Sithole Sudafrica 8 C
+Vega Messico 8 C Zwane Sudafrica 10 C
+Huerta Messico 9 C Appollis Sudafrica 7 C
+Alvarado Messico 7 A Maseko Sudafrica 9 C
+Gonzalez A. Messico 9 A Mofokeng Sudafrica 6 C
+Jimenez R. Messico 5 A Moremi Sudafrica 7 C
+Martinez G. Messico 8 A Foster Sudafrica 7 A
+Quinones Messico 5 A Rayners Sudafrica 10 A
+Gimenez S. Messico 6 A Makgopa Sudafrica 11 A
+Nome Team Bonus Gol Ruolo Nome Team Bonus Gol Ruolo
+Hyeon-woo Jo Corea del Sud 7 P Hornicek Rep.Ceca 5 P
+Seung-gyu Kim Corea del Sud 7 P Stanek Rep.Ceca 5 P
+Bum-keun Song Corea del Sud 7 P Kovar Rep.Ceca 5 P
+Han-beom Lee Corea del Sud 9 D Chaloupek Rep.Ceca 12 D
+Gi-hyuk Lee Corea del Sud 10 D Coufal Rep.Ceca 10 D
+Min-jae Kim Corea del Sud 8 D Holes Rep.Ceca 11 D
+Moon-hwan Kim Corea del Sud 10 D Hranac Rep.Ceca 11 D
+Young-woo Seol Corea del Sud 9 D Jurasek Rep.Ceca 9 D
+Tae-hyeon Kim Corea del Sud 10 D G Krejci Rep.Ceca 10 D
+Tae-seok Lee Corea del Sud 10 D I Zima Rep.Ceca 12 D
+Yu-min Cho Corea del Sud 9 D R Zeleny Rep.Ceca 13 D
+Jun-ho Bae Corea del Sud 10 C O Doudera Rep.Ceca 10 C
+Castrop Corea del Sud 9 C N Sochurek Rep.Ceca 12 C
+In-beom Hwang Corea del Sud 9 C E Cerv Rep.Ceca 11 C
+Jae-sung Lee Corea del Sud 9 C Darida Rep.Ceca 8 C
+Jin-gyu Kim Corea del Sud 8 C A Sojka Rep.Ceca 12 C
+Kang-in Lee Corea del Sud 8 C Sadilek Rep.Ceca 10 C
+Seung-ho Paik Corea del Sud 6 C Soucek Rep.Ceca 7 C
+Jin-seob Park Corea del Sud 9 C Sulc Rep.Ceca 6 C
+Dong-gyeong Lee Corea del Sud 8 C Visinsky Rep.Ceca 10 C
+Hyun-jun Yang Corea del Sud 8 C Provod Rep.Ceca 8 A
+Ji-sung Eom Corea del Sud 9 C Chory Rep.Ceca 9 A
+Gue-sung Cho Corea del Sud 8 A Chytil Rep.Ceca 9 A
+Hyeon-gyu Oh Corea del Sud 4 A Hlozek Rep.Ceca 6 A
+Heung-min Son Corea del Sud 8 A Schick Rep.Ceca 4 A
+Hee-chan Hwang Corea del Sud 7 A Kuchta Rep.Ceca 11 A
+Note
+Il bonus portiere (in blu) è per colui che gioca almeno 45' di tempi regolamentari con clean sheet (porta inviolata)
+Nome Team Bonus Gol Ruolo Nome Team Bonus Gol Ruolo
+Crepeau Canada 6 P Hadzikic Bosnia-Erzegovina 6 P
+Goodman Canada 6 P Vasilj Bosnia-Erzegovina 6 P
+St. Clair Canada 6 P Zlomislic Bosnia-Erzegovina 6 P
+Bombito M. Canada 10 D Celik N. Bosnia-Erzegovina 12 D
+Cornelius Canada 10 D Dedic Bosnia-Erzegovina 8 D
+Jones A. Canada 12 D Hadzikadunic Bosnia-Erzegovina 11 D
+Laryea Canada 9 D Katic Bosnia-Erzegovina 9 D
+De Fougerolles Canada 11 D Kolasinac Bosnia-Erzegovina 9 D
+Davis A. Canada 7 D G Muharemovic Bosnia-Erzegovina 8 D
+Waterman J. Canada 11 D I Mujakic Bosnia-Erzegovina 12 D
+Johnston Canada 9 D R Radeljic Bosnia-Erzegovina 13 D
+Ahmed A. Canada 10 C O Basic Bosnia-Erzegovina 11 C
+Choiniere Canada 11 C N Burnic Bosnia-Erzegovina 12 C
+Eustaquio Canada 9 C E Gigovic Bosnia-Erzegovina 11 C
+Sigur Canada 12 C Hadziahmetovic Bosnia-Erzegovina 11 C
+Konè I. Canada 7 C B Memic Bosnia-Erzegovina 8 C
+Osorio Canada 10 C Sunjic Bosnia-Erzegovina 8 C
+Saliba N. Canada 10 C Tahirovic Bosnia-Erzegovina 8 C
+Buchanan Canada 8 C Mahmic Bosnia-Erzegovina 12 C
+Millar Canada 11 C Alajbegovic Bosnia-Erzegovina 8 A
+Shaffelburg Canada 12 C Bajraktarevic Bosnia-Erzegovina 7 A
+Nelson J. Canada 10 A Bazdar Bosnia-Erzegovina 12 A
+Larin Canada 7 A Demirovic Bosnia-Erzegovina 4 A
+Oluwaseyi Canada 8 A Dzeko Bosnia-Erzegovina 6 A
+David J. Canada 5 A Lukic Bosnia-Erzegovina 11 A
+David P. Canada 6 A Tabakovic Bosnia-Erzegovina 12 A
+Nome Team Bonus Gol Ruolo Nome Team Bonus Gol Ruolo
+Barsham Qatar 10 P Keller Svizzera 5 P
+Abunada Qatar 10 P Kobel Svizzera 5 P
+Zakaria S. Qatar 10 P Mvogo Svizzera 5 P
+Al-Hussain Qatar 15 D Akanji Svizzera 8 D
+Al-Brake Qatar 14 D Amenda Svizzera 11 D
+Laye Qatar 12 D Comert Svizzera 12 D
+Al-Amin Qatar 13 D Elvedi Svizzera 8 D
+Khoukhi Qatar 12 D Jaquez Svizzera 11 D
+Al-Oui Qatar 13 D G Muheim Svizzera 10 D
+Mendes L. Qatar 17 D I Rodriguez R. Svizzera 9 D
+Pedro Miguel Qatar 12 D R Widmer Svizzera 9 D
+Al-Mannai Qatar 16 C O Aebischer Svizzera 8 C
+Boudiaf Qatar 14 C N Freuler Svizzera 9 C
+Fathi Qatar 13 C E Jashari Svizzera 8 C
+Gaber Qatar 15 C Manzambi Svizzera 8 C
+Hatim Qatar 16 C B Sow Svizzera 9 C
+Madibo Qatar 15 C Xhaka Svizzera 8 C
+Al-Haydos Qatar 16 C Zakaria D. Svizzera 8 C
+Mohammed Jamshid Qatar 17 C Rieder Svizzera 8 C
+Abdurisag Qatar 17 C Fassnacht Svizzera 10 C
+Al-Ganehi Qatar 16 C Ndoye Svizzera 6 C
+Edmilson Junior Qatar 13 C Vargas R. Svizzera 7 C
+Afif Qatar 10 A Okafor Svizzera 7 A
+Alaaeldin Qatar 13 A Amdouni Svizzera 7 A
+Ali A. Qatar 11 A Itten Svizzera 9 A
+Muntari Qatar 11 A Embolo Svizzera 5 A
+Note
+Il bonus portiere (in blu) è per colui che gioca almeno 45' di tempi regolamentari con clean sheet (porta inviolata)
+Nome Team Bonus Gol Ruolo Nome Team Bonus Gol Ruolo
+Alisson Brasile 3 P Tagnaouti Marocco 6 P
+Weverton Brasile 3 P El Kajoui Marocco 6 P
+Ederson Brasile 3 P Bounou Marocco 6 P
+Bremer Brasile 9 D Saadane Marocco 10 D
+Douglas Santos Brasile 9 D Belammari Marocco 10 D
+Danilo Da Silva Brasile 11 D Diop Marocco 9 D
+Roger Ibanez Brasile 12 D El Ouahdi Marocco 11 D
+Gabriel Magalhaes Brasile 7 D Hakimi Marocco 6 D
+Marquinhos Brasile 8 D G Halhal Marocco 11 D
+Leo Pereira Brasile 10 D I Mazraoui Marocco 8 D
+Alex Sandro Brasile 9 D R Riad Marocco 9 D
+Ederson Brasile 10 C O Salah-Eddine Marocco 10 D
+Bruno Guimaraes Brasile 8 C N El Aynaoui Marocco 8 C
+Casemiro Brasile 7 C E El Khannouss Marocco 8 C
+Danilo Dos Santos Brasile 11 C El Mourabet Marocco 11 C
+Fabinho Brasile 12 C C Amrabat Marocco 11 C
+Paquetà Brasile 7 C Ounahi Marocco 10 C
+Luiz Henrique Brasile 7 C Saibari Marocco 7 C
+Matheus Cunha Brasile 5 A Bouaddi Marocco 10 C
+Endrick Brasile 8 A Diaz B. Marocco 5 C
+Vinicius Junior Brasile 3 A Amaimouni-Echghouyab Marocco 10 C
+Martinelli Brasile 6 A Yassine Marocco 9 C
+Neymar Brasile 4 A Sbai Marocco 7 A
+Raphinha Brasile 3 A Talbi C. Marocco 8 A
+Rayan Brasile 7 A Rahimi Marocco 6 A
+Igor Thiago Brasile 5 A El Kaabi Marocco 6 A
+Nome Team Bonus Gol Ruolo Nome Team Bonus Gol Ruolo
+Pierre A. Haiti 17 P Gunn Scozia 7 P
+Duverger Haiti 17 P Gordon C. Scozia 7 P
+Placide Haiti 17 P Kelly Scozia 7 P
+Adè Haiti 19 D Hyam Scozia 12 D
+Arcus Haiti 17 D Hanley Scozia 10 D
+Thermoncy Haiti 20 D Hendry Scozia 11 D
+Delcroix Haiti 16 D Hickey Scozia 9 D
+Duverne Haiti 19 D McKenna Scozia 9 D
+Experience Haiti 19 D G Ralston Scozia 9 D
+Lacroix D. Haiti 16 D I Robertson Scozia 8 D
+Paugain Haiti 20 D R Souttar J. Scozia 11 D
+Bellegarde Haiti 14 C O Tierney Scozia 9 D
+Jean Jacques Haiti 16 C N Patterson Scozia 12 D
+Simon Haiti 16 C E Fletcher Scozia 11 C
+Pierre L. Haiti 14 C Christie Scozia 8 C
+Saintè Haiti 16 C C Ferguson Scozia 8 C
+Pierre W. Haiti 16 C McGinn Scozia 6 C
+Providence Haiti 14 C McLean Scozia 8 C
+Casimir Haiti 15 C McTominay Scozia 4 C
+Etienne Jr. Haiti 16 C Gannon-Doak Scozia 7 C
+Deedson Haiti 14 A Curtis Scozia 9 C
+Fortunè Haiti 14 A Adams C. Scozia 6 A
+Isidor Haiti 12 A Dykes Scozia 7 A
+Nazon Haiti 13 A Stewart Scozia 9 A
+Joseph Haiti 16 A Hirst Scozia 10 A
+Pierrot Haiti 15 A Shankland Scozia 9 A
+Note
+Il bonus portiere (in blu) è per colui che gioca almeno 45' di tempi regolamentari con clean sheet (porta inviolata)
+Nome Team Bonus Gol Ruolo Nome Team Bonus Gol Ruolo
+Brady C. Stati Uniti 6 P Fernandez R. Paraguay 6 P
+Freese Stati Uniti 6 P Gill Paraguay 6 P
+Turner Stati Uniti 6 P Olveira G. Paraguay 6 P
+Robinson A. Stati Uniti 9 D Alderete Paraguay 10 D
+Dest Stati Uniti 8 D Alonso J. Paraguay 9 D
+Freeman Stati Uniti 10 D Balbuena Paraguay 12 D
+Robinson M. Stati Uniti 9 D Caceres J.J. Paraguay 10 D
+McKenzie Stati Uniti 10 D Canale Paraguay 11 D
+Ream Stati Uniti 9 D G Gomez G. Paraguay 9 D
+Richards Stati Uniti 11 D I Maidana Paraguay 12 D
+Scally Stati Uniti 11 D R Velazquez Paraguay 11 D
+Trusty Stati Uniti 10 D O Cubas Paraguay 9 C
+Adams T. Stati Uniti 8 C N Bobadilla Paraguay 9 C
+Berhalter Stati Uniti 10 C E Gomez D. Paraguay 8 C
+Roldan Stati Uniti 10 C Galarza Paraguay 10 C
+McKennie Stati Uniti 6 C D Ojeda B. Paraguay 10 C
+Weah Stati Uniti 7 C Kaku Paraguay 11 C
+Tillman Stati Uniti 7 C Enciso Paraguay 7 C
+Aaronson B. Stati Uniti 8 C Mauricio Paraguay 9 C
+Reyna Stati Uniti 9 C Almiron Paraguay 7 C
+Arfsten Stati Uniti 9 C Caballero Paraguay 9 A
+Zendejas Stati Uniti 9 C Sosa Paraguay 8 A
+Pulisic Stati Uniti 4 C Arce Paraguay 9 A
+Wright H. Stati Uniti 7 A Pitta Paraguay 9 A
+Balogun Stati Uniti 5 A Avalos Paraguay 8 A
+Pepi Stati Uniti 6 A Sanabria A. Paraguay 6 A
+Nome Team Bonus Gol Ruolo Nome Team Bonus Gol Ruolo
+Beach Australia 8 P Bayindir Turchia 5 P
+Izzo Australia 8 P Cakir Turchia 5 P
+Ryan Australia 8 P Gunok Turchia 5 P
+Behich Australia 13 D Soyuncu Turchia 10 D
+Bos Australia 9 D Akaydin Turchia 11 D
+Burgess Australia 10 D Bardakci Turchia 9 D
+Circati Australia 9 D Celik Z. Turchia 9 D
+Degenek Australia 12 D Demiral Turchia 8 D
+Geria Australia 13 D G Elmali Turchia 11 D
+Herrington Australia 13 D I Kabak Turchia 10 D
+Italiano Australia 9 D R Kadioglu Turchia 8 D
+Souttar H. Australia 10 D O Muldur Turchia 9 D
+Trewin Australia 10 C N Ayhan Turchia 10 C
+Hrustic Australia 10 C E Calhanoglu Turchia 6 C
+Devlin Australia 11 C Kokcu Turchia 8 C
+Metcalfe Australia 9 C D Ozcan Turchia 9 C
+O'Neill Australia 8 C Yuksek Turchia 9 C
+Okon-Engstler Australia 10 C Uzun Turchia 8 C
+Irvine Australia 9 C Guler Turchia 4 C
+Leckie Australia 10 C Aydin Turchia 9 C
+Volpato Australia 7 C Akgun Turchia 7 C
+Mabil Australia 9 C Kahveci Turchia 9 C
+Irankunda Australia 7 A Akturkoglu Turchia 7 A
+Velupillay Australia 9 A Yilmaz Turchia 5 A
+Tourè M. Australia 7 A Yildiz Turchia 4 A
+Yengi Australia 9 A Gul Turchia 8 A
+Note
+Il bonus portiere (in blu) è per colui che gioca almeno 45' di tempi regolamentari con clean sheet (porta inviolata)
+Nome Team Bonus Gol Ruolo Nome Team Bonus Gol Ruolo
+Baumann Germania 3 P Bodak Curacao 17 P
+Nubel Germania 3 P Doornbusch Curacao 17 P
+Neuer Germania 3 P Room Curacao 17 P
+Anton Germania 12 D Bazoer Curacao 19 D
+Brown N. Germania 11 D Brenet Curacao 16 D
+Raum Germania 9 D Floranus Curacao 16 D
+Rudiger Germania 8 D Fonville Curacao 20 D
+Schlotterbeck Germania 9 D Gaari Curacao 20 D
+Tah Germania 9 D G Obispo Curacao 16 D
+Thiaw Germania 12 D I Sambo Curacao 20 D
+Kimmich Germania 8 C R van Eijma Curacao 16 D
+Pavlovic Germania 9 C O Comenencia Curacao 17 D
+Stiller Germania 9 C N Felida Curacao 18 C
+Amiri Germania 10 C E Bacuna J. Curacao 14 C
+Nmecha F. Germania 10 C Bacuna L. Curacao 13 C
+Goretzka Germania 8 C E Noslin Ty. Curacao 16 C
+Gross Germania 8 C Roemeratoe Curacao 17 C
+Musiala Germania 4 C Chong Curacao 13 C
+Ouedraogo Germania 8 C Martha Curacao 16 C
+Wirtz Germania 4 C Kuwas Curacao 16 C
+Leweling Germania 7 C Antonisse Curacao 17 C
+Sane Germania 6 C Gorrè Curacao 16 A
+Beier Germania 7 A Hansen Curacao 15 A
+Havertz Germania 4 A Margaritha Curacao 15 A
+Undav Germania 7 A Kastaneer Curacao 15 A
+Woltemade Germania 6 A Locadia Curacao 12 A
+Nome Team Bonus Gol Ruolo Nome Team Bonus Gol Ruolo
+Lafont Costa d'Avorio 6 P Galindez Ecuador 6 P
+Kone Mo. Costa d'Avorio 6 P Valle G. Ecuador 6 P
+Fofana Y. Costa d'Avorio 6 P Ramirez M. Ecuador 6 P
+Agbadou Costa d'Avorio 13 D Estupinan Ecuador 9 D
+Akpa Costa d'Avorio 11 D Porozo Ecuador 12 D
+Doué G. Costa d'Avorio 9 D Hincapie Ecuador 9 D
+Singo Costa d'Avorio 8 D Ordonez Ecuador 10 D
+Konan Costa d'Avorio 12 D Pacho Ecuador 9 D
+Kossounou Costa d'Avorio 10 D G Preciado Ecuador 11 D
+Ndicka Costa d'Avorio 8 D I Medina Y. Ecuador 12 D
+Diomande O. Costa d'Avorio 11 D R Torres Fel. Ecuador 12 D
+Seri Costa d'Avorio 10 C O Alcivar Ecuador 11 C
+Kessie Costa d'Avorio 6 C N Caicedo M. Ecuador 7 C
+Oulai Costa d'Avorio 9 C E Castillo Ecuador 10 C
+Fofana S. Costa d'Avorio 7 C Franco Ecuador 8 C
+Sangarè Costa d'Avorio 8 C E Paez Ecuador 8 C
+Guiagon Costa d'Avorio 9 C Vite Ecuador 8 C
+Adingra Costa d'Avorio 8 C Valencia A. Ecuador 9 C
+Pépé Costa d'Avorio 6 C Angulo Ecuador 8 C
+Diallo Costa d'Avorio 6 C Plata Ecuador 7 A
+Tourè B. Costa d'Avorio 9 C Minda Ecuador 9 A
+Diomande Y. Costa d'Avorio 4 A Yeboah Ecuador 7 A
+Guessand Costa d'Avorio 5 A Arevalo Ecuador 9 A
+Wahi Costa d'Avorio 7 A Caicedo J. Ecuador 9 A
+Diakitè O. Costa d'Avorio 10 A Valencia E. Ecuador 6 A
+Bonny Costa d'Avorio 5 A Rodriguez K. Ecuador 9 A
+Note
+Il bonus portiere (in blu) è per colui che gioca almeno 45' di tempi regolamentari con clean sheet (porta inviolata)
+Nome Team Bonus Gol Ruolo Nome Team Bonus Gol Ruolo
+Roefs Olanda 4 P Hayakawa Giappone 6 P
+Flekken Olanda 4 P Osako Giappone 6 P
+Verbruggen Olanda 4 P Suzuki Z. Giappone 6 P
+Ake N. Olanda 9 D Ito H. Giappone 10 D
+Wieffer Olanda 11 D Itakura Giappone 10 D
+Dumfries Olanda 6 D Nagatomo Giappone 12 D
+Geertruida Olanda 11 D Suzuki J. Giappone 13 D
+Hato Olanda 12 D Tomiyasu Giappone 10 D
+van de Ven Olanda 8 D G Sugawara Giappone 13 D
+van Dijk Olanda 8 D I Taniguchi Giappone 12 D
+van Hecke Olanda 9 D R Watanabe Giappone 12 D
+Gravenberch Olanda 8 C O Seko Giappone 11 C
+Koopmeiners Olanda 9 C N Sano Ka. Giappone 11 C
+Reijnders Olanda 5 C E Endo Giappone 9 C
+De Roon Olanda 10 C Tanaka Giappone 8 C
+De Jong Olanda 8 C F Kamada Giappone 8 C
+Timber Q. Olanda 9 C Kubo Giappone 6 C
+Til Olanda 9 C Doan Giappone 5 C
+Kluivert Olanda 8 C Ito J. Giappone 9 C
+Summerville Olanda 6 C Nakamura Giappone 8 A
+Lang Olanda 7 A Maeda Giappone 7 A
+Depay Olanda 6 A Suzuki Y. Giappone 7 A
+Gakpo Olanda 5 A Ogawa Giappone 8 A
+Brobbey Olanda 8 A Shiogai Giappone 9 A
+Malen Olanda 4 A Goto Giappone 8 A
+Weghorst Olanda 7 A Ueda Giappone 5 A
+Nome Team Bonus Gol Ruolo Nome Team Bonus Gol Ruolo
+Johansson V. Svezia 6 P Dahmen Tunisia 12 P
+Nordfeldt Svezia 6 P Chamakh Tunisia 12 P
+Zetterstrom Svezia 6 P Ben Hessen Tunisia 12 P
+Gudmundsson Svezia 10 D Talbi M. Tunisia 12 D
+Hien Svezia 9 D Arous Tunisia 16 D
+Ekdal Svezia 11 D Bronn Tunisia 12 D
+Lagerbielke Svezia 12 D Rekik Tunisia 17 D
+Lindelof Svezia 9 D Chikhaoui Tunisia 17 D
+Starfelt Svezia 9 D G Abdi Tunisia 13 D
+Smith E. Svezia 10 D I Ben Hamida Tunisia 16 D
+Svensson Svezia 7 D R Valery Tunisia 12 D
+Sema Svezia 11 D O Neffati Tunisia 17 D
+Johansson H. Svezia 11 D N Skhiri Tunisia 12 C
+Ayari Y. Svezia 9 C E Belhadj Mahmoud Tunisia 13 C
+Bergvall Svezia 9 C Khedira R. Tunisia 12 C
+Karlstrom Svezia 9 C F Ben Slimane Tunisia 13 C
+Stroud Svezia 10 C Hannibal Tunisia 12 C
+Svanberg Svezia 8 C Tounetki Tunisia 11 C
+Zeneli Svezia 9 C Gharbi Tunisia 14 C
+Nygren Svezia 9 C Ben Ouanes Tunisia 15 C
+Bernhardsson Svezia 9 C Ayari K. Tunisia 14 A
+Elanga Svezia 6 C Achouri Tunisia 12 A
+Ali T. Svezia 8 A Saad Tunisia 13 A
+Gyokeres Svezia 3 A Chaouat Tunisia 14 A
+Isak Svezia 4 A Elloumi Tunisia 14 A
+Nilsson Svezia 8 A Mastouri Tunisia 11 A
+Note
+Il bonus portiere (in blu) è per colui che gioca almeno 45' di tempi regolamentari con clean sheet (porta inviolata)
+Nome Team Bonus Gol Ruolo Nome Team Bonus Gol Ruolo
+Lammens Belgio 3 P Alaa M. Egitto 6 P
+Penders Belgio 3 P El Shenawy Egitto 6 P
+Courtois Belgio 3 P Oufa Shobeir Egitto 6 P
+Castagne Belgio 9 D Soliman Egitto 6 P
+De Cuyper Belgio 8 D Abdelmaguid Egitto 12 D
+De Winter Belgio 10 D Abdelmonem Egitto 10 D
+Debast Belgio 9 D Fatouh Egitto 9 D
+Mechele Belgio 11 D Hany Egitto 9 D
+Meunier Belgio 9 D G Ibrahim Egitto 11 D
+Ngoy Belgio 12 D I Rabia Egitto 9 D
+Seys Belgio 11 D R Hafez Egitto 12 D
+Theate Belgio 8 D O Alaa T. Egitto 12 D
+Onana A. Belgio 8 C N Ashour Egitto 7 C
+Raskin Belgio 11 C E Ateya Egitto 10 C
+Tielemans Belgio 7 C Fathy Egitto 9 C
+Witsel Belgio 10 C G Nabil Dunga Egitto 11 C
+Moreira D. Belgio 9 C Lasheen Egitto 10 C
+Saelemaekers Belgio 6 C Saber Egitto 10 C
+De Bruyne Belgio 5 C Hassan H. Egitto 9 C
+Vanaken Belgio 8 C Mostafa Ziko Egitto 9 C
+De Ketelaere Belgio 4 A Zizo Egitto 8 C
+Doku Belgio 4 A Trezeguet Egitto 6 A
+Lukebakio Belgio 7 A Salah Egitto 4 A
+Trossard Belgio 5 A Adel Egitto 8 A
+Fernadez-Pardo Belgio 8 A Abdelkarim Egitto 8 A
+Lukaku Belgio 4 A Marmoush Egitto 3 A
+Nome Team Bonus Gol Ruolo Nome Team Bonus Gol Ruolo
+Beiranvand Iran 8 P Crocombe Nuova Zelanda 14 P
+Hosseini Iran 8 P Paulsen Nuova Zelanda 14 P
+Niazmand Iran 8 P Woud Nuova Zelanda 14 P
+Hajsafi Iran 15 D Bindon Nuova Zelanda 19 D
+Hardani Iran 14 D Boxall Nuova Zelanda 15 D
+Kanaani Iran 11 D de Vries Nuova Zelanda 18 D
+Eiri Iran 13 D Smith T. Nuova Zelanda 19 D
+Khalilzadeh Iran 11 D Surman Nuova Zelanda 14 D
+Mohammadi Iran 10 D G Pijnaker Nuova Zelanda 15 D
+Nemati Iran 13 D I Cacace Nuova Zelanda 12 D
+Rezaeian Iran 14 D R Old Nuova Zelanda 16 D
+Yousefi Iran 11 D O Payne Nuova Zelanda 17 D
+Ezatolahi Iran 9 C N Elliot Nuova Zelanda 18 D
+Cheshmi Iran 12 C E Bayliss Nuova Zelanda 15 C
+Ghorbani Iran 11 C Bell Nuova Zelanda 14 C
+Razzaghinia Iran 12 C G Thomas Nuova Zelanda 14 C
+Ghoddos Iran 10 C Garbett Nuova Zelanda 15 C
+Torabi Iran 11 C Rufer Nuova Zelanda 15 C
+Jahanbakhsh Iran 9 A Stamenic Nuova Zelanda 13 C
+Ghayedi Iran 9 A McCowatt Nuova Zelanda 15 C
+Mohebi Iran 9 A Singh Nuova Zelanda 15 C
+Alipour Iran 10 A Just Nuova Zelanda 12 C
+Eckert Ayensa Iran 10 A Randall Nuova Zelanda 14 A
+Hosseinzadeh Iran 11 A Barbarouses Nuova Zelanda 14 A
+Moghanlou Iran 11 A Wood Nuova Zelanda 9 A
+Taremi Iran 7 A Waine Nuova Zelanda 10 A
+Note
+Il bonus portiere (in blu) è per colui che gioca almeno 45' di tempi regolamentari con clean sheet (porta inviolata)
+Nome Team Bonus Gol Ruolo Nome Team Bonus Gol Ruolo
+Garcia J. Spagna 3 P dos Santos Capo Verde 15 P
+Raya Spagna 3 P Rosa Capo Verde 15 P
+Unai Simon Spagna 3 P Vozinha Capo Verde 15 P
+Cubarsi Spagna 8 D Lopes Cabral Capo Verde 16 D
+Cucurella Spagna 9 D Costa L. Capo Verde 14 D
+Grimaldo Spagna 9 D Borges Capo Verde 19 D
+Garcia E. Spagna 10 D Moreira S. Capo Verde 18 D
+Laporte Spagna 8 D Pires Capo Verde 19 D
+Llorente M. Spagna 7 D G Lopes R. Capo Verde 15 D
+Pubill Spagna 10 D I Stopira Capo Verde 14 D
+Porro Spagna 9 D R Pina W. Capo Verde 14 D
+Gavi Spagna 8 C O Lenini Capo Verde 12 C
+Pedri Spagna 6 C N Duarte D. Capo Verde 14 C
+Rodri Spagna 7 C E Semedo Y. Capo Verde 15 C
+Ruiz Spagna 5 C Duarte L. Capo Verde 14 C
+Zubimendi Spagna 8 C H Monteiro Capo Verde 12 C
+Merino Spagna 6 C Joao Paulo Capo Verde 14 C
+Baena Spagna 7 C Arcanjo Capo Verde 12 C
+Olmo Spagna 5 C Mendes R. Capo Verde 14 C
+Pino Spagna 7 C Cabral J. Capo Verde 13 C
+Williams N. Spagna 5 A Varela H. Capo Verde 13 C
+Munoz V. Spagna 8 A Semedo W. Capo Verde 14 C
+Yamal Spagna 3 A Rodrigues G. Capo Verde 11 A
+Torres Fer. Spagna 4 A da Costa Capo Verde 12 A
+Oyarzabal Spagna 4 A Benchimol Capo Verde 14 A
+Iglesias Spagna 8 A Livramento D. Capo Verde 10 A
+Nome Team Bonus Gol Ruolo Nome Team Bonus Gol Ruolo
+Al-Aqidi Arabia Saudita 15 P Mele Uruguay 6 P
+Al-Kassar Arabia Saudita 15 P Muslera Uruguay 6 P
+Al-Owais Arabia Saudita 15 P Rochet Uruguay 6 P
+Abdulhamid Arabia Saudita 11 D Bueno Uruguay 11 D
+Al-Amri Arabia Saudita 13 D Caceres S. Uruguay 11 D
+Tambakti Arabia Saudita 13 D Gimenez J.M. Uruguay 9 D
+Thakri Arabia Saudita 16 D Sanabria J.M. Uruguay 12 D
+Lajami Arabia Saudita 17 D Olivera M. Uruguay 9 D
+Yahya Ay. Arabia Saudita 17 D G Piquerez Uruguay 11 D
+Al-Harbi Arabia Saudita 18 D I Araujo R. Uruguay 8 D
+Kadesh Arabia Saudita 15 D R Varela G. Uruguay 8 D
+Boushal Arabia Saudita 16 D O Vina Uruguay 10 D
+Abu Al-Shamat Arabia Saudita 19 D N Araujo M. Uruguay 7 D
+Majrashi Arabia Saudita 18 D E de la Cruz Uruguay 8 C
+Al-Dawsari N. Arabia Saudita 16 C Martinez Em. Uruguay 10 C
+Hejji Arabia Saudita 16 C H Bentancur Uruguay 9 C
+Al-Johani Arabia Saudita 17 C Ugarte Uruguay 9 C
+Al-Juwayr Arabia Saudita 15 C Valverde Uruguay 6 C
+Al-Khaibari Arabia Saudita 13 C de Arrascaeta Uruguay 7 C
+Kanno Arabia Saudita 13 C Zalazar Uruguay 9 C
+Al-Ghannam Arabia Saudita 13 A Canobbio Uruguay 9 C
+Mandash Arabia Saudita 12 A Pellistri Uruguay 7 C
+Al-Dawsari S. Arabia Saudita 10 A Rodriguez B. Uruguay 8 A
+Al-Buraikan Arabia Saudita 14 A Nunez D. Uruguay 4 A
+Al-Hamdan Arabia Saudita 13 A Vinas Uruguay 9 A
+Al-Shehri Arabia Saudita 13 A Aguirre Uruguay 8 A
+Note
+Il bonus portiere (in blu) è per colui che gioca almeno 45' di tempi regolamentari con clean sheet (porta inviolata)
+Nome Team Bonus Gol Ruolo Nome Team Bonus Gol Ruolo
+Risser Francia 3 P Diaw Senegal 9 P
+Maignan Francia 3 P Mendy E. Senegal 9 P
+Samba Francia 3 P Diouf Y. Senegal 9 P
+Digne Francia 10 D Mendy A. Senegal 13 D
+Saliba W. Francia 8 D Diouf E. Senegal 10 D
+Gusto Francia 10 D Jakobs Senegal 11 D
+Koundè Francia 8 D Koulibaly Senegal 9 D
+Konatè Francia 10 D Sarr M. Senegal 12 D
+Hernandez L. Francia 11 D G Niakhate Senegal 10 D
+Lacroix M. Francia 11 D I Seck Senegal 13 D
+Hernandez T. Francia 7 D R Diarra Senegal 10 C
+Upamecano Francia 8 D O Ciss Senegal 12 C
+Konè M. Francia 9 C N Gueye I. Senegal 9 C
+Kantè Francia 10 C E Camara L. Senegal 10 C
+Rabiot Francia 7 C Gueye P. Senegal 9 C
+Tchouameni Francia 8 C I Sarr P.M. Senegal 9 C
+Zaire-Emery Francia 9 C Sapoko Ndiaye Senegal 11 C
+Cherki Francia 5 C Diatta Senegal 8 C
+Akliouche Francia 7 C Diao Senegal 8 A
+Olise Francia 4 A Ndiaye I. Senegal 7 A
+Barcola Francia 7 A Sarr I. Senegal 7 A
+Dembelé Francia 4 A Mane Senegal 5 A
+Doué D. Francia 5 A Mbaye Senegal 8 A
+Mbappe Francia 3 A Dieng Senegal 9 A
+Mateta Francia 8 A Jackson Senegal 5 A
+Thuram Francia 6 A Ndiaye C. Senegal 8 A
+Nome Team Bonus Gol Ruolo Nome Team Bonus Gol Ruolo
+Hassan J. Iraq 18 P Selvik Norvegia 5 P
+Basil Fadhil Iraq 18 P Nyland Norvegia 5 P
+Talib Iraq 18 P Tangvik Norvegia 5 P
+Doski Iraq 16 D Ajer Norvegia 10 D
+Ali H. Iraq 17 D Bjorkan Norvegia 12 D
+Hashem Iraq 19 D Falchener Norvegia 12 D
+Saadoon Iraq 20 D Heggem Norvegia 10 D
+Dhia Putros Iraq 20 D Langas Norvegia 12 D
+Sulaka Iraq 17 D G Ostigard Norvegia 9 D
+Tahseen Iraq 16 D I Pedersen Norvegia 10 D
+Younis Iraq 19 D R Ryerson Norvegia 8 D
+Yahya Ah. Iraq 20 D O Moller Wolfe Norvegia 9 D
+Al-Ammari Iraq 15 C N Aasgaard Norvegia 11 C
+Bayesh Iraq 15 C E Berg Norvegia 11 C
+Iqbal Iraq 14 C Aursnes Norvegia 9 C
+Ismail Iraq 18 C I Berge Norvegia 9 C
+Sher Iraq 16 C Thorsby Norvegia 9 C
+Yakob Iraq 18 C Thorstvedt Norvegia 8 C
+Farji Iraq 19 C Odegaard Norvegia 6 C
+Qasem Iraq 17 C Bobb Norvegia 7 C
+Jasim Iraq 13 C Nusa Norvegia 5 C
+Amyn Iraq 14 A Schjelderup Norvegia 7 A
+Al-Hamadi Iraq 15 A Hauge Norvegia 7 A
+Hussein A. Iraq 13 A Haaland Norvegia 3 A
+Ali M. Iraq 16 A Strand Larsen Norvegia 9 A
+Yousif Iraq 16 A Sorloth Norvegia 4 A
+Note
+Il bonus portiere (in blu) è per colui che gioca almeno 45' di tempi regolamentari con clean sheet (porta inviolata)
+Nome Team Bonus Gol Ruolo Nome Team Bonus Gol Ruolo
+Martinez E. Argentina 3 P Zidane L. Algeria 6 P
+Musso Argentina 3 P Benbout Algeria 6 P
+Rulli Argentina 3 P Mastil Algeria 6 P
+Medina F. Argentina 11 D Abada Algeria 12 D
+Balerdi Argentina 11 D Bensebaini Algeria 9 D
+Molina N. Argentina 7 D Chergui Algeria 12 D
+Montiel Argentina 9 D Belaid Algeria 10 D
+Otamendi Argentina 8 D Mandi Algeria 9 D
+Romero Argentina 8 D G Ait-Nouri Algeria 8 D
+Martinez Lis. Argentina 9 D I Hadjam Algeria 10 D
+Tagliafico Argentina 8 D R Tougai Algeria 11 D
+Barco Argentina 9 C O Belghali Algeria 8 C
+Mac Allister Argentina 7 C N Zerrouki Algeria 9 C
+De Paul Argentina 7 C E Bentaleb Algeria 9 C
+Fernandez E. Argentina 5 C Boudaoui Algeria 8 C
+Palacios Argentina 9 C J Titraoui Algeria 9 C
+Paredes Argentina 8 C Aouar Algeria 7 C
+Lo Celso Argentina 8 C Maza Algeria 7 C
+Paz Argentina 7 C Chaibi Algeria 8 C
+Gonzalez N. Argentina 6 C Hadj Moussa Algeria 9 A
+Simeone Argentina 6 C Mahrez Algeria 5 A
+Almada Argentina 6 C Boulbina Algeria 8 A
+Alvarez J. Argentina 3 A Ghedjemis Algeria 6 A
+Messi Argentina 3 A Gouiri Algeria 5 A
+Martinez L. Argentina 3 A Amoura Algeria 8 A
+Lopez J.M. Argentina 9 A Benbouali Algeria 9 A
+Nome Team Bonus Gol Ruolo Nome Team Bonus Gol Ruolo
+Schlager A. Austria 6 P Al-Fakhouri A. Giordania 19 P
+Pentz Austria 6 P Abulaila Giordania 19 P
+Wiegele Austria 6 P Bani Attiah Giordania 19 P
+Affengruber Austria 12 D Abualnadi Giordania 20 D
+Alaba Austria 9 D Al-Arab Giordania 18 D
+Danso Austria 8 D Al-Rosan Giordania 20 D
+Friedl Austria 12 D Abu Hasheesh Giordania 19 D
+Lienhart Austria 11 D Haddad Giordania 18 D
+Mwene Austria 9 D G Badawi Giordania 19 D
+Posch Austria 10 D I Abu Dahab Giordania 18 D
+Svoboda Austria 10 D R Nasib Giordania 18 D
+Laimer Austria 8 D O Obaid Giordania 20 D
+Prass Austria 12 D N Abu Taha Giordania 18 D
+Chukwuemeka Austria 9 C E Al-Dawoud Giordania 19 C
+Grillitsch Austria 10 C Al-Rashdan Giordania 17 C
+Sabitzer Austria 7 C J Al-Rawabdeh Giordania 18 C
+Schopf Austria 10 C Jamous Giordania 18 C
+Seiwald Austria 9 C Ayed Giordania 17 C
+Schlager X. Austria 9 C Saadeh Giordania 17 C
+Baumgartner Austria 6 C Al-Mardi Giordania 18 C
+Schmid Austria 7 C Azaizeh Giordania 19 A
+Wanner Austria 9 C Fakhouri O. Giordania 19 A
+Wimmer Austria 7 C Tamari Giordania 16 A
+Arnautovic Austria 6 A Shararh Zrayq Giordania 17 A
+Gregoritsch Austria 8 A Sabra Giordania 17 A
+Kalajdzic Austria 11 A Olwan Giordania 16 A
+Note
+Il bonus portiere (in blu) è per colui che gioca almeno 45' di tempi regolamentari con clean sheet (porta inviolata)
+Nome Team Bonus Gol Ruolo Nome Team Bonus Gol Ruolo
+Costa D. Portogallo 3 P Epolo RD Congo 12 P
+Rui Silva Portogallo 3 P Fayulu RD Congo 12 P
+Sa Portogallo 3 P Mpasi-Nzau RD Congo 12 P
+Araujo T. Portogallo 10 D Batubinsika RD Congo 15 D
+Cancelo Portogallo 7 D Bushiri RD Congo 15 D
+Dalot Portogallo 8 D Kayembe J. RD Congo 15 D
+Dias Portogallo 8 D Kapuadi RD Congo 16 D
+Inacio Portogallo 8 D Masuaku RD Congo 11 D
+Semedo N. Portogallo 9 D G Mbemba RD Congo 11 D
+Veiga Portogallo 10 D I Ngakia RD Congo 16 D
+Nunes M. Portogallo 9 D R Tuanzebe RD Congo 11 D
+Nuno Mendes Portogallo 6 D O Wan-Bissaka RD Congo 10 D
+Joao Neves Portogallo 7 C N Mukau RD Congo 14 C
+Samù Costa Portogallo 9 C E Pickel RD Congo 13 C
+Ruben Neves Portogallo 9 C Kayembe E. RD Congo 13 C
+Vitinha Portogallo 7 C K Sadiki RD Congo 11 C
+Bernardo Silva Portogallo 6 C Moutoussamy RD Congo 11 C
+Bruno Fernandes Portogallo 4 C Elia RD Congo 13 C
+Trincao Portogallo 8 C Mbuku RD Congo 10 C
+Conceicao Portogallo 7 C Diangana RD Congo 12 C
+Guedes Portogallo 8 C Bongonda RD Congo 11 A
+Pedro Neto Portogallo 6 A Cipenga RD Congo 12 A
+Leao Portogallo 6 A Bakambu RD Congo 8 A
+Joao Felix Portogallo 7 A Banza RD Congo 11 A
+Ramos G. Portogallo 8 A Mayele RD Congo 11 A
+Ronaldo Portogallo 3 A Wissa RD Congo 8 A
+Nome Team Bonus Gol Ruolo Nome Team Bonus Gol Ruolo
+Ergashev Uzbekistan 14 P Montero Colombia 5 P
+Nematov Uzbekistan 14 P Ospina Colombia 5 P
+Yusupov Uzbekistan 14 P Vargas C. Colombia 5 P
+Ulmasaliev Uzbekistan 15 D Mina Colombia 8 D
+Alizhonov Uzbekistan 16 D Lucumi Colombia 8 D
+Ashurmatov Uzbekistan 16 D Machado Colombia 12 D
+Eshmurodov Uzbekistan 15 D Mojica Colombia 9 D
+Karimov Uzbekistan 14 D Ditta Colombia 12 D
+Khusanov Uzbekistan 12 D G Munoz D. Colombia 8 D
+Nasrullaev Uzbekistan 14 D I Arias S. Colombia 9 D
+Sayfiev Uzbekistan 14 D R Sanchez D. Colombia 9 D
+Urozov Uzbekistan 14 D O Portilla Colombia 11 C
+Khamrobekov Uzbekistan 12 C N Castano Colombia 10 C
+Ganiev Uzbekistan 12 C E Lerma Colombia 9 C
+Iskanderov Uzbekistan 13 C Puerta Colombia 10 C
+Mozgovoy Uzbekistan 13 C K Rios Colombia 7 C
+Shukurov Uzbekistan 12 C Carrascal Colombia 9 C
+Abdullaev Uzbekistan 13 C Quintero J.F. Colombia 8 C
+Esanov Uzbekistan 13 C Rodriguez J. Colombia 5 C
+Urunov Uzbekistan 14 C Campaz Colombia 9 C
+Fayzullaev Uzbekistan 13 C Arias J. Colombia 6 C
+Masharipov Uzbekistan 12 C Gomez A. Colombia 8 C
+Khamdamov Uzbekistan 13 A Cordoba Jh. Colombia 10 A
+Sergeev Uzbekistan 12 A Diaz L. Colombia 4 A
+Shomurodov Uzbekistan 10 A Hernandez C. Colombia 8 A
+Amanov Uzbekistan 12 A Suarez L. Colombia 5 A
+Note
+Il bonus portiere (in blu) è per colui che gioca almeno 45' di tempi regolamentari con clean sheet (porta inviolata)
+Nome Team Bonus Gol Ruolo Nome Team Bonus Gol Ruolo
+Henderson D. Inghilterra 4 P Kotarski Croazia 5 P
+Pickford Inghilterra 4 P Livakovic Croazia 5 P
+Trafford Inghilterra 4 P Pandur Croazia 5 P
+Burn Inghilterra 12 D Caleta-Car Croazia 11 D
+Guehi Inghilterra 8 D Erlic Croazia 12 D
+Quansah Inghilterra 11 D Pongracic Croazia 13 D
+Konsa Inghilterra 9 D Gvardiol Croazia 8 D
+Stones Inghilterra 10 D Stanisic Croazia 9 D
+Chalobah T. Inghilterra 10 D G Sutalo Croazia 9 D
+O'Reilly Inghilterra 8 D I Vuskovic Croazia 8 D
+Spence Inghilterra 12 D R Jakic Croazia 11 C
+James Inghilterra 9 D O Sucic L. Croazia 12 C
+Anderson Inghilterra 8 D N Kovacic Croazia 10 C
+Rice Inghilterra 7 C E Mario Pasalic Croazia 9 C
+Henderson J. Inghilterra 11 C Modric Croazia 8 C
+Mainoo Inghilterra 9 C L Moro Croazia 11 C
+Bellingham Inghilterra 4 C Sucic P. Croazia 7 C
+Eze Inghilterra 7 C Fruk Croazia 9 C
+Rogers Inghilterra 8 C Vlasic Croazia 7 C
+Gordon A. Inghilterra 5 C Baturina Croazia 6 C
+Madueke Inghilterra 7 A Marco Pasalic Croazia 10 C
+Rashford Inghilterra 6 A Perisic Croazia 6 C
+Saka Inghilterra 5 A Budimir Croazia 7 A
+Kane Inghilterra 3 A Kramaric Croazia 6 A
+Toney Inghilterra 9 A Matanovic Croazia 7 A
+Watkins Inghilterra 6 A Musa Croazia 7 A
+Nome Team Bonus Gol Ruolo Nome Team Bonus Gol Ruolo
+Anang Ghana 8 P Mejia Panama 18 P
+Asare Ghana 8 P Mosquera Panama 18 P
+Ati-Zigi Ghana 8 P Samudio Panama 18 P
+Adjetey Ghana 11 D Andrade Panama 17 D
+Luckassen Ghana 12 D Blackman Panama 16 D
+Seidu Ghana 10 D Cordoba Jo. Panama 20 D
+Mumin Ghana 11 D Escobar Panama 17 D
+Mensah Ghana 10 D Davis E. Panama 16 D
+Opoku Ghana 11 D G Gutierrez J. Panama 18 D
+Oppong Ghana 12 D I Farina Panama 20 D
+Rahman Baba Ghana 12 D R Miller Panama 19 D
+Senaya Ghana 12 D O Murillo A. Panama 19 D
+Owusu Ghana 11 C N Ramos J. Panama 20 D
+Partey Ghana 10 C E Carrasquilla Panama 15 C
+Sibo Ghana 13 C Godoy Panama 15 C
+Yirenkyi Ghana 12 C L Harvey Panama 16 C
+Boakye A. Ghana 12 C Martinez C. Panama 18 C
+Nuamah Ghana 13 C Barcenas Panama 17 C
+Baah Ghana 12 C Rodriguez J.L. Panama 15 C
+Fatawu Ghana 12 C Yanis Panama 17 C
+Sulemana K. Ghana 9 A Quintero A. Panama 16 A
+Adu Ghana 11 A Diaz I. Panama 14 A
+Ayew J. Ghana 10 A Londono Panama 16 A
+Semenyo Ghana 6 A Rodriguez T. Panama 15 A
+Thomas-Asante Ghana 11 A Fajardo Panama 14 A
+Williams I. Ghana 7 A Waterman C. Panama 17 A
+Note
+Il bonus portiere (in blu) è per colui che gioca almeno 45' di tempi regolamentari con clean sheet (porta inviolata)

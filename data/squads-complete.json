@@ -1,642 +1,6082 @@
 [
   {
-    "team": "Brazil", "flag": "🇧🇷", "coach": "Dorival Júnior", "formation": "4-3-3",
+    "team": "GER",
+    "flag": "🇩🇪",
+    "coach": "Nagelsmann",
+    "formation": "4-2-3-1",
     "players": [
-      {"name": "Ederson", "role": "P", "stars": 5},
-      {"name": "Alisson", "role": "P", "stars": 5},
-      {"name": "Marquinhos", "role": "D", "stars": 5},
-      {"name": "Éder Militão", "role": "D", "stars": 4},
-      {"name": "Gabriel Magalhães", "role": "D", "stars": 4},
-      {"name": "Danilo", "role": "D", "stars": 4},
-      {"name": "Guilherme Arana", "role": "D", "stars": 3},
-      {"name": "Casemiro", "role": "C", "stars": 4},
-      {"name": "Bruno Guimarães", "role": "C", "stars": 5},
-      {"name": "Lucas Paquetá", "role": "C", "stars": 4},
-      {"name": "Andreas Pereira", "role": "C", "stars": 3},
-      {"name": "Gerson", "role": "C", "stars": 3},
-      {"name": "Vinicius Jr.", "role": "A", "stars": 5},
-      {"name": "Rodrygo", "role": "A", "stars": 4},
-      {"name": "Endrick", "role": "A", "stars": 4}
+      {
+        "id": "neuer_ger",
+        "name": "Manuel Neuer",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "rudiger_ger",
+        "name": "Antonio Rüdiger",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "anton_ger",
+        "name": "Waldemar Anton",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "tah_ger",
+        "name": "Jonathan Tah",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "pavlovic_ger",
+        "name": "Aleksandar Pavlović",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "kimmich_ger",
+        "name": "Joshua Kimmich",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "havertz_ger",
+        "name": "Kai Havertz",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "goretzka_ger",
+        "name": "Leon Goretzka",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "leweling_ger",
+        "name": "Jamie Leweling",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "musiala_ger",
+        "name": "Jamal Musiala",
+        "role": "C",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "woltemade_ger",
+        "name": "Nick Woltemade",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "baumann_ger",
+        "name": "Oliver Baumann",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "groß_ger",
+        "name": "Pascal Groß",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "beier_ger",
+        "name": "Maximilian Beier",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "schlotterbeck_ger",
+        "name": "Nico Schlotterbeck",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "stiller_ger",
+        "name": "Angelo Stiller",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "wirtz_ger",
+        "name": "Florian Wirtz",
+        "role": "C",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "brown_ger",
+        "name": "Nathaniel Brown",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sane_ger",
+        "name": "Leroy Sané",
+        "role": "C",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "amiri_ger",
+        "name": "Nadiem Amiri",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "nubel_ger",
+        "name": "Alexander Nübel",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "raum_ger",
+        "name": "David Raum",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "nmecha_ger",
+        "name": "Felix Nmecha",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "thiaw_ger",
+        "name": "Malick Thiaw",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ouedraogo_ger",
+        "name": "Assan Ouédraogo",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "undav_ger",
+        "name": "Deniz Undav",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Canada", "flag": "🇨🇦", "coach": "Jesse Marsch", "formation": "3-5-2",
+    "team": "PAR",
+    "flag": "🇵🇾",
+    "coach": "Alfaro",
+    "formation": "4-4-2",
     "players": [
-      {"name": "Borjan", "role": "P", "stars": 3},
-      {"name": "Crepeau", "role": "P", "stars": 3},
-      {"name": "Johnston", "role": "D", "stars": 3},
-      {"name": "Vitória", "role": "D", "stars": 3},
-      {"name": "Miller", "role": "D", "stars": 3},
-      {"name": "Adekugbe", "role": "D", "stars": 3},
-      {"name": "Laryea", "role": "D", "stars": 3},
-      {"name": "Eustáquio", "role": "C", "stars": 4},
-      {"name": "Piette", "role": "C", "stars": 3},
-      {"name": "Ahmed", "role": "C", "stars": 3},
-      {"name": "Buchanan", "role": "C", "stars": 4},
-      {"name": "Osorio", "role": "C", "stars": 3},
-      {"name": "Davies", "role": "D", "stars": 5},
-      {"name": "David", "role": "A", "stars": 5},
-      {"name": "Larin", "role": "A", "stars": 3}
+      {
+        "id": "fernandez_par",
+        "name": "Roberto Junior Fernández",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "velazquez_par",
+        "name": "Víctor Velázquez",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "alderete_par",
+        "name": "Omar Alderete",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "caceres_par",
+        "name": "Juan José Cáceres",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "balbuena_par",
+        "name": "Fabián Balbuena",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "alonso_par",
+        "name": "Júnior Alonso",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sosa_par",
+        "name": "Ramón Sosa",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "gomez_d_par",
+        "name": "Diego Gómez",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sanabria_par",
+        "name": "Antonio Sanabria",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "almiron_par",
+        "name": "Miguel Almirón",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mauricio_par",
+        "name": "Maurício",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "gill_par",
+        "name": "Orlando Gill",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "canale_par",
+        "name": "José Canale",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "cubas_par",
+        "name": "Adrián Cubas",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "gomez_g_par",
+        "name": "Gustavo Gómez",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "bobadilla_par",
+        "name": "Damián Bobadilla",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "kaku_par",
+        "name": "Kaku",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "arce_par",
+        "name": "Alex Arce",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "enciso_par",
+        "name": "Julio Enciso",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ojeda_par",
+        "name": "Braian Ojeda",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "avalos_par",
+        "name": "Gabriel Ávalos",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "olveira_par",
+        "name": "Gastón Olveira",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "galarza_par",
+        "name": "Matías Galarza",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "caballero_par",
+        "name": "Gustavo Caballero",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "pitta_par",
+        "name": "Isidro Pitta",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "maidana_par",
+        "name": "Alexandro Maidana",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Argentina", "flag": "🇦🇷", "coach": "Lionel Scaloni", "formation": "4-3-3",
+    "team": "FRA",
+    "flag": "🇫🇷",
+    "coach": "Deschamps",
+    "formation": "4-3-3",
     "players": [
-      {"name": "E. Martínez", "role": "P", "stars": 5},
-      {"name": "Armani", "role": "P", "stars": 3},
-      {"name": "N. Molina", "role": "D", "stars": 4},
-      {"name": "Cristian Romero", "role": "D", "stars": 5},
-      {"name": "Lisandro Martínez", "role": "D", "stars": 5},
-      {"name": "Tagliafico", "role": "D", "stars": 3},
-      {"name": "Acuña", "role": "D", "stars": 3},
-      {"name": "De Paul", "role": "C", "stars": 4},
-      {"name": "Paredes", "role": "C", "stars": 3},
-      {"name": "Mac Allister", "role": "C", "stars": 5},
-      {"name": "Enzo Fernández", "role": "C", "stars": 4},
-      {"name": "Di María", "role": "A", "stars": 4},
-      {"name": "Messi", "role": "A", "stars": 5},
-      {"name": "Lautaro Martínez", "role": "A", "stars": 5},
-      {"name": "Julián Álvarez", "role": "A", "stars": 4}
+      {
+        "id": "samba_fra",
+        "name": "Brice Samba",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "gusto_fra",
+        "name": "Malo Gusto",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "digne_fra",
+        "name": "Lucas Digne",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "upamecano_fra",
+        "name": "Dayot Upamecano",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "kounde_fra",
+        "name": "Jules Koundé",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "kone_fra",
+        "name": "Manu Koné",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "dembele_fra",
+        "name": "Ousmane Dembélé",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "tchouameni_fra",
+        "name": "Aurélien Tchouaméni",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "thuram_fra",
+        "name": "Marcus Thuram",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mbappe_fra",
+        "name": "Kylian Mbappé",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "olise_fra",
+        "name": "Michael Olise",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "barcola_fra",
+        "name": "Bradley Barcola",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "kante_fra",
+        "name": "N'Golo Kanté",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "rabiot_fra",
+        "name": "Adrien Rabiot",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "konate_fra",
+        "name": "Ibrahima Konaté",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "maignan_fra",
+        "name": "Mike Maignan",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "saliba_fra",
+        "name": "William Saliba",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "zaireemery_fra",
+        "name": "Warren Zaïre-Emery",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "hernandez_t_fra",
+        "name": "Theo Hernández",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "doue_fra",
+        "name": "Désiré Doué",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "hernandez_l_fra",
+        "name": "Lucas Hernández",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mateta_fra",
+        "name": "Jean-Philippe Mateta",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "risser_fra",
+        "name": "Robin Risser",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "cherki_fra",
+        "name": "Rayan Cherki",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "akliouche_fra",
+        "name": "Maghnes Akliouche",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "lacroix_fra",
+        "name": "Maxence Lacroix",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Morocco", "flag": "🇲🇦", "coach": "Walid Regragui", "formation": "4-3-3",
+    "team": "SWE",
+    "flag": "🇸🇪",
+    "coach": "Potter",
+    "formation": "4-3-3",
     "players": [
-      {"name": "Bounou", "role": "P", "stars": 5},
-      {"name": "Tagnaouti", "role": "P", "stars": 3},
-      {"name": "Hakimi", "role": "D", "stars": 5},
-      {"name": "Saïss", "role": "D", "stars": 4},
-      {"name": "Aguerd", "role": "D", "stars": 4},
-      {"name": "Mazraoui", "role": "D", "stars": 4},
-      {"name": "Attiat-Allah", "role": "D", "stars": 3},
-      {"name": "Amrabat", "role": "C", "stars": 4},
-      {"name": "Ounahi", "role": "C", "stars": 4},
-      {"name": "Ziyech", "role": "A", "stars": 4},
-      {"name": "Sabiri", "role": "C", "stars": 3},
-      {"name": "Aouar", "role": "C", "stars": 3},
-      {"name": "Boufal", "role": "A", "stars": 3},
-      {"name": "En-Nesyri", "role": "A", "stars": 4},
-      {"name": "Benrahma", "role": "A", "stars": 3}
+      {
+        "id": "zetterstrom_swe",
+        "name": "Jacob Widell Zetterström",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "lagerbielke_swe",
+        "name": "Gustaf Lagerbielke",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "lindelof_swe",
+        "name": "Victor Lindelöf",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "hien_swe",
+        "name": "Isak Hien",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "gudmundsson_swe",
+        "name": "Gabriel Gudmundsson",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "johansson_swe",
+        "name": "Herman Johansson",
+        "role": "C",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "bergvall_swe",
+        "name": "Lucas Bergvall",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "svensson_swe",
+        "name": "Daniel Svensson",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "isak_swe",
+        "name": "Alexander Isak",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "nygren_swe",
+        "name": "Benjamin Nygren",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "elanga_swe",
+        "name": "Anthony Elanga",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "johansson_swe2",
+        "name": "Viktor Johansson",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sema_swe",
+        "name": "Ken Sema",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ekdal_swe",
+        "name": "Hjalmar Ekdal",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "starfelt_swe",
+        "name": "Carl Starfelt",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "karlstrom_swe",
+        "name": "Jesper Karlström",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "gyokeres_swe",
+        "name": "Viktor Gyökeres",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ayari_swe",
+        "name": "Yasin Ayari",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "svanberg_swe",
+        "name": "Mattias Svanberg",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "smith_swe",
+        "name": "Eric Smith",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "bernhardsson_swe",
+        "name": "Alexander Bernhardsson",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "zeneli_swe",
+        "name": "Besfort Zeneli",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "nordfeldt_swe",
+        "name": "Kristoffer Nordfeldt",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "stroud_swe",
+        "name": "Elliot Stroud",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "nilsson_swe",
+        "name": "Gustaf Nilsson",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ali_swe",
+        "name": "Taha Ali",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "France", "flag": "🇫🇷", "coach": "Didier Deschamps", "formation": "4-5-1",
+    "team": "RSA",
+    "flag": "🇿🇦",
+    "coach": "Broos",
+    "formation": "4-3-3",
     "players": [
-      {"name": "Maignan", "role": "P", "stars": 5},
-      {"name": "Lloris", "role": "P", "stars": 4},
-      {"name": "Koundé", "role": "D", "stars": 4},
-      {"name": "Varane", "role": "D", "stars": 4},
-      {"name": "Upamecano", "role": "D", "stars": 4},
-      {"name": "T. Hernández", "role": "D", "stars": 4},
-      {"name": "Pavard", "role": "D", "stars": 3},
-      {"name": "Tchouaméni", "role": "C", "stars": 4},
-      {"name": "Kanté", "role": "C", "stars": 5},
-      {"name": "Camavinga", "role": "C", "stars": 4},
-      {"name": "Griezmann", "role": "C", "stars": 5},
-      {"name": "Dembélé", "role": "A", "stars": 4},
-      {"name": "Mbappé", "role": "A", "stars": 5},
-      {"name": "Giroud", "role": "A", "stars": 4},
-      {"name": "Thuram", "role": "A", "stars": 4}
+      {
+        "id": "williams_rsa",
+        "name": "Ronwen Williams",
+        "role": "P",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "matuludi_rsa",
+        "name": "Thabang Matuludi",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ndamane_rsa",
+        "name": "Khulumani Ndamane",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mokoena_rsa",
+        "name": "Teboho Mokoena",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mbatha_rsa",
+        "name": "Thalente Mbatha",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "modiba_rsa",
+        "name": "Aubrey Modiba",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "appollis_rsa",
+        "name": "Oswin Appollis",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "moremi_rsa",
+        "name": "Tshepang Moremi",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "foster_rsa",
+        "name": "Lyle Foster",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mofokeng_rsa",
+        "name": "Relebohile Mofokeng",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "zwane_rsa",
+        "name": "Themba Zwane",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "maseko_rsa",
+        "name": "Thapelo Maseko",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sithole_rsa",
+        "name": "Sphephelo Sithole",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mbokazi_rsa",
+        "name": "Mbekezeli Mbokazi",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "rayners_rsa",
+        "name": "Iqraam Rayners",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "chaine_rsa",
+        "name": "Sipho Chaine",
+        "role": "P",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "makgopa_rsa",
+        "name": "Evidence Makgopa",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "kabini_rsa",
+        "name": "Samukele Kabini",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sibisi_rsa",
+        "name": "Nkosinathi Sibisi",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mudau_rsa",
+        "name": "Khuliso Mudau",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "okon_rsa",
+        "name": "Ime Okon",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "goss_rsa",
+        "name": "Ricardo Goss",
+        "role": "P",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "adams_rsa",
+        "name": "Jayden Adams",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "makhanya_rsa",
+        "name": "Olwethu Makhanya",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sebelebele_rsa",
+        "name": "Kamogelo Sebelebele",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "cross_rsa",
+        "name": "Bradley Paul Cross",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Japan", "flag": "🇯🇵", "coach": "Hajime Moriyasu", "formation": "4-5-1",
+    "team": "CAN",
+    "flag": "🇨🇦",
+    "coach": "Marsch",
+    "formation": "3-5-2",
     "players": [
-      {"name": "Gonda", "role": "P", "stars": 3},
-      {"name": "Osako", "role": "P", "stars": 2},
-      {"name": "Yoshida", "role": "D", "stars": 4},
-      {"name": "Tomiyasu", "role": "D", "stars": 4},
-      {"name": "Itakura", "role": "D", "stars": 3},
-      {"name": "Nagatomo", "role": "D", "stars": 3},
-      {"name": "Sugawara", "role": "D", "stars": 3},
-      {"name": "Wataru Endō", "role": "C", "stars": 4},
-      {"name": "Morita", "role": "C", "stars": 4},
-      {"name": "Kubo", "role": "C", "stars": 5},
-      {"name": "Doan", "role": "A", "stars": 4},
-      {"name": "Mitoma", "role": "A", "stars": 5},
-      {"name": "Kamada", "role": "C", "stars": 4},
-      {"name": "Minamino", "role": "A", "stars": 4},
-      {"name": "Ueda", "role": "A", "stars": 3}
+      {
+        "id": "clair_can",
+        "name": "Dayne St. Clair",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "johnston_can",
+        "name": "Alistair Johnston",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "jones_can",
+        "name": "Alfie Jones",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "fougerolles_can",
+        "name": "Luc de Fougerolles",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "waterman_can",
+        "name": "Joel Waterman",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "choiniere_can",
+        "name": "Mathieu Choinière",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "eustaquio_can",
+        "name": "Stephen Eustáquio",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "kone_can",
+        "name": "Ismaël Koné",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "larin_can",
+        "name": "Cyle Larin",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "david_can",
+        "name": "Jonathan David",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "millar_can",
+        "name": "Liam Millar",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "oluwaseyi_can",
+        "name": "Tani Oluwaseyi",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "cornelius_can",
+        "name": "Derek Cornelius",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "shaffelburg_can",
+        "name": "Jacob Shaffelburg",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "bombito_can",
+        "name": "Moïse Bombito",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "crepeau_can",
+        "name": "Maxime Crépeau",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "buchanan_can",
+        "name": "Tajon Buchanan",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "goodman_can",
+        "name": "Owen Goodman",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "davies_can",
+        "name": "Alphonso Davies",
+        "role": "D",
+        "stars": 5,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ahmed_can",
+        "name": "Ali Ahmed",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "osorio_can",
+        "name": "Jonathan Osorio",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "laryea_can",
+        "name": "Richie Laryea",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sigur_can",
+        "name": "Niko Sigur",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "david_can2",
+        "name": "Promise David",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "saliba_can",
+        "name": "Nathan-Dylan Saliba",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "nelson_can",
+        "name": "Jayden Nelson",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "England", "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "coach": "Gareth Southgate", "formation": "4-3-3",
+    "team": "NED",
+    "flag": "🇳🇱",
+    "coach": "Koeman",
+    "formation": "4-3-3",
     "players": [
-      {"name": "Pickford", "role": "P", "stars": 4},
-      {"name": "Ramsdale", "role": "P", "stars": 3},
-      {"name": "Trippier", "role": "D", "stars": 4},
-      {"name": "M. Guéhi", "role": "D", "stars": 4},
-      {"name": "Stones", "role": "D", "stars": 4},
-      {"name": "Shaw", "role": "D", "stars": 4},
-      {"name": "Alexander-Arnold", "role": "D", "stars": 5},
-      {"name": "Bellingham", "role": "C", "stars": 5},
-      {"name": "Rice", "role": "C", "stars": 5},
-      {"name": "Foden", "role": "C", "stars": 5},
-      {"name": "Henderson", "role": "C", "stars": 3},
-      {"name": "Saka", "role": "A", "stars": 5},
-      {"name": "Kane", "role": "A", "stars": 5},
-      {"name": "Sterling", "role": "A", "stars": 3},
-      {"name": "Rashford", "role": "A", "stars": 4}
+      {
+        "id": "verbruggen_ned",
+        "name": "Bart Verbruggen",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "geertruida_ned",
+        "name": "Lutsharel Geertruida",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "roon_ned",
+        "name": "Marten de Roon",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "dijk_ned",
+        "name": "Virgil van Dijk",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ake_ned",
+        "name": "Nathan Aké",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "hecke_ned",
+        "name": "Jan Paul van Hecke",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "kluivert_ned",
+        "name": "Justin Kluivert",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "gravenberch_ned",
+        "name": "Ryan Gravenberch",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "weghorst_ned",
+        "name": "Wout Weghorst",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "depay_ned",
+        "name": "Memphis Depay",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "gakpo_ned",
+        "name": "Cody Gakpo",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "wieffer_ned",
+        "name": "Mats Wieffer",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "roefs_ned",
+        "name": "Robin Roefs",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "reijnders_ned",
+        "name": "Tijjani Reijnders",
+        "role": "C",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ven_ned",
+        "name": "Micky van de Ven",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "til_ned",
+        "name": "Guus Til",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "lang_ned",
+        "name": "Noa Lang",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "malen_ned",
+        "name": "Donyell Malen",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "brobbey_ned",
+        "name": "Brian Brobbey",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "koopmeiners_ned",
+        "name": "Teun Koopmeiners",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "jong_ned",
+        "name": "Frenkie de Jong",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "dumfries_ned",
+        "name": "Denzel Dumfries",
+        "role": "D",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "flekken_ned",
+        "name": "Mark Flekken",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "summerville_ned",
+        "name": "Crysencio Summerville",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "hato_ned",
+        "name": "Jorrel Hato",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "timber_ned",
+        "name": "Quinten Timber",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Colombia", "flag": "🇨🇴", "coach": "Néstor Lorenzo", "formation": "4-5-1",
+    "team": "MAR",
+    "flag": "🇲🇦",
+    "coach": "Ouahbi",
+    "formation": "4-3-3",
     "players": [
-      {"name": "Camilo Vargas", "role": "P", "stars": 3},
-      {"name": "Ospina", "role": "P", "stars": 4},
-      {"name": "D. Sánchez", "role": "D", "stars": 3},
-      {"name": "Lucumí", "role": "D", "stars": 3},
-      {"name": "Cuesta", "role": "D", "stars": 3},
-      {"name": "Mojica", "role": "D", "stars": 3},
-      {"name": "Muñoz", "role": "D", "stars": 3},
-      {"name": "Mateus Uribe", "role": "C", "stars": 3},
-      {"name": "Lerma", "role": "C", "stars": 3},
-      {"name": "J. Rodríguez", "role": "C", "stars": 5},
-      {"name": "Castaño", "role": "C", "stars": 3},
-      {"name": "Cuadrado", "role": "C", "stars": 4},
-      {"name": "Luis Díaz", "role": "A", "stars": 5},
-      {"name": "Borré", "role": "A", "stars": 3},
-      {"name": "Córdoba", "role": "A", "stars": 3}
+      {
+        "id": "bounou_mar",
+        "name": "Yassine Bounou",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "hakimi_mar",
+        "name": "Achraf Hakimi",
+        "role": "D",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mazraoui_mar",
+        "name": "Noussair Mazraoui",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "amrabat_mar",
+        "name": "Sofyan Amrabat",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "saadane_mar",
+        "name": "Marwane Saadane",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "bouaddi_mar",
+        "name": "Ayyoub Bouaddi",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "talbi_mar",
+        "name": "Chemsdine Talbi",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ounahi_mar",
+        "name": "Azzedine Ounahi",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "rahimi_mar",
+        "name": "Soufiane Rahimi",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "diaz_mar",
+        "name": "Brahim Díaz",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "saibari_mar",
+        "name": "Ismael Saibari",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mohamedi_mar",
+        "name": "Munir Mohand Mohamedi",
+        "role": "P",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ouahdi_mar",
+        "name": "Zakaria El Ouahdi",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "diop_mar",
+        "name": "Issa Diop",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mourabet_mar",
+        "name": "Samir El Mourabet",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "yassine_mar",
+        "name": "Gessime Yassine",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sbai_mar",
+        "name": "Amine Sbaï",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "riad_mar",
+        "name": "Chadi Riad",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "belammari_mar",
+        "name": "Youssef Belammari",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "kaabi_mar",
+        "name": "Ayoub El Kaabi",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "amaimouni_mar",
+        "name": "Ayoube Amaimouni",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "tagnaouti_mar",
+        "name": "Ahmed Reda Tagnaouti",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "khannouss_mar",
+        "name": "Bilal El Khannouss",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "aynaoui_mar",
+        "name": "Neil El Aynaoui",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "halhal_mar",
+        "name": "Redouane Halhal",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "salaheddine_mar",
+        "name": "Anass Salah-Eddine",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Spain", "flag": "🇪🇸", "coach": "Luis de la Fuente", "formation": "4-3-3",
+    "team": "POR",
+    "flag": "🇵🇹",
+    "coach": "Martínez",
+    "formation": "4-3-3",
     "players": [
-      {"name": "Unai Simón", "role": "P", "stars": 4},
-      {"name": "Raya", "role": "P", "stars": 4},
-      {"name": "Carvajal", "role": "D", "stars": 4},
-      {"name": "Laporte", "role": "D", "stars": 4},
-      {"name": "Pau Torres", "role": "D", "stars": 4},
-      {"name": "Gayà", "role": "D", "stars": 3},
-      {"name": "Nacho", "role": "D", "stars": 3},
-      {"name": "Pedri", "role": "C", "stars": 5},
-      {"name": "Gavi", "role": "C", "stars": 5},
-      {"name": "Rodri", "role": "C", "stars": 5},
-      {"name": "Fabián Ruiz", "role": "C", "stars": 4},
-      {"name": "Yamal", "role": "A", "stars": 5},
-      {"name": "Morata", "role": "A", "stars": 4},
-      {"name": "Ferran Torres", "role": "A", "stars": 3},
-      {"name": "Olmo", "role": "A", "stars": 4}
+      {
+        "id": "costa_por",
+        "name": "Diogo Costa",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "semedo_por",
+        "name": "Nélson Semedo",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "dias_por",
+        "name": "Rúben Dias",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "araujo_por",
+        "name": "Tomás Araújo",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "dalot_por",
+        "name": "Diogo Dalot",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "nunes_por",
+        "name": "Matheus Nunes",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ronaldo_por",
+        "name": "Cristiano Ronaldo",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "fernandes_por",
+        "name": "Bruno Fernandes",
+        "role": "C",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ramos_por",
+        "name": "Gonçalo Ramos",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "silva_por",
+        "name": "Bernardo Silva",
+        "role": "C",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "felix_por",
+        "name": "João Félix",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sa_por",
+        "name": "José Sá",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "veiga_por",
+        "name": "Renato Veiga",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "inacio_por",
+        "name": "Gonçalo Inácio",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "neves_j_por",
+        "name": "João Neves",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "trincao_por",
+        "name": "Francisco Trincão",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "leao_por",
+        "name": "Rafael Leão",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "neto_por",
+        "name": "Pedro Neto",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "guedes_por",
+        "name": "Gonçalo Guedes",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "cancelo_por",
+        "name": "João Cancelo",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "neves_r_por",
+        "name": "Rúben Neves",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "silva_por2",
+        "name": "Rui Silva",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "vitinha_por",
+        "name": "Vitinha",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "costa_por2",
+        "name": "Samú Costa",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mendes_por",
+        "name": "Nuno Mendes",
+        "role": "D",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "conceicao_por",
+        "name": "Francisco Conceição",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Poland", "flag": "🇵🇱", "coach": "Michał Probierz", "formation": "4-4-2",
+    "team": "CRO",
+    "flag": "🇭🇷",
+    "coach": "Dalić",
+    "formation": "4-3-3",
     "players": [
-      {"name": "Bułka", "role": "P", "stars": 3},
-      {"name": "Fabiański", "role": "P", "stars": 3},
-      {"name": "Bereszyński", "role": "D", "stars": 3},
-      {"name": "Bednarek", "role": "D", "stars": 3},
-      {"name": "Salamon", "role": "D", "stars": 3},
-      {"name": "Wieteska", "role": "D", "stars": 3},
-      {"name": "Cash", "role": "D", "stars": 3},
-      {"name": "Krychowiak", "role": "C", "stars": 3},
-      {"name": "Zieliński", "role": "C", "stars": 5},
-      {"name": "Szymański", "role": "C", "stars": 4},
-      {"name": "Klich", "role": "C", "stars": 3},
-      {"name": "Grosicki", "role": "C", "stars": 3},
-      {"name": "Lewandowski", "role": "A", "stars": 5},
-      {"name": "Piątek", "role": "A", "stars": 3},
-      {"name": "Świderski", "role": "A", "stars": 3}
+      {
+        "id": "livakovic_cro",
+        "name": "Dominik Livaković",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "stanisic_cro",
+        "name": "Josip Stanišić",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "pongracic_cro",
+        "name": "Marin Pongračić",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "gvardiol_cro",
+        "name": "Joško Gvardiol",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "caletacar_cro",
+        "name": "Duje Ćaleta-Car",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sutalo_cro",
+        "name": "Josip Šutalo",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "moro_cro",
+        "name": "Nikola Moro",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "kovacic_cro",
+        "name": "Mateo Kovačić",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "kramaric_cro",
+        "name": "Andrej Kramarić",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "modric_cro",
+        "name": "Luka Modrić",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "budimir_cro",
+        "name": "Ante Budimir",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "pandur_cro",
+        "name": "Ivor Pandur",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "vlasic_cro",
+        "name": "Nikola Vlašić",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "perisic_cro",
+        "name": "Ivan Perišić",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "pasalic_mario_cro",
+        "name": "Mario Pašalić",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "baturina_cro",
+        "name": "Martin Baturina",
+        "role": "C",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sucic_p_cro",
+        "name": "Petar Sučić",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "jakic_cro",
+        "name": "Kristijan Jakić",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "fruk_cro",
+        "name": "Toni Fruk",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "matanovic_cro",
+        "name": "Igor Matanović",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sucic_l_cro",
+        "name": "Luka Sučić",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "vuskovic_cro",
+        "name": "Luka Vušković",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "kotarski_cro",
+        "name": "Dominik Kotarski",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "pasalic_marco_cro",
+        "name": "Marco Pašalić",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "erlic_cro",
+        "name": "Martin Erlić",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "musa_cro",
+        "name": "Petar Musa",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Germany", "flag": "🇩🇪", "coach": "Julian Nagelsmann", "formation": "4-5-1",
+    "team": "BEL",
+    "flag": "🇧🇪",
+    "coach": "Garcia",
+    "formation": "4-3-3",
     "players": [
-      {"name": "ter Stegen", "role": "P", "stars": 5},
-      {"name": "Trapp", "role": "P", "stars": 3},
-      {"name": "Kimmich", "role": "D", "stars": 5},
-      {"name": "Rüdiger", "role": "D", "stars": 5},
-      {"name": "Schlotterbeck", "role": "D", "stars": 4},
-      {"name": "Raum", "role": "D", "stars": 4},
-      {"name": "Tah", "role": "D", "stars": 3},
-      {"name": "Kroos", "role": "C", "stars": 5},
-      {"name": "Goretzka", "role": "C", "stars": 4},
-      {"name": "Musiala", "role": "C", "stars": 5},
-      {"name": "Wirtz", "role": "C", "stars": 5},
-      {"name": "Gnabry", "role": "A", "stars": 4},
-      {"name": "Havertz", "role": "A", "stars": 4},
-      {"name": "Füllkrug", "role": "A", "stars": 4},
-      {"name": "Moukoko", "role": "A", "stars": 3}
+      {
+        "id": "courtois_bel",
+        "name": "Thibaut Courtois",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "debast_bel",
+        "name": "Zeno Debast",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "theate_bel",
+        "name": "Arthur Theate",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mechele_bel",
+        "name": "Brandon Mechele",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "cuyper_bel",
+        "name": "Maxim De Cuyper",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "witsel_bel",
+        "name": "Axel Witsel",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "bruyne_bel",
+        "name": "Kevin De Bruyne",
+        "role": "C",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "tielemans_bel",
+        "name": "Youri Tielemans",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "lukaku_bel",
+        "name": "Romelu Lukaku",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "trossard_bel",
+        "name": "Leandro Trossard",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "doku_bel",
+        "name": "Jérémy Doku",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "lammens_bel",
+        "name": "Senne Lammens",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "penders_bel",
+        "name": "Mike Penders",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "lukebakio_bel",
+        "name": "Dodi Lukébakio",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "meunier_bel",
+        "name": "Thomas Meunier",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "winter_bel",
+        "name": "Koni De Winter",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ketelaere_bel",
+        "name": "Charles De Ketelaere",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "seys_bel",
+        "name": "Joaquin Seys",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "moreira_bel",
+        "name": "Diego Moreira",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "vanaken_bel",
+        "name": "Hans Vanaken",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "castagne_bel",
+        "name": "Timothy Castagne",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "saelemaekers_bel",
+        "name": "Alexis Saelemaekers",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "raskin_bel",
+        "name": "Nicolas Raskin",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "onana_bel",
+        "name": "Amadou Onana",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ngoy_bel",
+        "name": "Nathan Ngoy",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "fernandezpardo_bel",
+        "name": "Matias Fernandez-Pardo",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "South Korea", "flag": "🇰🇷", "coach": "Hong Myung-bo", "formation": "4-5-1",
+    "team": "SEN",
+    "flag": "🇸🇳",
+    "coach": "Thiaw",
+    "formation": "4-3-3",
     "players": [
-      {"name": "Kim Seung-gyu", "role": "P", "stars": 3},
-      {"name": "Jo Hyeon-woo", "role": "P", "stars": 3},
-      {"name": "Kim Min-Jae", "role": "D", "stars": 5},
-      {"name": "Kim Young-gwon", "role": "D", "stars": 3},
-      {"name": "Kim Jin-su", "role": "D", "stars": 3},
-      {"name": "Lee Ki-je", "role": "D", "stars": 3},
-      {"name": "Moon Seon-min", "role": "D", "stars": 3},
-      {"name": "Jung Woo-young", "role": "C", "stars": 3},
-      {"name": "Hwang In-beom", "role": "C", "stars": 4},
-      {"name": "Lee Jae-sung", "role": "C", "stars": 4},
-      {"name": "Hwang Hee-chan", "role": "A", "stars": 4},
-      {"name": "Son", "role": "A", "stars": 5},
-      {"name": "Cho Gue-sung", "role": "A", "stars": 3},
-      {"name": "Oh Hyeon-gyu", "role": "A", "stars": 3},
-      {"name": "Bae Jun-ho", "role": "C", "stars": 4}
+      {
+        "id": "diouf_sen",
+        "name": "Yehvann Diouf",
+        "role": "P",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sarr_m_sen",
+        "name": "Mamadou Sarr",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "koulibaly_sen",
+        "name": "Kalidou Koulibaly",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "seck_sen",
+        "name": "Abdoulaye Seck",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "gueye_sen",
+        "name": "Idrissa Gueye",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ciss_sen",
+        "name": "Pathé Ciss",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "diao_sen",
+        "name": "Assane Diao",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "camara_sen",
+        "name": "Lamine Camara",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "dieng_sen",
+        "name": "Bamba Dieng",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mane_sen",
+        "name": "Sadio Mané",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "jackson_sen",
+        "name": "Nicolas Jackson",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ndiaye_c_sen",
+        "name": "Cherif Ndiaye",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ndiaye_i_sen",
+        "name": "Iliman Ndiaye",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "jakobs_sen",
+        "name": "Ismail Jakobs",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "diatta_sen",
+        "name": "Krépin Diatta",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mendy_sen",
+        "name": "Édouard Mendy",
+        "role": "P",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sarr_pm_sen",
+        "name": "Pape Matar Sarr",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sarr_is_sen",
+        "name": "Ismaïla Sarr",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "niakhate_sen",
+        "name": "Moussa Niakhaté",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mbaye_sen",
+        "name": "Ibrahim Mbaye",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "diarra_sen",
+        "name": "Habib Diarra",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ndiaye_sen",
+        "name": "Bara Sapoko Ndiaye",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "diaw_sen",
+        "name": "Mory Diaw",
+        "role": "P",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mendy_sen2",
+        "name": "Antoine Mendy",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "diouf_sen2",
+        "name": "El Hadji Malick Diouf",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "gueye_sen2",
+        "name": "Pape Gueye",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Portugal", "flag": "🇵🇹", "coach": "Roberto Martínez", "formation": "4-3-3",
+    "team": "USA",
+    "flag": "🇺🇸",
+    "coach": "Pochettino",
+    "formation": "4-3-3",
     "players": [
-      {"name": "Diogo Costa", "role": "P", "stars": 4},
-      {"name": "Rui Patrício", "role": "P", "stars": 3},
-      {"name": "Cancelo", "role": "D", "stars": 4},
-      {"name": "Rúben Dias", "role": "D", "stars": 5},
-      {"name": "Danilo Pereira", "role": "D", "stars": 3},
-      {"name": "Nuno Mendes", "role": "D", "stars": 4},
-      {"name": "Semedo", "role": "D", "stars": 3},
-      {"name": "Rúben Neves", "role": "C", "stars": 4},
-      {"name": "Bernardo Silva", "role": "C", "stars": 5},
-      {"name": "Bruno Fernandes", "role": "C", "stars": 5},
-      {"name": "Vitinha", "role": "C", "stars": 4},
-      {"name": "Ronaldo", "role": "A", "stars": 5},
-      {"name": "Diogo Jota", "role": "A", "stars": 4},
-      {"name": "Rafael Leão", "role": "A", "stars": 5},
-      {"name": "Gonçalo Ramos", "role": "A", "stars": 4}
+      {
+        "id": "turner_usa",
+        "name": "Matt Turner",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "dest_usa",
+        "name": "Sergiño Dest",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "richards_usa",
+        "name": "Chris Richards",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "adams_usa",
+        "name": "Tyler Adams",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "robinson_usa",
+        "name": "Antonee Robinson",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "trusty_usa",
+        "name": "Auston Trusty",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "reyna_usa",
+        "name": "Giovanni Reyna",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mckennie_usa",
+        "name": "Weston McKennie",
+        "role": "C",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "pepi_usa",
+        "name": "Ricardo Pepi",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "pulisic_usa",
+        "name": "Christian Pulisic",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "aaronson_usa",
+        "name": "Brenden Aaronson",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "robinson_usa2",
+        "name": "Miles Robinson",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ream_usa",
+        "name": "Tim Ream",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "berhalter_usa",
+        "name": "Sebastian Berhalter",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "roldan_usa",
+        "name": "Cristian Roldan",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "freeman_usa",
+        "name": "Alex Freeman",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "tillman_usa",
+        "name": "Malik Tillman",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "arfsten_usa",
+        "name": "Maximilian Arfsten",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "wright_usa",
+        "name": "Haji Wright",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "balogun_usa",
+        "name": "Folarin Balogun",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "weah_usa",
+        "name": "Timothy Weah",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mckenzie_usa",
+        "name": "Mark McKenzie",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "scally_usa",
+        "name": "Joe Scally",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "freese_usa",
+        "name": "Matt Freese",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "brady_usa",
+        "name": "Chris Brady",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "zendejas_usa",
+        "name": "Alejandro Zendejas",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Ecuador", "flag": "🇪🇨", "coach": "Félix Sánchez", "formation": "4-4-2",
+    "team": "BIH",
+    "flag": "🇧🇦",
+    "coach": "Barbarez",
+    "formation": "4-2-3-1",
     "players": [
-      {"name": "Domínguez", "role": "P", "stars": 3},
-      {"name": "Galíndez", "role": "P", "stars": 3},
-      {"name": "Preciado", "role": "D", "stars": 3},
-      {"name": "Hincapié", "role": "D", "stars": 4},
-      {"name": "Torres", "role": "D", "stars": 3},
-      {"name": "Estupiñán", "role": "D", "stars": 4},
-      {"name": "Arreaga", "role": "D", "stars": 3},
-      {"name": "Caicedo", "role": "C", "stars": 5},
-      {"name": "Gruezo", "role": "C", "stars": 3},
-      {"name": "Ibarra", "role": "C", "stars": 3},
-      {"name": "Plata", "role": "C", "stars": 3},
-      {"name": "V. Valencia", "role": "A", "stars": 3},
-      {"name": "E. Valencia", "role": "A", "stars": 3},
-      {"name": "Sarmiento", "role": "A", "stars": 3},
-      {"name": "Mercado", "role": "A", "stars": 3}
+      {
+        "id": "vasilj_bih",
+        "name": "Nikola Vasilj",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mujakic_bih",
+        "name": "Nihad Mujakić",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "hadzikadunic_bih",
+        "name": "Dennis Hadžikadunić",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "muharemovic_bih",
+        "name": "Tarik Muharemović",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "kolasinac_bih",
+        "name": "Sead Kolašinac",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "tahirovic_bih",
+        "name": "Benjamin Tahirović",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "dedic_bih",
+        "name": "Amar Dedić",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "gigovic_bih",
+        "name": "Armin Gigović",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "bazdar_bih",
+        "name": "Samed Baždar",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "demirovic_bih",
+        "name": "Ermedin Demirović",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "dzeko_bih",
+        "name": "Edin Džeko",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "jurkas_bih",
+        "name": "Mladen Jurkas",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "basic_bih",
+        "name": "Ivan Bašić",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sunjic_bih",
+        "name": "Ivan Šunjić",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "memic_bih",
+        "name": "Amar Memić",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "hadziahmetovic_bih",
+        "name": "Amir Hadžiahmetović",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "burnic_bih",
+        "name": "Dženis Burnić",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "katic_bih",
+        "name": "Nikola Katić",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "alajbegovic_bih",
+        "name": "Kerim Alajbegović",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "bajraktarevic_bih",
+        "name": "Esmir Bajraktarević",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "radeljic_bih",
+        "name": "Stjepan Radeljić",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "zlomislic_bih",
+        "name": "Martin Zlomislić",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "tabakovic_bih",
+        "name": "Haris Tabaković",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "malic_bih",
+        "name": "Arjan Malić",
+        "role": "D",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "lukic_bih",
+        "name": "Jovo Lukić",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mahmic_bih",
+        "name": "Ermin Mahmić",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Netherlands", "flag": "🇳🇱", "coach": "Ronald Koeman", "formation": "4-3-3",
+    "team": "ESP",
+    "flag": "🇪🇸",
+    "coach": "de la Fuente",
+    "formation": "4-3-3",
     "players": [
-      {"name": "Flekken", "role": "P", "stars": 4},
-      {"name": "Bijlow", "role": "P", "stars": 3},
-      {"name": "Dumfries", "role": "D", "stars": 4},
-      {"name": "de Vrij", "role": "D", "stars": 4},
-      {"name": "van Dijk", "role": "D", "stars": 5},
-      {"name": "Blind", "role": "D", "stars": 3},
-      {"name": "Timber", "role": "D", "stars": 4},
-      {"name": "F. de Jong", "role": "C", "stars": 5},
-      {"name": "de Roon", "role": "C", "stars": 3},
-      {"name": "Klaassen", "role": "C", "stars": 3},
-      {"name": "Xavi Simons", "role": "C", "stars": 5},
-      {"name": "Depay", "role": "A", "stars": 4},
-      {"name": "Gakpo", "role": "A", "stars": 4},
-      {"name": "Bergwijn", "role": "A", "stars": 3},
-      {"name": "Weghorst", "role": "A", "stars": 3}
+      {
+        "id": "raya_esp",
+        "name": "David Raya",
+        "role": "P",
+        "stars": 4,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "pubill_esp",
+        "name": "Marc Pubill",
+        "role": "D",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "grimaldo_esp",
+        "name": "Alejandro Grimaldo",
+        "role": "D",
+        "stars": 4,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "garcia_esp",
+        "name": "Eric García",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "llorente_esp",
+        "name": "Marcos Llorente",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "merino_esp",
+        "name": "Mikel Merino",
+        "role": "C",
+        "stars": 4,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "torres_esp",
+        "name": "Ferrán Torres",
+        "role": "A",
+        "stars": 4,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ruiz_esp",
+        "name": "Fabián Ruiz",
+        "role": "C",
+        "stars": 4,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "gavi_esp",
+        "name": "Gavi",
+        "role": "C",
+        "stars": 4,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "olmo_esp",
+        "name": "Dani Olmo",
+        "role": "C",
+        "stars": 4,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "pino_esp",
+        "name": "Yéremi Pino",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "porro_esp",
+        "name": "Pedro Porro",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "garcia_esp2",
+        "name": "Joan García",
+        "role": "P",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "laporte_esp",
+        "name": "Aymeric Laporte",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "baena_esp",
+        "name": "Álex Baena",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "rodri_esp",
+        "name": "Rodri",
+        "role": "C",
+        "stars": 5,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "williams_esp",
+        "name": "Nico Williams",
+        "role": "A",
+        "stars": 4,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "zubimendi_esp",
+        "name": "Martín Zubimendi",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "yamal_esp",
+        "name": "Lamine Yamal",
+        "role": "A",
+        "stars": 5,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "pedri_esp",
+        "name": "Pedri",
+        "role": "C",
+        "stars": 5,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "oyarzabal_esp",
+        "name": "Mikel Oyarzabal",
+        "role": "A",
+        "stars": 4,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "cubarsi_esp",
+        "name": "Pau Cubarsí",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "simon_esp",
+        "name": "Unai Simón",
+        "role": "P",
+        "stars": 4,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "cucurella_esp",
+        "name": "Marc Cucurella",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "munoz_esp",
+        "name": "Víctor Muñoz",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "iglesias_esp",
+        "name": "Borja Iglesias",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Chile", "flag": "🇨🇱", "coach": "Ricardo Gareca", "formation": "4-3-3",
+    "team": "AUT",
+    "flag": "🇦🇹",
+    "coach": "Rangnick",
+    "formation": "4-2-3-1",
     "players": [
-      {"name": "Claudio Bravo", "role": "P", "stars": 3},
-      {"name": "Arias", "role": "P", "stars": 3},
-      {"name": "Isla", "role": "D", "stars": 3},
-      {"name": "Medel", "role": "D", "stars": 3},
-      {"name": "Maripán", "role": "D", "stars": 3},
-      {"name": "Mena", "role": "D", "stars": 3},
-      {"name": "Paulo Díaz", "role": "D", "stars": 3},
-      {"name": "Vidal", "role": "C", "stars": 3},
-      {"name": "Aránguiz", "role": "C", "stars": 3},
-      {"name": "Pulgar", "role": "C", "stars": 3},
-      {"name": "Palacios", "role": "C", "stars": 3},
-      {"name": "Alexis Sánchez", "role": "A", "stars": 4},
-      {"name": "Brereton Díaz", "role": "A", "stars": 4},
-      {"name": "Vargas", "role": "A", "stars": 3},
-      {"name": "Pavón", "role": "A", "stars": 3}
+      {
+        "id": "schlager_a_aut",
+        "name": "Alexander Schlager",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "affengruber_aut",
+        "name": "David Affengruber",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "danso_aut",
+        "name": "Kevin Danso",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "schlager_x_aut",
+        "name": "Xaver Schlager",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "posch_aut",
+        "name": "Stefan Posch",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "seiwald_aut",
+        "name": "Nicolas Seiwald",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "arnautovic_aut",
+        "name": "Marko Arnautović",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "alaba_aut",
+        "name": "David Alaba",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sabitzer_aut",
+        "name": "Marcel Sabitzer",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "grillitsch_aut",
+        "name": "Florian Grillitsch",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "gregoritsch_aut",
+        "name": "Michael Gregoritsch",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "wiegele_aut",
+        "name": "Florian Wiegele",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "pentz_aut",
+        "name": "Patrick Pentz",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "kalajdzic_aut",
+        "name": "Saša Kalajdžić",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "lienhart_aut",
+        "name": "Philipp Lienhart",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mwene_aut",
+        "name": "Phillipp Mwene",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "chukwuemeka_aut",
+        "name": "Carney Chukwuemeka",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "schmid_aut",
+        "name": "Romano Schmid",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ljubicic_aut",
+        "name": "Dejan Ljubičić",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "laimer_aut",
+        "name": "Konrad Laimer",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "wimmer_aut",
+        "name": "Patrick Wimmer",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "prass_aut",
+        "name": "Alexander Prass",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "friedl_aut",
+        "name": "Marco Friedl",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "wanner_aut",
+        "name": "Paul Wanner",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "svoboda_aut",
+        "name": "Michael Svoboda",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "schopf_aut",
+        "name": "Alessandro Schöpf",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Italy", "flag": "🇮🇹", "coach": "Luciano Spalletti", "formation": "3-5-2",
+    "team": "BRA",
+    "flag": "🇧🇷",
+    "coach": "Ancelotti",
+    "formation": "4-2-3-1",
     "players": [
-      {"name": "Donnarumma", "role": "P", "stars": 5},
-      {"name": "Meret", "role": "P", "stars": 3},
-      {"name": "Acerbi", "role": "D", "stars": 3},
-      {"name": "Bastoni", "role": "D", "stars": 5},
-      {"name": "Di Lorenzo", "role": "D", "stars": 4},
-      {"name": "Dimarco", "role": "D", "stars": 4},
-      {"name": "Gatti", "role": "D", "stars": 3},
-      {"name": "Barella", "role": "C", "stars": 5},
-      {"name": "Jorginho", "role": "C", "stars": 3},
-      {"name": "Frattesi", "role": "C", "stars": 4},
-      {"name": "Pellegrini", "role": "C", "stars": 4},
-      {"name": "Zaccagni", "role": "C", "stars": 3},
-      {"name": "Immobile", "role": "A", "stars": 4},
-      {"name": "Retegui", "role": "A", "stars": 4},
-      {"name": "Chiesa", "role": "A", "stars": 4}
+      {
+        "id": "alisson_bra",
+        "name": "Alisson",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "edersons_bra",
+        "name": "Éderson S.",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "magalhaes_bra",
+        "name": "Gabriel Magalhães",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "marquinhos_bra",
+        "name": "Marquinhos",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "casemiro_bra",
+        "name": "Casemiro",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sandro_bra",
+        "name": "Alex Sandro",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "vinicius_bra",
+        "name": "Vinícius Júnior",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "guimaraes_bra",
+        "name": "Bruno Guimarães",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "cunha_bra",
+        "name": "Matheus Cunha",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "neymar_bra",
+        "name": "Neymar",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "raphinha_bra",
+        "name": "Raphinha",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "weverton_bra",
+        "name": "Wéverton",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "danilo_bra",
+        "name": "Danilo",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "bremer_bra",
+        "name": "Gleison Bremer",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "pereira_bra",
+        "name": "Léo Pereira",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "santos_bra",
+        "name": "Douglas Santos",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "fabinho_bra",
+        "name": "Fabinho",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "danilo_s_bra",
+        "name": "Danilo Santos",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "endrick_bra",
+        "name": "Endrick",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "paqueta_bra",
+        "name": "Lucas Paquetá",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "henrique_bra",
+        "name": "Luiz Henrique",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "martinelli_bra",
+        "name": "Gabriel Martinelli",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ederson_bra",
+        "name": "Ederson",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ibanez_bra",
+        "name": "Roger Ibañez",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "thiago_bra",
+        "name": "Igor Thiago",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "rayan_bra",
+        "name": "Rayan",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Serbia", "flag": "🇷🇸", "coach": "Dragan Stojković", "formation": "3-5-2",
+    "team": "JPN",
+    "flag": "🇯🇵",
+    "coach": "Moriyasu",
+    "formation": "4-2-3-1",
     "players": [
-      {"name": "Rajković", "role": "P", "stars": 3},
-      {"name": "Dmitrović", "role": "P", "stars": 3},
-      {"name": "Milenković", "role": "D", "stars": 3},
-      {"name": "Pavlović", "role": "D", "stars": 3},
-      {"name": "Veljković", "role": "D", "stars": 3},
-      {"name": "Spajić", "role": "D", "stars": 3},
-      {"name": "Živković", "role": "D", "stars": 3},
-      {"name": "Milinković-Savić", "role": "C", "stars": 5},
-      {"name": "Ilić", "role": "C", "stars": 3},
-      {"name": "Lukić", "role": "C", "stars": 3},
-      {"name": "Tošić", "role": "C", "stars": 3},
-      {"name": "Vlahović", "role": "A", "stars": 5},
-      {"name": "Mitrović", "role": "A", "stars": 5},
-      {"name": "Jović", "role": "A", "stars": 4},
-      {"name": "Tadić", "role": "A", "stars": 4}
+      {
+        "id": "suzuki_z_jpn",
+        "name": "Zion Suzuki",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sugawara_jpn",
+        "name": "Yukinari Sugawara",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "taniguchi_jpn",
+        "name": "Shōgo Taniguchi",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "itakura_jpn",
+        "name": "Kō Itakura",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "nagatomo_jpn",
+        "name": "Yūto Nagatomo",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "machino_jpn",
+        "name": "Shūto Machino",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "tanaka_jpn",
+        "name": "Ao Tanaka",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "kubo_jpn",
+        "name": "Takefusa Kubo",
+        "role": "C",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "goto_jpn",
+        "name": "Keisuke Gotō",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "doan_jpn",
+        "name": "Ritsu Dōan",
+        "role": "C",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "maeda_jpn",
+        "name": "Daizen Maeda",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "osako_jpn",
+        "name": "Keisuke Ōsako",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "nakamura_jpn",
+        "name": "Keito Nakamura",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ito_j_jpn",
+        "name": "Jun'ya Itō",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "kamada_jpn",
+        "name": "Daichi Kamada",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "watanabe_jpn",
+        "name": "Tsuyoshi Watanabe",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "suzuki_y_jpn",
+        "name": "Yuito Suzuki",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ueda_jpn",
+        "name": "Ayase Ueda",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ogawa_jpn",
+        "name": "Kōki Ogawa",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "seko_jpn",
+        "name": "Ayumu Seko",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ito_h_jpn",
+        "name": "Hiroki Itō",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "tomiyasu_jpn",
+        "name": "Takehiro Tomiyasu",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "hayakawa_jpn",
+        "name": "Tomoki Hayakawa",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sano_jpn",
+        "name": "Kaishū Sano",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "suzuki_j_jpn",
+        "name": "Junnosuke Suzuki",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "shiogai_jpn",
+        "name": "Kento Shiogai",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Belgium", "flag": "🇧🇪", "coach": "Domenico Tedesco", "formation": "4-3-3",
+    "team": "CIV",
+    "flag": "🇨🇮",
+    "coach": "Faé",
+    "formation": "4-3-3",
     "players": [
-      {"name": "Courtois", "role": "P", "stars": 5},
-      {"name": "Mignolet", "role": "P", "stars": 3},
-      {"name": "Castagne", "role": "D", "stars": 3},
-      {"name": "Faes", "role": "D", "stars": 3},
-      {"name": "Theate", "role": "D", "stars": 3},
-      {"name": "T. Hazard", "role": "D", "stars": 3},
-      {"name": "Sels", "role": "D", "stars": 3},
-      {"name": "De Bruyne", "role": "C", "stars": 5},
-      {"name": "Witsel", "role": "C", "stars": 3},
-      {"name": "Tielemans", "role": "C", "stars": 4},
-      {"name": "Onana", "role": "C", "stars": 4},
-      {"name": "Doku", "role": "A", "stars": 4},
-      {"name": "Lukaku", "role": "A", "stars": 5},
-      {"name": "Mertens", "role": "A", "stars": 4},
-      {"name": "Batshuayi", "role": "A", "stars": 3}
+      {
+        "id": "fofana_y_civ",
+        "name": "Yahia Fofana",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "diomande_o_civ",
+        "name": "Ousmane Diomande",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "konan_civ",
+        "name": "Ghislain Konan",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "seri_civ",
+        "name": "Jean Seri",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "singo_civ",
+        "name": "Wilfried Singo",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "fofana_s_civ",
+        "name": "Seko Fofana",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "kossounou_civ",
+        "name": "Odilon Kossounou",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "kessie_civ",
+        "name": "Franck Kessié",
+        "role": "C",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "bonny_civ",
+        "name": "Ange-Yoan Bonny",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "adingra_civ",
+        "name": "Simon Adingra",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "diomande_y_civ",
+        "name": "Yan Diomande",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "wahi_civ",
+        "name": "Elye Wahi",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "operi_civ",
+        "name": "Christopher Opéri",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "diakite_civ",
+        "name": "Oumar Diakité",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "diallo_civ",
+        "name": "Amad Diallo",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "kone_civ",
+        "name": "Mohamed Koné",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "doue_civ",
+        "name": "Guéla Doué",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sangare_civ",
+        "name": "Ibrahim Sangaré",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "pepe_civ",
+        "name": "Nicolas Pépé",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "agbadou_civ",
+        "name": "Emmanuel Agbadou",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ndicka_civ",
+        "name": "Evan Ndicka",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "guessand_civ",
+        "name": "Evann Guessand",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "lafont_civ",
+        "name": "Alban Lafont",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "toure_civ",
+        "name": "Bazoumana Touré",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "guiagon_civ",
+        "name": "Parfait Guiagon",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "oulai_civ",
+        "name": "Christ Inao Oulaï",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "USA", "flag": "🇺🇸", "coach": "Gregg Berhalter", "formation": "4-3-3",
+    "team": "NOR",
+    "flag": "🇳🇴",
+    "coach": "Solbakken",
+    "formation": "4-3-3",
     "players": [
-      {"name": "Matt Turner", "role": "P", "stars": 4},
-      {"name": "Steffen", "role": "P", "stars": 3},
-      {"name": "Dest", "role": "D", "stars": 4},
-      {"name": "Long", "role": "D", "stars": 3},
-      {"name": "Richards", "role": "D", "stars": 3},
-      {"name": "Robinson", "role": "D", "stars": 4},
-      {"name": "Zimmerman", "role": "D", "stars": 3},
-      {"name": "Adams", "role": "C", "stars": 4},
-      {"name": "McKennie", "role": "C", "stars": 4},
-      {"name": "Reyna", "role": "C", "stars": 5},
-      {"name": "Musah", "role": "C", "stars": 4},
-      {"name": "Pulisic", "role": "A", "stars": 5},
-      {"name": "Weah", "role": "A", "stars": 4},
-      {"name": "Balogun", "role": "A", "stars": 4},
-      {"name": "Ferreira", "role": "A", "stars": 3}
+      {
+        "id": "nyland_nor",
+        "name": "Ørjan Nyland",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "thorsby_nor",
+        "name": "Morten Thorsby",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ajer_nor",
+        "name": "Kristoffer Ajer",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "østigard_nor",
+        "name": "Leo Skiri Østigård",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "wolfe_nor",
+        "name": "David Møller Wolfe",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "berg_nor",
+        "name": "Patrick Berg",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sørloth_nor",
+        "name": "Alexander Sørloth",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "berge_nor",
+        "name": "Sander Berge",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "haaland_nor",
+        "name": "Erling Haaland",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ødegaard_nor",
+        "name": "Martin Ødegaard",
+        "role": "C",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "larsen_nor",
+        "name": "Jørgen Strand Larsen",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "tangvik_nor",
+        "name": "Sander Tangvik",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "selvik_nor",
+        "name": "Egil Selvik",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "aursnes_nor",
+        "name": "Fredrik Aursnes",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "bjørkan_nor",
+        "name": "Fredrik André Bjørkan",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "pedersen_nor",
+        "name": "Marcus Holmgren Pedersen",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "heggem_nor",
+        "name": "Torbjørn Heggem",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "thorstvedt_nor",
+        "name": "Kristian Thorstvedt",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "aasgaard_nor",
+        "name": "Thelo Aasgaard",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "nusa_nor",
+        "name": "Antonio Nusa",
+        "role": "C",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "schjelderup_nor",
+        "name": "Andreas Schjelderup",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "bobb_nor",
+        "name": "Oscar Bobb",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "hauge_nor",
+        "name": "Jens Petter Hauge",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "langas_nor",
+        "name": "Sondre Langås",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "falchener_nor",
+        "name": "Henrik Falchener",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ryerson_nor",
+        "name": "Julian Ryerson",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Croatia", "flag": "🇭🇷", "coach": "Zlatko Dalić", "formation": "4-3-3",
+    "team": "MEX",
+    "flag": "🇲🇽",
+    "coach": "Aguirre",
+    "formation": "4-3-3",
     "players": [
-      {"name": "Livaković", "role": "P", "stars": 4},
-      {"name": "Ivušić", "role": "P", "stars": 3},
-      {"name": "Ćaleta-Car", "role": "D", "stars": 3},
-      {"name": "Lovren", "role": "D", "stars": 3},
-      {"name": "Gvardiol", "role": "D", "stars": 5},
-      {"name": "Sosa", "role": "D", "stars": 3},
-      {"name": "Erlic", "role": "D", "stars": 3},
-      {"name": "Modrić", "role": "C", "stars": 5},
-      {"name": "Brozović", "role": "C", "stars": 4},
-      {"name": "Kovačić", "role": "C", "stars": 4},
-      {"name": "Šutalo", "role": "C", "stars": 3},
-      {"name": "Perišić", "role": "A", "stars": 4},
-      {"name": "Vlašić", "role": "A", "stars": 4},
-      {"name": "Budimir", "role": "A", "stars": 3},
-      {"name": "Ivanušec", "role": "A", "stars": 3}
+      {
+        "id": "rangel_mex",
+        "name": "Raúl Rangel",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sanchez_mex",
+        "name": "Jorge Sánchez",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "montes_mex",
+        "name": "César Montes",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "alvarez_mex",
+        "name": "Edson Álvarez",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "vasquez_mex",
+        "name": "Johan Vásquez",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "lira_mex",
+        "name": "Erik Lira",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "romo_mex",
+        "name": "Luis Romo",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "fidalgo_mex",
+        "name": "Álvaro Fidalgo",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "jimenez_mex",
+        "name": "Raúl Jiménez",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "vega_mex",
+        "name": "Alexis Vega",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "gimenez_mex",
+        "name": "Santiago Giménez",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "acevedo_mex",
+        "name": "Carlos Acevedo",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ochoa_mex",
+        "name": "Guillermo Ochoa",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "alba_mex",
+        "name": "Armando González Alba",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "reyes_mex",
+        "name": "Israel Reyes",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "quinones_mex",
+        "name": "Julián Quiñones",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "pineda_mex",
+        "name": "Orbelín Pineda",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "vargas_mex",
+        "name": "Obed Vargas",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mora_mex",
+        "name": "Gilberto Mora",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "chavez_mex",
+        "name": "Mateo Chávez",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "huerta_mex",
+        "name": "César Huerta",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ayala_mex",
+        "name": "Guillermo Martínez Ayala",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "gallardo_mex",
+        "name": "Jesús Gallardo",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "chavez_mex2",
+        "name": "Luis Chávez",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "alvarado_mex",
+        "name": "Roberto Alvarado",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "gutierrez_mex",
+        "name": "Brian Gutiérrez",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Austria", "flag": "🇦🇹", "coach": "Ralf Rangnick", "formation": "4-5-1",
+    "team": "ECU",
+    "flag": "🇪🇨",
+    "coach": "Beccacece",
+    "formation": "4-3-3",
     "players": [
-      {"name": "Pentz", "role": "P", "stars": 3},
-      {"name": "Lindner", "role": "P", "stars": 3},
-      {"name": "Posch", "role": "D", "stars": 3},
-      {"name": "Alaba", "role": "D", "stars": 5},
-      {"name": "Trauner", "role": "D", "stars": 3},
-      {"name": "Wöber", "role": "D", "stars": 3},
-      {"name": "Ullmann", "role": "D", "stars": 3},
-      {"name": "Baumgartner", "role": "C", "stars": 4},
-      {"name": "Sabitzer", "role": "C", "stars": 4},
-      {"name": "Laimer", "role": "C", "stars": 4},
-      {"name": "Grillitsch", "role": "C", "stars": 3},
-      {"name": "Gregoritsch", "role": "C", "stars": 3},
-      {"name": "Arnautović", "role": "A", "stars": 4},
-      {"name": "Onisiwo", "role": "A", "stars": 3},
-      {"name": "Seiwald", "role": "C", "stars": 4}
+      {
+        "id": "galindez_ecu",
+        "name": "Hernán Galíndez",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "torres_ecu",
+        "name": "Félix Torres",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "hincapie_ecu",
+        "name": "Piero Hincapié",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ordonez_ecu",
+        "name": "Joel Ordóñez",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "alcivar_ecu",
+        "name": "Jordy Alcívar",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "pacho_ecu",
+        "name": "Willian Pacho",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "estupinan_ecu",
+        "name": "Pervis Estupiñán",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "valencia_a_ecu",
+        "name": "Anthony Valencia",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "yeboah_ecu",
+        "name": "John Yeboah",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "paez_ecu",
+        "name": "Kendry Páez",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "rodriguez_ecu",
+        "name": "Kevin Rodríguez",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ramirez_ecu",
+        "name": "Wellington Ramírez",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "valencia_e_ecu",
+        "name": "Enner Valencia",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "minda_ecu",
+        "name": "Alan Minda",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "vite_ecu",
+        "name": "Pedro Vite",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "caicedo_ecu",
+        "name": "Jordy Caicedo",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "preciado_ecu",
+        "name": "Angelo Preciado",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "castillo_ecu",
+        "name": "Denil Castillo",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "plata_ecu",
+        "name": "Gonzalo Plata",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "angulo_ecu",
+        "name": "Nilson Angulo",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "franco_ecu",
+        "name": "Alan Franco",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "valle_ecu",
+        "name": "Gonzalo Valle",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "caicedo_ecu2",
+        "name": "Moisés Caicedo",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "arevalo_ecu",
+        "name": "Jeremy Arévalo",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "porozo_ecu",
+        "name": "Jackson Porozo",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "medina_ecu",
+        "name": "Yaimar Medina",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Uruguay", "flag": "🇺🇾", "coach": "Marcelo Bielsa", "formation": "4-3-3",
+    "team": "ENG",
+    "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "coach": "Tuchel",
+    "formation": "4-3-3",
     "players": [
-      {"name": "Rochet", "role": "P", "stars": 3},
-      {"name": "Muslera", "role": "P", "stars": 4},
-      {"name": "R. Araújo", "role": "D", "stars": 5},
-      {"name": "Giménez", "role": "D", "stars": 4},
-      {"name": "Olivera", "role": "D", "stars": 3},
-      {"name": "Cáceres", "role": "D", "stars": 3},
-      {"name": "Viña", "role": "D", "stars": 3},
-      {"name": "Bentancur", "role": "C", "stars": 4},
-      {"name": "Torreira", "role": "C", "stars": 4},
-      {"name": "Valverde", "role": "C", "stars": 5},
-      {"name": "De Arrascaeta", "role": "C", "stars": 4},
-      {"name": "Darwin Núñez", "role": "A", "stars": 5},
-      {"name": "L. Suárez", "role": "A", "stars": 4},
-      {"name": "F. Torres", "role": "A", "stars": 4},
-      {"name": "Pellistri", "role": "A", "stars": 3}
+      {
+        "id": "pickford_eng",
+        "name": "Jordan Pickford",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "konsa_eng",
+        "name": "Ezri Konsa",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "oreilly_eng",
+        "name": "Nico O'Reilly",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "rice_eng",
+        "name": "Declan Rice",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "stones_eng",
+        "name": "John Stones",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "guehi_eng",
+        "name": "Marc Guéhi",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "saka_eng",
+        "name": "Bukayo Saka",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "anderson_eng",
+        "name": "Elliot Anderson",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "kane_eng",
+        "name": "Harry Kane",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "bellingham_eng",
+        "name": "Jude Bellingham",
+        "role": "C",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "rashford_eng",
+        "name": "Marcus Rashford",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "chalobah_eng",
+        "name": "Trevoh Chalobah",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "henderson_eng",
+        "name": "Dean Henderson",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "henderson_eng2",
+        "name": "Jordan Henderson",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "burn_eng",
+        "name": "Dan Burn",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mainoo_eng",
+        "name": "Kobbie Mainoo",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "rogers_eng",
+        "name": "Morgan Rogers",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "gordon_eng",
+        "name": "Anthony Gordon",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "watkins_eng",
+        "name": "Ollie Watkins",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "madueke_eng",
+        "name": "Noni Madueke",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "eze_eng",
+        "name": "Eberechi Eze",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "toney_eng",
+        "name": "Ivan Toney",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "trafford_eng",
+        "name": "James Trafford",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "james_eng",
+        "name": "Reece James",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "spence_eng",
+        "name": "Djed Spence",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "quansah_eng",
+        "name": "Jarell Quansah",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Switzerland", "flag": "🇨🇭", "coach": "Murat Yakin", "formation": "4-5-1",
+    "team": "COD",
+    "flag": "🇨🇩",
+    "coach": "Desabre",
+    "formation": "4-3-3",
     "players": [
-      {"name": "Sommer", "role": "P", "stars": 4},
-      {"name": "Kobel", "role": "P", "stars": 4},
-      {"name": "Widmer", "role": "D", "stars": 3},
-      {"name": "Schär", "role": "D", "stars": 4},
-      {"name": "Akanji", "role": "D", "stars": 4},
-      {"name": "Rodríguez", "role": "D", "stars": 3},
-      {"name": "Stergiou", "role": "D", "stars": 3},
-      {"name": "Freuler", "role": "C", "stars": 3},
-      {"name": "Xhaka", "role": "C", "stars": 4},
-      {"name": "Seferović", "role": "A", "stars": 3},
-      {"name": "Vargas", "role": "C", "stars": 3},
-      {"name": "Shaqiri", "role": "C", "stars": 4},
-      {"name": "Embolo", "role": "A", "stars": 4},
-      {"name": "Okafor", "role": "A", "stars": 4},
-      {"name": "Ndoye", "role": "A", "stars": 3}
+      {
+        "id": "mpasi_cod",
+        "name": "Lionel Mpasi",
+        "role": "P",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "wanbissaka_cod",
+        "name": "Aaron Wan-Bissaka",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "kapuadi_cod",
+        "name": "Steve Kapuadi",
+        "role": "D",
+        "stars": 4,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "tuanzebe_cod",
+        "name": "Axel Tuanzebe",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "batubinsika_cod",
+        "name": "Dylan Batubinsika",
+        "role": "D",
+        "stars": 4,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mukau_cod",
+        "name": "Ngal'ayel Mukau",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mbuku_cod",
+        "name": "Nathanaël Mbuku",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "moutoussamy_cod",
+        "name": "Samuel Moutoussamy",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "cipenga_cod",
+        "name": "Brian Cipenga",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "bongonda_cod",
+        "name": "Théo Bongonda",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "kakuta_cod",
+        "name": "Gaël Kakuta",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "kayembe_j_cod",
+        "name": "Joris Kayembe",
+        "role": "D",
+        "stars": 4,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "elia_cod",
+        "name": "Meschak Elia",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sadiki_cod",
+        "name": "Noah Sadiki",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "tshibola_cod",
+        "name": "Aaron Tshibola",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "fayulu_cod",
+        "name": "Timothy Fayulu",
+        "role": "P",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "bakambu_cod",
+        "name": "Cédric Bakambu",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "pickel_cod",
+        "name": "Charles Pickel",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mayele_cod",
+        "name": "Fiston Kalala Mayele",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "wissa_cod",
+        "name": "Yoane Wissa",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "epolo_cod",
+        "name": "Matthieu Epolo",
+        "role": "P",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mbemba_cod",
+        "name": "Chancel Mbemba",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "banza_cod",
+        "name": "Simon Banza",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "kalulu_cod",
+        "name": "Gédéon Kalulu",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "kayembe_e_cod",
+        "name": "Edo Kayembe",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "masuaku_cod",
+        "name": "Arthur Masuaku",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Mexico", "flag": "🇲🇽", "coach": "Jaime Lozano", "formation": "4-5-1",
+    "team": "ARG",
+    "flag": "🇦🇷",
+    "coach": "Scaloni",
+    "formation": "4-3-3",
     "players": [
-      {"name": "Ochoa", "role": "P", "stars": 4},
-      {"name": "Talavera", "role": "P", "stars": 3},
-      {"name": "Sánchez", "role": "D", "stars": 3},
-      {"name": "Moreno", "role": "D", "stars": 3},
-      {"name": "Montes", "role": "D", "stars": 3},
-      {"name": "Gallardo", "role": "D", "stars": 3},
-      {"name": "Araujo", "role": "D", "stars": 3},
-      {"name": "Edson Álvarez", "role": "C", "stars": 5},
-      {"name": "Pineda", "role": "C", "stars": 3},
-      {"name": "Antuna", "role": "C", "stars": 3},
-      {"name": "Herrera", "role": "C", "stars": 3},
-      {"name": "Alvarado", "role": "C", "stars": 3},
-      {"name": "H. Lozano", "role": "A", "stars": 4},
-      {"name": "Jiménez", "role": "A", "stars": 4},
-      {"name": "Henry Martín", "role": "A", "stars": 3}
+      {
+        "id": "musso_arg",
+        "name": "Juan Musso",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "senesi_arg",
+        "name": "Marcos Senesi",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "tagliafico_arg",
+        "name": "Nicolás Tagliafico",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "montiel_arg",
+        "name": "Gonzalo Montiel",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "paredes_arg",
+        "name": "Leandro Paredes",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "martinez_l_arg",
+        "name": "Lisandro Martínez",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "paul_arg",
+        "name": "Rodrigo de Paul",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "barco_arg",
+        "name": "Valentín Barco",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "alvarez_arg",
+        "name": "Julián Álvarez",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "messi_arg",
+        "name": "Lionel Messi",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "celso_arg",
+        "name": "Giovani Lo Celso",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "rulli_arg",
+        "name": "Gerónimo Rulli",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "romero_arg",
+        "name": "Cristian Romero",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "palacios_arg",
+        "name": "Exequiel Palacios",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "gonzalez_arg",
+        "name": "Nicolás González",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "almada_arg",
+        "name": "Thiago Almada",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "simeone_arg",
+        "name": "Giuliano Simeone",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "paz_arg",
+        "name": "Nico Paz",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "otamendi_arg",
+        "name": "Nicolás Otamendi",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "allister_arg",
+        "name": "Alexis Mac Allister",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "lopez_arg",
+        "name": "José Manuel López",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "martinez_arg",
+        "name": "Lautaro Martínez",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "martinez_e_arg",
+        "name": "Emiliano Martínez",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "fernandez_arg",
+        "name": "Enzo Fernández",
+        "role": "C",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "medina_arg",
+        "name": "Facundo Medina",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "molina_arg",
+        "name": "Nahuel Molina",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Senegal", "flag": "🇸🇳", "coach": "Aliou Cissé", "formation": "4-3-3",
+    "team": "CPV",
+    "flag": "🇨🇻",
+    "coach": "Bubista",
+    "formation": "4-5-1",
     "players": [
-      {"name": "Mendy", "role": "P", "stars": 4},
-      {"name": "Gomis", "role": "P", "stars": 3},
-      {"name": "Sabaly", "role": "D", "stars": 3},
-      {"name": "Koulibaly", "role": "D", "stars": 5},
-      {"name": "Diallo", "role": "D", "stars": 3},
-      {"name": "Jakobs", "role": "D", "stars": 3},
-      {"name": "Ciss", "role": "D", "stars": 3},
-      {"name": "Guèye", "role": "C", "stars": 4},
-      {"name": "Kouyaté", "role": "C", "stars": 3},
-      {"name": "Ciss Nampalys", "role": "C", "stars": 3},
-      {"name": "Diatta", "role": "C", "stars": 3},
-      {"name": "Mané", "role": "A", "stars": 5},
-      {"name": "Ismaïla Sarr", "role": "A", "stars": 4},
-      {"name": "Dia", "role": "A", "stars": 4},
-      {"name": "Diedhiou", "role": "A", "stars": 3}
+      {
+        "id": "vozinha_cpv",
+        "name": "Vozinha",
+        "role": "P",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "stopira_cpv",
+        "name": "Stopira",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "diney_cpv",
+        "name": "Diney",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "lopes_cpv",
+        "name": "Roberto Lopes",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "costa_cpv",
+        "name": "Logan Costa",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "pina_cpv",
+        "name": "Kevin Pina",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "cabral_cpv",
+        "name": "Jovane Cabral",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "paulo_cpv",
+        "name": "João Paulo",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "benchimol_cpv",
+        "name": "Benchimol",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "monteiro_cpv",
+        "name": "Jamiro Monteiro",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "rodrigues_cpv",
+        "name": "Garry Mendes Rodrigues",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "rosa_cpv",
+        "name": "Márcio Rosa",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "cabral_cpv2",
+        "name": "Sidny Lopes Cabral",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "duarte_d_cpv",
+        "name": "Deroy Duarte",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "duarte_l_cpv",
+        "name": "Laros Duarte",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "semedo_cpv",
+        "name": "Yannick Semedo",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "semedo_cpv2",
+        "name": "Willy Semedo",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "arcanjo_cpv",
+        "name": "Telmo Arcanjo",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "livramento_cpv",
+        "name": "Dailon Livramento",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mendes_cpv",
+        "name": "Ryan Mendes",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "costa_cpv2",
+        "name": "Nuno da Costa",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "moreira_cpv",
+        "name": "Steven Moreira",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "santos_cpv",
+        "name": "CJ dos Santos",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "pina_cpv2",
+        "name": "Wagner Pina",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "pires_cpv",
+        "name": "Kelvin Pires",
+        "role": "D",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "varela_cpv",
+        "name": "Hélio Varela",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Denmark", "flag": "🇩🇰", "coach": "Kasper Hjulmand", "formation": "4-3-3",
+    "team": "AUS",
+    "flag": "🇦🇺",
+    "coach": "Popović",
+    "formation": "4-2-3-1",
     "players": [
-      {"name": "Christensen", "role": "P", "stars": 3},
-      {"name": "Schmeichel", "role": "P", "stars": 4},
-      {"name": "Mæhle", "role": "D", "stars": 4},
-      {"name": "A. Christensen", "role": "D", "stars": 4},
-      {"name": "Andersen", "role": "D", "stars": 4},
-      {"name": "Vestergaard", "role": "D", "stars": 3},
-      {"name": "Bah", "role": "D", "stars": 3},
-      {"name": "Eriksen", "role": "C", "stars": 5},
-      {"name": "Højbjerg", "role": "C", "stars": 4},
-      {"name": "Delaney", "role": "C", "stars": 3},
-      {"name": "Nørgaard", "role": "C", "stars": 3},
-      {"name": "Damsgaard", "role": "A", "stars": 4},
-      {"name": "Braithwaite", "role": "A", "stars": 3},
-      {"name": "Dolberg", "role": "A", "stars": 3},
-      {"name": "Lindstrøm", "role": "A", "stars": 3}
+      {
+        "id": "ryan_aus",
+        "name": "Mathew Ryan",
+        "role": "P",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "degenek_aus",
+        "name": "Miloš Degenek",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "circati_aus",
+        "name": "Alessandro Circati",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "italiano_aus",
+        "name": "Jacob Italiano",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "bos_aus",
+        "name": "Jordan Bos",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "geria_aus",
+        "name": "Jason Geria",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "leckie_aus",
+        "name": "Mathew Leckie",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "metcalfe_aus",
+        "name": "Connor Metcalfe",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "toure_aus",
+        "name": "Mohamed Touré",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "hrustic_aus",
+        "name": "Ajdin Hrustic",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mabil_aus",
+        "name": "Awer Mabil",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "izzo_aus",
+        "name": "Paul Izzo",
+        "role": "P",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "oneill_aus",
+        "name": "Aiden O'Neill",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "devlin_aus",
+        "name": "Cameron Devlin",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "trewin_aus",
+        "name": "Kai Trewin",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "behich_aus",
+        "name": "Aziz Behich",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "irankunda_aus",
+        "name": "Nestory Irankunda",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "beach_aus",
+        "name": "Patrick Beach",
+        "role": "P",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "souttar_aus",
+        "name": "Harry Souttar",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "volpato_aus",
+        "name": "Cristian Volpato",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "burgess_aus",
+        "name": "Cameron Burgess",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "irvine_aus",
+        "name": "Jackson Irvine",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "velupillay_aus",
+        "name": "Nishan Velupillay",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "okonengstler_aus",
+        "name": "Paul Okon-Engstler",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "herrington_aus",
+        "name": "Lucas Herrington",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "yengi_aus",
+        "name": "Tete Yengi",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Nigeria", "flag": "🇳🇬", "coach": "José Peseiro", "formation": "4-5-1",
+    "team": "EGY",
+    "flag": "🇪🇬",
+    "coach": "Hassan",
+    "formation": "4-2-3-1",
     "players": [
-      {"name": "Nwabali", "role": "P", "stars": 3},
-      {"name": "Uzoho", "role": "P", "stars": 3},
-      {"name": "Omeruo", "role": "D", "stars": 3},
-      {"name": "Ajayi", "role": "D", "stars": 3},
-      {"name": "Collins", "role": "D", "stars": 3},
-      {"name": "Zaidu", "role": "D", "stars": 3},
-      {"name": "Ola Aina", "role": "D", "stars": 3},
-      {"name": "Ndidi", "role": "C", "stars": 4},
-      {"name": "Iheanacho", "role": "C", "stars": 3},
-      {"name": "Chukwueze", "role": "C", "stars": 4},
-      {"name": "Simon", "role": "C", "stars": 4},
-      {"name": "Lookman", "role": "A", "stars": 5},
-      {"name": "Osimhen", "role": "A", "stars": 5},
-      {"name": "Awoniyi", "role": "A", "stars": 4},
-      {"name": "Nwakali", "role": "C", "stars": 3}
+      {
+        "id": "shenawy_egy",
+        "name": "Mohamed El Shenawy",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ibrahim_egy",
+        "name": "Yasser Ibrahim",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "hany_egy",
+        "name": "Mohamed Hany",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "abdelmaguid_egy",
+        "name": "Hossam Abdelmaguid",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "rabia_egy",
+        "name": "Ramy Rabia",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "abdelmonem_egy",
+        "name": "Mohamed Abdelmonem",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "trezeguet_egy",
+        "name": "Trézéguet",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ashour_egy",
+        "name": "Emam Ashour",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "abdelkarim_egy",
+        "name": "Hamza Abdelkarim",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "salah_egy",
+        "name": "Mohamed Salah",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ziko_egy",
+        "name": "Mostafa Ziko",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "hassan_egy",
+        "name": "Haissem Hassan",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "fotouh_egy",
+        "name": "Ahmed Abou El Fotouh",
+        "role": "D",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "fathy_egy",
+        "name": "Hamdy Fathy",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "hafez_egy",
+        "name": "Karim Hafez",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "soliman_egy",
+        "name": "El Mahdy Soliman",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "lasheen_egy",
+        "name": "Mohanad Lasheen",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "emad_egy",
+        "name": "Nabil Emad",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ateya_egy",
+        "name": "Marwan Ateya",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "adel_egy",
+        "name": "Ibrahim Adel",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "saber_egy",
+        "name": "Mahmoud Saber",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "marmoush_egy",
+        "name": "Omar Marmoush",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "shobeir_egy",
+        "name": "Mostafa Shobeir",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "alaa_egy",
+        "name": "Tarek Alaa",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sayed_egy",
+        "name": "Ahmed Sayed",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "alaa_egy2",
+        "name": "Mohamed Alaa",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Sweden", "flag": "🇸🇪", "coach": "Jon Dahl Tomasson", "formation": "4-4-2",
+    "team": "SUI",
+    "flag": "🇨🇭",
+    "coach": "Yakin",
+    "formation": "4-2-3-1",
     "players": [
-      {"name": "Olsen", "role": "P", "stars": 3},
-      {"name": "Nordfeldt", "role": "P", "stars": 2},
-      {"name": "Nilsson-Lindelöf", "role": "D", "stars": 4},
-      {"name": "Augustinsson", "role": "D", "stars": 3},
-      {"name": "Granqvist", "role": "D", "stars": 3},
-      {"name": "Hien", "role": "D", "stars": 3},
-      {"name": "Krafth", "role": "D", "stars": 3},
-      {"name": "Svanberg", "role": "C", "stars": 3},
-      {"name": "Ekdal", "role": "C", "stars": 3},
-      {"name": "Forsberg", "role": "C", "stars": 4},
-      {"name": "Kulusevski", "role": "A", "stars": 5},
-      {"name": "Isak", "role": "A", "stars": 5},
-      {"name": "Gyökeres", "role": "A", "stars": 5},
-      {"name": "Berg", "role": "A", "stars": 3},
-      {"name": "Elanga", "role": "C", "stars": 4}
+      {
+        "id": "kobel_sui",
+        "name": "Gregor Kobel",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "muheim_sui",
+        "name": "Miro Muheim",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "widmer_sui",
+        "name": "Silvan Widmer",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "elvedi_sui",
+        "name": "Nico Elvedi",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "akanji_sui",
+        "name": "Manuel Akanji",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "zakaria_sui",
+        "name": "Denis Zakaria",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "embolo_sui",
+        "name": "Breel Embolo",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "freuler_sui",
+        "name": "Remo Freuler",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "manzambi_sui",
+        "name": "Johan Manzambi",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "xhaka_sui",
+        "name": "Granit Xhaka",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ndoye_sui",
+        "name": "Dan Ndoye",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mvogo_sui",
+        "name": "Yvon Mvogo",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "rodriguez_sui",
+        "name": "Ricardo Rodríguez",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "jashari_sui",
+        "name": "Ardon Jashari",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sow_sui",
+        "name": "Djibril Sow",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "fassnacht_sui",
+        "name": "Christian Fassnacht",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "vargas_sui",
+        "name": "Ruben Vargas",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "comert_sui",
+        "name": "Eray Cömert",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "okafor_sui",
+        "name": "Noah Okafor",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "aebischer_sui",
+        "name": "Michel Aebischer",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "keller_sui",
+        "name": "Marvin Keller",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "rieder_sui",
+        "name": "Fabian Rieder",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "amdouni_sui",
+        "name": "Zeki Amdouni",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "amenda_sui",
+        "name": "Aurèle Amenda",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "jaquez_sui",
+        "name": "Luca Jaquez",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "itten_sui",
+        "name": "Cedric Itten",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Costa Rica", "flag": "🇨🇷", "coach": "Luis Fernando Suárez", "formation": "5-4-1",
+    "team": "ALG",
+    "flag": "🇩🇿",
+    "coach": "Petković",
+    "formation": "4-3-3",
     "players": [
-      {"name": "Navas", "role": "P", "stars": 5},
-      {"name": "Sequeira", "role": "P", "stars": 3},
-      {"name": "Waston", "role": "D", "stars": 3},
-      {"name": "Calvo", "role": "D", "stars": 3},
-      {"name": "Oviedo", "role": "D", "stars": 3},
-      {"name": "Duarte", "role": "D", "stars": 3},
-      {"name": "Fuller", "role": "D", "stars": 3},
-      {"name": "Borges", "role": "C", "stars": 3},
-      {"name": "Tejeda", "role": "C", "stars": 3},
-      {"name": "Torres", "role": "C", "stars": 3},
-      {"name": "Galo", "role": "C", "stars": 3},
-      {"name": "Contreras", "role": "C", "stars": 3},
-      {"name": "Campbell", "role": "A", "stars": 4},
-      {"name": "Bryan Ruiz", "role": "A", "stars": 3},
-      {"name": "Venegas", "role": "A", "stars": 3}
+      {
+        "id": "mastil_alg",
+        "name": "Melvin Mastil",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mandi_alg",
+        "name": "Aïssa Mandi",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "abada_alg",
+        "name": "Achref Abada",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "tougai_alg",
+        "name": "Mohamed Amine Tougai",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "belaid_alg",
+        "name": "Zineddine Belaïd",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "zerrouki_alg",
+        "name": "Ramiz Zerrouki",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mahrez_alg",
+        "name": "Riyad Mahrez",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "aouar_alg",
+        "name": "Houssem Aouar",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "gouiri_alg",
+        "name": "Amine Gouiri",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "chaibi_alg",
+        "name": "Farès Chaïbi",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "moussa_alg",
+        "name": "Anis Hadj Moussa",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "benbouali_alg",
+        "name": "Nadhir Benbouali",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "hadjam_alg",
+        "name": "Jaouen Hadjam",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "boudaoui_alg",
+        "name": "Hicham Boudaoui",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "aitnouri_alg",
+        "name": "Rayan Aït-Nouri",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "benbot_alg",
+        "name": "Oussama Benbot",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "belghali_alg",
+        "name": "Rafik Belghali",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "amoura_alg",
+        "name": "Mohamed Amoura",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "bentaleb_alg",
+        "name": "Nabil Bentaleb",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "boulbina_alg",
+        "name": "Adil Boulbina",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "bensebaini_alg",
+        "name": "Ramy Bensebaini",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "maza_alg",
+        "name": "Ibrahim Maza",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "zidane_alg",
+        "name": "Luca Zidane",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "titraoui_alg",
+        "name": "Yacine Titraoui",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ghedjemis_alg",
+        "name": "Farès Ghedjemis",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "chergui_alg",
+        "name": "Samir Chergui",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Wales", "flag": "🏴󠁧󠁢󠁷󠁬󠁳󠁿", "coach": "Rob Page", "formation": "4-5-1",
+    "team": "COL",
+    "flag": "🇨🇴",
+    "coach": "Lorenzo",
+    "formation": "4-3-3",
     "players": [
-      {"name": "Danny Ward", "role": "P", "stars": 3},
-      {"name": "Hennessey", "role": "P", "stars": 3},
-      {"name": "Rodon", "role": "D", "stars": 4},
-      {"name": "Mepham", "role": "D", "stars": 3},
-      {"name": "Davies", "role": "D", "stars": 3},
-      {"name": "Williams", "role": "D", "stars": 3},
-      {"name": "C. Roberts", "role": "D", "stars": 3},
-      {"name": "Ramsey", "role": "C", "stars": 4},
-      {"name": "Ampadu", "role": "C", "stars": 3},
-      {"name": "Allen", "role": "C", "stars": 3},
-      {"name": "Dan James", "role": "A", "stars": 4},
-      {"name": "Brennan Johnson", "role": "A", "stars": 4},
-      {"name": "Bale", "role": "A", "stars": 4},
-      {"name": "T. Roberts", "role": "C", "stars": 3},
-      {"name": "Moore", "role": "A", "stars": 3}
+      {
+        "id": "ospina_col",
+        "name": "David Ospina",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "munoz_col",
+        "name": "Daniel Muñoz",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "lucumi_col",
+        "name": "Jhon Lucumí",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "arias_col",
+        "name": "Santiago Arias",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "castano_col",
+        "name": "Kevin Castaño",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "rios_col",
+        "name": "Richard Ríos",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "diaz_col",
+        "name": "Luis Díaz",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "carrascal_col",
+        "name": "Jorge Carrascal",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "cordoba_col",
+        "name": "Jhon Córdoba",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "rodriguez_col",
+        "name": "James Rodríguez",
+        "role": "C",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "arias_col2",
+        "name": "Jhon Arias",
+        "role": "C",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "vargas_col",
+        "name": "Camilo Vargas",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mina_col",
+        "name": "Yerry Mina",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "puerta_col",
+        "name": "Gustavo Puerta",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "portilla_col",
+        "name": "Juan Portilla",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "lerma_col",
+        "name": "Jefferson Lerma",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mojica_col",
+        "name": "Johan Mojica",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ditta_col",
+        "name": "Willer Ditta",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "hernandez_col",
+        "name": "Cucho Hernández",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "quintero_col",
+        "name": "Juan Fernando Quintero",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "campaz_col",
+        "name": "Jaminton Campaz",
+        "role": "C",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "machado_col",
+        "name": "Deiver Machado",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sanchez_col",
+        "name": "Davinson Sánchez",
+        "role": "D",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "montero_col",
+        "name": "Álvaro Montero",
+        "role": "P",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "suarez_col",
+        "name": "Luis Suárez",
+        "role": "A",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "gomez_col",
+        "name": "Carlos Andrés Gómez",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      }
     ]
   },
   {
-    "team": "Egypt", "flag": "🇪🇬", "coach": "Rui Vitória", "formation": "4-5-1",
+    "team": "GHA",
+    "flag": "🇬🇭",
+    "coach": "Queiroz",
+    "formation": "4-3-3",
     "players": [
-      {"name": "El-Shenawy", "role": "P", "stars": 3},
-      {"name": "Gabaski", "role": "P", "stars": 3},
-      {"name": "Ahmed Hegazi", "role": "D", "stars": 3},
-      {"name": "El-Mohamady", "role": "D", "stars": 3},
-      {"name": "Ashraf", "role": "D", "stars": 3},
-      {"name": "Omar Kamal", "role": "D", "stars": 3},
-      {"name": "Gomaa", "role": "D", "stars": 3},
-      {"name": "Elneny", "role": "C", "stars": 3},
-      {"name": "Hamdi", "role": "C", "stars": 3},
-      {"name": "Trezeguet", "role": "C", "stars": 3},
-      {"name": "Zizo", "role": "C", "stars": 3},
-      {"name": "Salah", "role": "A", "stars": 5},
-      {"name": "Marmoush", "role": "A", "stars": 4},
-      {"name": "Mostafa Mohamed", "role": "A", "stars": 3},
-      {"name": "Afsha", "role": "C", "stars": 3}
+      {
+        "id": "atizigi_gha",
+        "name": "Lawrence Ati-Zigi",
+        "role": "P",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "seidu_gha",
+        "name": "Alidu Seidu",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "yirenkyi_gha",
+        "name": "Caleb Yirenkyi",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "adjetey_gha",
+        "name": "Jonas Adjetey",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "partey_gha",
+        "name": "Thomas Partey",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mumin_gha",
+        "name": "Abdul Mumin",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "fatawu_gha",
+        "name": "Abdul Fatawu",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sibo_gha",
+        "name": "Kwasi Sibo",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "ayew_gha",
+        "name": "Jordan Ayew",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "thomasasante_gha",
+        "name": "Brandon Thomas-Asante",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "semenyo_gha",
+        "name": "Antoine Semenyo",
+        "role": "C",
+        "stars": 1,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "anang_gha",
+        "name": "Joseph Anang",
+        "role": "P",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "baah_gha",
+        "name": "Christopher Bonsu Baah",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "mensah_gha",
+        "name": "Gideon Mensah",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "owusu_gha",
+        "name": "Elisha Owusu",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "asare_gha",
+        "name": "Benjamin Asare",
+        "role": "P",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "baba_gha",
+        "name": "Abdul Rahman Baba",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "opoku_gha",
+        "name": "Jerome Opoku",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "williams_gha",
+        "name": "Iñaki Williams",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "boakye_gha",
+        "name": "Augustine Boakye",
+        "role": "C",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "oppong_gha",
+        "name": "Kojo Peprah Oppong",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "sulemana_gha",
+        "name": "Kamaldeen Sulemana",
+        "role": "A",
+        "stars": 2,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "luckassen_gha",
+        "name": "Derrick Luckassen",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "nuamah_gha",
+        "name": "Ernest Nuamah",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "adu_gha",
+        "name": "Prince Kwabena Adu",
+        "role": "A",
+        "stars": 3,
+        "goals_group_stage": 0
+      },
+      {
+        "id": "senaya_gha",
+        "name": "Marvin Senaya",
+        "role": "D",
+        "stars": 3,
+        "goals_group_stage": 0
+      }
     ]
   }
 ]

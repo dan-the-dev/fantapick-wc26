@@ -1,5 +1,7 @@
 .PHONY: dev db-start db-stop db-reset \
         seed seed-reset seed-r16 seed-qf seed-sf seed-final \
+        seed-fake-drafts seed-fake-drafts-prod \
+        seed-reset-prod \
         push-schema
 
 # ── Dev server ───────────────────────────────────────────────
@@ -34,6 +36,23 @@ seed-sf:
 
 seed-final:
 	bash supabase/seeds/seed.sh final
+
+seed-fake-drafts:
+	psql postgresql://postgres:postgres@localhost:54322/postgres -f supabase/seeds/seed_fake_drafts.sql
+
+seed-fake-drafts-prod:
+	psql "$(PROD_DB_URL)" -f supabase/seeds/seed_fake_drafts.sql
+
+seed-reset-prod:
+	@echo "⚠️  Reset PRODUZIONE — truncate drafts/match_data/qualified_teams, round_state → upcoming"
+	psql "$(PROD_DB_URL)" -c "\
+	  truncate public.drafts restart identity cascade; \
+	  truncate public.match_data restart identity cascade; \
+	  truncate public.qualified_teams; \
+	  update public.round_state set state = 'upcoming', updated_at = now();"
+	psql "$(PROD_DB_URL)" -f supabase/seeds/_base.sql
+	psql "$(PROD_DB_URL)" -f supabase/seeds/match_data_r32.sql
+	@echo "✅ Produzione resettata per r32"
 
 # ── Push schema to production ────────────────────────────────
 # Set PROD_DB_URL in your shell first:

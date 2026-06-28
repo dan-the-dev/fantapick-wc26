@@ -402,7 +402,7 @@ body {
   background: linear-gradient(180deg, #0a2d16 0%, #082510 55%, #060e08 100%);
   border: 1px solid #1a4a28;
   flex: 1;
-  min-height: 380px;
+  min-height: 456px;
 }
 .pitch-lines {
   position: absolute;
@@ -811,43 +811,24 @@ body {
 }
 .bench-strip::-webkit-scrollbar { display: none; }
 
-.bench-player {
-  flex: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  cursor: pointer;
-  padding: 7px 8px;
-  border-radius: 10px;
-  border: 1.5px solid var(--border);
-  background: var(--panel);
-  min-width: 58px;
-  max-width: 70px;
-  transition: all 0.15s;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-}
-.bench-player.selected {
+.bench-player { user-select: none; -webkit-tap-highlight-color: transparent; }
+.bench-player.bench-selected {
   border-color: var(--gold);
   background: #1a0f00;
   box-shadow: 0 0 10px -4px var(--gold);
 }
-.bench-player.assigned {
-  opacity: 0.28;
+.bench-player.bench-assigned {
+  border-color: var(--gold);
+  cursor: default;
   pointer-events: none;
 }
-.bench-player:active:not(.assigned) { transform: scale(0.94); }
-.bench-player-name {
+.bench-player:active:not(.bench-assigned) { transform: scale(0.98); }
+.bench-in-campo {
   font-family: var(--font-title);
   font-size: 10px;
   font-weight: 700;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 56px;
-  text-align: center;
-  color: var(--text);
+  color: var(--gold);
+  letter-spacing: 0.3px;
 }
 
 /* -------- SWAP DRAWER -------- */
@@ -981,7 +962,7 @@ body {
   #ct-list .ct-card { flex: 1; min-width: 0; }
 
   /* ---- Formation ---- */
-  .pitch-wrap { min-height: 420px; }
+  .pitch-wrap { min-height: 504px; }
 
   /* ---- Result 2-column ---- */
   .result-main {

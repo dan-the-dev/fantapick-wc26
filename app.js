@@ -376,7 +376,11 @@ function roleClass(r) { return {P:'role-p',D:'role-d',C:'role-c',A:'role-a'}[r]|
 function roleName(r)  { return {P:'POR',D:'DIF',C:'CEN',A:'ATT'}[r]||r; }
 function playerKey(p) { return `${p.name}|${p.team}`; }
 
-const TEAM_ABBR = {'Netherlands':'NED','South Korea':'KOR','Switzerland':'SUI','Costa Rica':'CRC'};
+const TEAM_ABBR = {
+  'Netherlands':'NED','South Korea':'KOR','Switzerland':'SUI','Costa Rica':'CRC',
+  'South Africa':'RSA','Ivory Coast':'CIV','Cape Verde':'CPV',
+  'Bosnia':'BIH','Australia':'AUS','Iran':'IRN',
+};
 function teamAbbr(t) { return TEAM_ABBR[t] || t.slice(0,3).toUpperCase(); }
 function getPlayerFixture(p) {
   const m = (DATA.fixtures?.matches||[]).find(m => m.home===p.team||m.away===p.team);
@@ -403,6 +407,31 @@ function shuffle(arr) {
   return a;
 }
 function sampleN(arr, n) { return shuffle(arr).slice(0, n); }
+
+/* Pick 4 candidates from pool using star-tier distribution:
+   Slot 0: 4-5★  Slot 1: 3-4★  Slot 2: 2-3★  Slot 3: 1-2★
+   Falls back to any remaining player if a tier is exhausted.
+   Pass rng for seeded mode, null for Math.random mode. */
+function pickTiered(pool, rng) {
+  const sh = arr => rng ? shuffleRng(arr, rng) : shuffle(arr);
+  const tiers = [
+    pool.filter(p => p.stars >= 4),                            // slot 0: 4-5★
+    pool.filter(p => p.stars >= 3 && p.stars <= 4),            // slot 1: 3-4★
+    pool.filter(p => p.stars >= 2 && p.stars <= 3),            // slot 2: 2-3★
+    pool.filter(p => p.stars >= 1 && p.stars <= 2),            // slot 3: 1-2★
+  ];
+  const candidates = [], seen = new Set();
+  for (const tier of tiers) {
+    if (candidates.length >= 4) break;
+    const pick = sh(tier).find(p => !seen.has(playerKey(p)));
+    if (pick) { candidates.push(pick); seen.add(playerKey(pick)); }
+  }
+  for (const p of sh(pool)) {
+    if (candidates.length >= 4) break;
+    if (!seen.has(playerKey(p))) { candidates.push(p); seen.add(playerKey(p)); }
+  }
+  return candidates.slice(0, 4);
+}
 
 /* Seeded PRNG — FNV-1a hash of seed string → xorshift32 */
 function mkRng(seed) {
@@ -452,19 +481,7 @@ function getCandidates() {
     const filtered = available.filter(p => p.role === forced[0]);
     if (filtered.length > 0) pool = filtered;
   }
-  const byRole = {P:[],D:[],C:[],A:[]};
-  for (const p of pool) (byRole[p.role]||[]).push(p);
-  const candidates = [], seen = new Set();
-  for (const r of shuffle(['P','D','D','C','C','A','A','D','C','A'])) {
-    if (candidates.length >= 4) break;
-    const pick = sampleN(byRole[r]||[],3).find(p => !seen.has(playerKey(p)));
-    if (pick) { candidates.push(pick); seen.add(playerKey(pick)); }
-  }
-  for (const p of shuffle(pool)) {
-    if (candidates.length >= 4) break;
-    if (!seen.has(playerKey(p))) { candidates.push(p); seen.add(playerKey(p)); }
-  }
-  S.candidatesCache = candidates.slice(0,4);
+  S.candidatesCache = pickTiered(pool, null);
   return S.candidatesCache;
 }
 function getCtOptions() {
@@ -519,23 +536,7 @@ function generateAllPools(rng) {
       if (filtered.length > 0) pool = filtered;
     }
 
-    const byRole = {P:[],D:[],C:[],A:[]};
-    for (const p of pool) (byRole[p.role]||[]).push(p);
-
-    const roleOrder = shuffleRng(['P','D','D','C','C','A','A','D','C','A'], rng);
-    const candidates = [], seen = new Set();
-    for (const r of roleOrder) {
-      if (candidates.length >= 4) break;
-      if (!byRole[r]?.length) continue;
-      const p = shuffleRng(byRole[r], rng).find(p => !seen.has(playerKey(p)));
-      if (p) { candidates.push(p); seen.add(playerKey(p)); }
-    }
-    for (const p of shuffleRng(pool, rng)) {
-      if (candidates.length >= 4) break;
-      if (!seen.has(playerKey(p))) { candidates.push(p); seen.add(playerKey(p)); }
-    }
-
-    const final = candidates.slice(0, 4);
+    const final = pickTiered(pool, rng);
     pools.push({ pick, candidates: final });
     final.forEach(p => usedInPools.add(playerKey(p)));
     if (final.length > 0) simulatedDrafted.push(final[0]);
@@ -1158,7 +1159,7 @@ function showFormationScreen() {
         `).join('')}
       </div>
 
-      <div class="pitch-wrap" id="pitch" style="min-height:272px;margin-top:8px;flex:none;">
+      <div class="pitch-wrap" id="pitch" style="min-height:326px;margin-top:8px;flex:none;">
         ${pitchSvg()}
         ${fd.slots.map((slot,i)=>slotNodeHtml(slot,i)).join('')}
       </div>
@@ -1169,7 +1170,7 @@ function showFormationScreen() {
           ${S.captainKey?'👑 Capitano impostato':'Tocca slot pieno → Capitano'}
         </div>
       </div>
-      <div class="bench-strip" id="bench" style="margin-top:6px;">
+      <div class="flex-col" id="bench" style="margin-top:6px;gap:6px;">
         ${S.drafted.map((p,i)=>benchPlayerHtml(p,i)).join('')}
       </div>
       <div class="subtitle" style="margin-top:6px;font-size:11px;">
@@ -1230,13 +1231,28 @@ function slotNodeHtml(slot, slotIdx) {
 }
 
 function benchPlayerHtml(p, i) {
-  const assigned=isAssigned(p), selected=S.selectedBench===i;
+  const fix = getPlayerFixture(p);
+  const parts = p.name.split(' ');
+  const surname = parts[parts.length - 1];
+  const firstName = parts.slice(0, -1).join(' ');
+  const assigned = isAssigned(p);
+  const selected = S.selectedBench === i;
   return `
-    <div class="bench-player ${selected?'selected':''} ${assigned?'assigned':''}"
-         id="bench-${i}" onclick="tapBench(${i})">
-      <span class="role-badge ${roleClass(p.role)}" style="font-size:9px;padding:1px 5px;">${roleName(p.role)}</span>
-      <span style="font-size:13px;line-height:1;">${esc(p.flag)}</span>
-      <span class="bench-player-name">${esc(p.name.split(' ').pop())}</span>
+    <div class="pick-card-h bench-player${selected?' bench-selected':''}${assigned?' bench-assigned':''}"
+         id="bench-${i}" ${assigned ? '' : `onclick="tapBench(${i})"`}>
+      <div class="pch-left">
+        <span class="pch-flag">${esc(p.flag)}</span>
+        <span class="role-badge ${roleClass(p.role)}">${roleName(p.role)}</span>
+      </div>
+      <div class="pch-center">
+        ${firstName ? `<div class="pch-firstname">${esc(firstName)}</div>` : ''}
+        <div class="pch-surname">${esc(surname)}</div>
+        ${starsHtml(p.stars)}
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex:none;">
+        ${fix ? `<div class="pch-fix">${esc(fix)}</div>` : ''}
+        ${assigned ? `<div class="bench-in-campo">In campo</div>` : ''}
+      </div>
     </div>`;
 }
 
@@ -1252,9 +1268,7 @@ function tapBench(i) {
   const p=S.drafted[i];
   if (!p||isAssigned(p)) return;
   S.selectedBench=(S.selectedBench===i)?null:i;
-  document.querySelectorAll('.bench-player').forEach((el,idx)=>{
-    el.classList.toggle('selected',idx===S.selectedBench);
-  });
+  updateBench();
 }
 
 function tapSlot(slotIdx) {
@@ -1379,9 +1393,14 @@ function showSlotDrawer(slotIdx) {
 function slotDrawerRowHtml(p, i, slotIdx) {
   const targetRole=FORMATIONS[S.formation].slots[slotIdx].r;
   const canMove=p.role===targetRole;
-  const moveBtn=canMove
-    ?`<button class="btn btn-ghost" style="flex:none;font-size:11px;padding:5px 9px;border-color:var(--good);color:var(--good);"
-        onclick="assignFromDrawer(${i},${slotIdx})">✓</button>`:'';
+  const inCampo=isAssigned(p);
+  let moveBtn='';
+  if (canMove) {
+    moveBtn=inCampo
+      ?`<span style="flex:none;font-size:10px;color:var(--muted);padding:5px 8px;border:1px solid var(--border);border-radius:6px;font-family:var(--font-title);opacity:0.5;">In campo</span>`
+      :`<button class="btn btn-ghost" style="flex:none;font-size:11px;padding:5px 9px;border-color:var(--good);color:var(--good);"
+          onclick="assignFromDrawer(${i},${slotIdx})">✓</button>`;
+  }
   const swapBtn=S.swapsLeft>0
     ?`<button class="btn btn-ghost" style="flex:none;font-size:11px;padding:5px 9px;border-color:var(--bad);color:var(--bad);"
         onclick="executeSacrifice(${i},${slotIdx})">⇄</button>`:'';
@@ -1390,7 +1409,7 @@ function slotDrawerRowHtml(p, i, slotIdx) {
       <span class="role-badge ${roleClass(p.role)}">${roleName(p.role)}</span>
       <span style="font-size:14px;">${esc(p.flag)}</span>
       <span style="flex:1;font-size:13px;font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#CBD5E0;">${esc(p.name)}</span>
-      <div style="display:flex;gap:4px;flex:none;">${moveBtn}${swapBtn}</div>
+      <div style="display:flex;gap:4px;flex:none;align-items:center;">${moveBtn}${swapBtn}</div>
     </div>`;
 }
 
@@ -1454,7 +1473,7 @@ function showSwapPickPlayer(role, targetSlotIdx) {
     const swapId = `swap_${S.swapPools.length + 1}`;
     const swapRng = mkRng((S.draftSeed || 'fallback') + '_' + swapId);
     const available = S.playerPool.filter(p => p.role === role && !S.usedKeys.has(playerKey(p)));
-    const candidates = shuffleRng(available, swapRng).slice(0, 4);
+    const candidates = pickTiered(available, swapRng);
     swapPool = { id: swapId, slot: role, candidates };
     S.swapPools.push(swapPool);
     S.activeSwapPool = swapId;
@@ -2478,6 +2497,12 @@ function renderAdminSettingsTab() {
             <div class="subtitle" style="margin-bottom:10px;">Cancella tutti i draft del round corrente.</div>
             <button class="btn btn-ghost" style="border-color:var(--bad);color:var(--bad);width:100%;"
               onclick="resetRoundDrafts()">Reset Draft ⚠️</button>
+          </div>
+          <div style="border:1px solid var(--muted);border-radius:var(--radius-sm);padding:14px;margin-top:8px;">
+            <div class="section-head" style="color:var(--muted);margin-bottom:6px;">DEV — Draft di test</div>
+            <div class="subtitle" style="margin-bottom:10px;">Inserisce 12 draft casuali con giocatori reali per testare la classifica.</div>
+            <button class="btn btn-ghost" style="width:100%;"
+              onclick="adminSeedFakeDrafts()">Inserisci draft di test</button>
           </div>` : ''}
     </div>`;
 }
@@ -2514,6 +2539,137 @@ async function resetRoundDrafts() {
   if (s.drafts) delete s.drafts[round];
   saveStorage(s);
   showToast('Draft resettati!');
+  showAdminPanel('settings');
+}
+
+async function adminSeedFakeDrafts() {
+  if (!DEV_MODE) return;
+  const round = getRoundState().currentRound;
+  if (!confirm(`Inserisce 12 draft di test per il round "${round}". Continua?`)) return;
+
+  const p = (name, team, role, stars, flag, isCaptain=false) =>
+    ({name, team, role, stars, flag, pts:0, finalPts:0, isCaptain});
+
+  const drafts = [
+    { nick:'TifosoBR', score:24, ct:false, captain:'Alexander-Arnold|England', formation:'"4-4-3"',
+      coach:{name:'Néstor Lorenzo',team:'Colombia',flag:'🇨🇴',formation:'4-5-1'},
+      picks:[p('Dmitrović','Serbia','P',3,'🇷🇸'),p('Rúben Dias','Portugal','D',5,'🇵🇹'),
+             p('Alexander-Arnold','England','D',5,'🏴󠁧󠁢󠁥󠁮󠁧󠁿',true),p('Yoshida','Japan','D',4,'🇯🇵'),
+             p('Kim Young-gwon','South Korea','D',3,'🇰🇷'),p('Wataru Endō','Japan','C',4,'🇯🇵'),
+             p('Guèye','Senegal','C',4,'🇸🇳'),p('Buchanan','Canada','C',4,'🇨🇦'),
+             p('David','Canada','A',5,'🇨🇦'),p('En-Nesyri','Morocco','A',4,'🇲🇦'),
+             p('Córdoba','Colombia','A',3,'🇨🇴')] },
+    { nick:'Calcio2026', score:21, ct:false, captain:'Gnabry|Germany', formation:'"3-5-2"',
+      coach:{name:'Jesse Marsch',team:'Canada',flag:'🇨🇦',formation:'3-5-2'},
+      picks:[p('Schmeichel','Denmark','P',4,'🇩🇰'),p('Kim Min-Jae','South Korea','D',5,'🇰🇷'),
+             p('Cáceres','Uruguay','D',3,'🇺🇾'),p('Dumfries','Netherlands','D',4,'🇳🇱'),
+             p('Bruno Guimarães','Brazil','C',5,'🇧🇷'),p('Zieliński','Poland','C',5,'🇵🇱'),
+             p('Guèye','Senegal','C',4,'🇸🇳'),p('Kovačić','Croatia','C',4,'🇭🇷'),
+             p('Griezmann','France','C',5,'🇫🇷'),p('Gnabry','Germany','A',4,'🇩🇪',true),
+             p('Minamino','Japan','A',4,'🇯🇵')] },
+    { nick:'ScudettoMio', score:17, ct:false, captain:'Barella|Italy', formation:'"4-3-3"',
+      coach:{name:'Ralf Rangnick',team:'Austria',flag:'🇦🇹',formation:'4-5-1'},
+      picks:[p('Lloris','France','P',4,'🇫🇷'),p('T. Hernández','France','D',4,'🇫🇷'),
+             p('Castagne','Belgium','D',3,'🇧🇪'),p('Veljković','Serbia','D',3,'🇷🇸'),
+             p('Scalvini','Italy','D',4,'🇮🇹'),p('Paredes','Argentina','C',3,'🇦🇷'),
+             p('Camavinga','France','C',4,'🇫🇷'),p('Barella','Italy','C',5,'🇮🇹',true),
+             p('Mertens','Belgium','A',4,'🇧🇪'),p('Giroud','France','A',4,'🇫🇷'),
+             p('En-Nesyri','Morocco','A',4,'🇲🇦')] },
+    { nick:'ForzaAzzurri', score:15, ct:false, captain:'Mbappé|France', formation:'"4-4-3"',
+      coach:{name:'Domenico Tedesco',team:'Belgium',flag:'🇧🇪',formation:'4-3-3'},
+      picks:[p('Diogo Costa','Portugal','P',4,'🇵🇹'),p('Saïss','Morocco','D',4,'🇲🇦'),
+             p('N. Molina','Argentina','D',4,'🇦🇷'),p('Kim Jin-su','South Korea','D',3,'🇰🇷'),
+             p('Ilić','Serbia','C',3,'🇷🇸'),p('Plata','Ecuador','C',3,'🇪🇨'),
+             p('Kamada','Japan','C',4,'🇯🇵'),p('Valverde','Uruguay','C',5,'🇺🇾'),
+             p('Mbappé','France','A',5,'🇫🇷',true),p('Gnabry','Germany','A',4,'🇩🇪'),
+             p('Lautaro Martínez','Argentina','A',5,'🇦🇷')] },
+    { nick:'GoalMachine', score:13, ct:false, captain:'Aguerd|Morocco', formation:'"4-4-2"',
+      coach:{name:'Murat Yakin',team:'Switzerland',flag:'🇨🇭',formation:'4-5-1'},
+      picks:[p('Kobel','Switzerland','P',4,'🇨🇭'),p('Schlotterbeck','Germany','D',4,'🇩🇪'),
+             p('Torres','Ecuador','D',3,'🇪🇨'),p('Aguerd','Morocco','D',4,'🇲🇦',true),
+             p('Tsimikas','Greece','D',3,'🇬🇷'),p('Szymański','Poland','C',4,'🇵🇱'),
+             p('Klaassen','Netherlands','C',3,'🇳🇱'),p('Trezeguet','Egypt','C',3,'🇪🇬'),
+             p('Grosicki','Poland','C',3,'🇵🇱'),p('Immobile','Italy','A',4,'🇮🇹'),
+             p('Lewandowski','Poland','A',5,'🇵🇱')] },
+    { nick:'TrequartistaFC', score:11, ct:false, captain:'Bruno Fernandes|Portugal', formation:'"3-4-3"',
+      coach:{name:'Ronald Koeman',team:'Netherlands',flag:'🇳🇱',formation:'4-3-3'},
+      picks:[p('Tagnaouti','Morocco','P',3,'🇲🇦'),p('Adekugbe','Canada','D',3,'🇨🇦'),
+             p('Paulo Díaz','Chile','D',3,'🇨🇱'),p('Cancelo','Portugal','D',4,'🇵🇹'),
+             p('Shaqiri','Switzerland','C',4,'🇨🇭'),p('Bruno Fernandes','Portugal','C',5,'🇵🇹',true),
+             p('Sabiri','Morocco','C',3,'🇲🇦'),p('Onana','Belgium','C',4,'🇧🇪'),
+             p('Son','South Korea','A',5,'🇰🇷'),p('Cornelius','Denmark','A',3,'🇩🇰'),
+             p('Pellé','China','A',3,'🇨🇳')] },
+    { nick:'GoldenBoot26', score:8, ct:false, captain:'Yamal|Spain', formation:'"4-3-3"',
+      coach:{name:'Aliou Cissé',team:'Senegal',flag:'🇸🇳',formation:'4-3-3'},
+      picks:[p('Bounou','Morocco','P',5,'🇲🇦'),p('Hincapié','Ecuador','D',4,'🇪🇨'),
+             p('Alexander-Arnold','England','D',5,'🏴󠁧󠁢󠁥󠁮󠁧󠁿'),p('Danilo Pereira','Portugal','D',3,'🇵🇹'),
+             p('Granqvist','Sweden','D',3,'🇸🇪'),p('Kouyaté','Senegal','C',3,'🇸🇳'),
+             p('De Arrascaeta','Uruguay','C',4,'🇺🇾'),p('Zieliński','Poland','C',5,'🇵🇱'),
+             p('Yamal','Spain','A',5,'🇪🇸',true),p('Budimir','Croatia','A',3,'🇭🇷'),
+             p('Ismaïla Sarr','Senegal','A',4,'🇸🇳')] },
+    { nick:'WCFan99', score:6, ct:false, captain:'E. Valencia|Ecuador', formation:'"4-3-3"',
+      coach:{name:'Rui Vitória',team:'Egypt',flag:'🇪🇬',formation:'4-5-1'},
+      picks:[p('Camilo Vargas','Colombia','P',3,'🇨🇴'),p('Itakura','Japan','D',3,'🇯🇵'),
+             p('Mojica','Colombia','D',3,'🇨🇴'),p('Gomaa','Egypt','D',3,'🇪🇬'),
+             p('Muñoz','Colombia','D',3,'🇨🇴'),p('Sabiri','Morocco','C',3,'🇲🇦'),
+             p('Diatta','Senegal','C',3,'🇸🇳'),p('Afsha','Egypt','C',3,'🇪🇬'),
+             p('E. Valencia','Ecuador','A',3,'🇪🇨',true),p('Immobile','Italy','A',4,'🇮🇹'),
+             p('Pavón','Chile','A',3,'🇨🇱')] },
+    { nick:'SuperCoppa', score:5, ct:false, captain:'Kroos|Germany', formation:'"3-5-2"',
+      coach:{name:'Luciano Spalletti',team:'Italy',flag:'🇮🇹',formation:'3-5-2'},
+      picks:[p('Donnarumma','Italy','P',5,'🇮🇹'),p('Ajayi','Nigeria','D',3,'🇳🇬'),
+             p('Pavlović','Serbia','D',3,'🇷🇸'),p('Vestergaard','Denmark','D',4,'🇩🇰'),
+             p('Lukić','Serbia','C',3,'🇷🇸'),p('Bentancur','Uruguay','C',4,'🇺🇾'),
+             p('Kroos','Germany','C',5,'🇩🇪',true),p('De Paul','Argentina','C',4,'🇦🇷'),
+             p('Elanga','Sweden','C',4,'🇸🇪'),p('Vinicius Jr.','Brazil','A',5,'🇧🇷'),
+             p('Ismaïla Sarr','Senegal','A',4,'🇸🇳')] },
+    { nick:'Mister_X', score:4, ct:false, captain:'Lukaku|Belgium', formation:'"4-3-3"',
+      coach:{name:'Hong Myung-bo',team:'South Korea',flag:'🇰🇷',formation:'4-5-1'},
+      picks:[p('Matt Turner','USA','P',4,'🇺🇸'),p('Jakobs','Senegal','D',3,'🇸🇳'),
+             p('Cash','Poland','D',3,'🇵🇱'),p('Faes','Belgium','D',3,'🇧🇪'),
+             p('Danilo','Brazil','D',4,'🇧🇷'),p('Amrabat','Morocco','C',4,'🇲🇦'),
+             p('de Roon','Netherlands','C',3,'🇳🇱'),p('Szymański','Poland','C',4,'🇵🇱'),
+             p('Lookman','Nigeria','A',5,'🇳🇬'),p('Lukaku','Belgium','A',5,'🇧🇪',true),
+             p('Pulisic','USA','A',5,'🇺🇸')] },
+    { nick:'UltrasTifoso', score:2, ct:false, captain:'Gyökeres|Sweden', formation:'"4-3-3"',
+      coach:{name:'Zlatko Dalić',team:'Croatia',flag:'🇭🇷',formation:'4-3-3'},
+      picks:[p('Borjan','Canada','P',3,'🇨🇦'),p('Maripán','Chile','D',3,'🇨🇱'),
+             p('Bah','Denmark','D',3,'🇩🇰'),p('Ola Aina','Nigeria','D',3,'🇳🇬'),
+             p('Laporte','Spain','D',4,'🇪🇸'),p('Grillitsch','Austria','C',3,'🇦🇹'),
+             p('Zizo','Egypt','C',3,'🇪🇬'),p('Iheanacho','Nigeria','C',3,'🇳🇬'),
+             p('Gyökeres','Sweden','A',5,'🇸🇪',true),p('Budimir','Croatia','A',3,'🇭🇷'),
+             p('Mané','Senegal','A',5,'🇸🇳')] },
+    { nick:'BallondOr26', score:0, ct:false, captain:'Musah|USA', formation:'"4-4-2"',
+      coach:{name:'Luis de la Fuente',team:'Spain',flag:'🇪🇸',formation:'4-3-3'},
+      picks:[p('Danny Ward','Wales','P',3,'🏴󠁧󠁢󠁷󠁬󠁳󠁿'),p('Laimer','Austria','D',4,'🇦🇹'),
+             p('Hincapié','Ecuador','D',4,'🇪🇨'),p('C. Roberts','Wales','D',3,'🏴󠁧󠁢󠁷󠁬󠁳󠁿'),
+             p('Guilherme Arana','Brazil','D',3,'🇧🇷'),p('Bae Jun-ho','South Korea','C',4,'🇰🇷'),
+             p('Palacios','Chile','C',3,'🇨🇱'),p('Trezeguet','Egypt','C',3,'🇪🇬'),
+             p('Hwang Hee-chan','South Korea','A',4,'🇰🇷'),p('Pellistri','Uruguay','A',3,'🇺🇾'),
+             p('Musah','USA','C',4,'🇺🇸',true)] },
+  ];
+
+  const now = Date.now();
+  const rows = drafts.map((d, i) => ({
+    nickname: d.nick,
+    round,
+    coach: d.coach,
+    picks: d.picks,
+    formation: d.formation,
+    captain: d.captain,
+    score: d.score,
+    ct_bonus_applied: d.ct,
+    ts: now - (drafts.length - i) * 1800000,
+  }));
+
+  const data = await adminSupabaseCall(
+    () => sb.from('drafts').upsert(rows, { onConflict: 'round,nickname' }),
+    'Seed draft di test'
+  );
+  if (data === null) return;
+  _allDrafts[round] = rows.map(r => ({ nick:r.nickname, score:r.score, picks:r.picks,
+    captain:r.captain, formation:r.formation, ct:r.coach, ctBonusApplied:r.ct_bonus_applied }));
+  showToast(`${drafts.length} draft di test inseriti!`);
   showAdminPanel('settings');
 }
 
