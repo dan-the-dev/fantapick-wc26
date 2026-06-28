@@ -119,7 +119,9 @@ npx serve .
 
 ## Admin Panel
 
-Navigate to `?page=admin`. The default password is:
+Navigate to **`https://wc26.fantapick.it/?page=admin`** (the game subdomain — not `fantapick.it`, which is the marketing landing page).
+
+The default password is:
 
 ```
 fantapick2026
@@ -174,7 +176,11 @@ fantapick2026
 
 ## Deployment
 
-Drag and drop the entire folder (all 4 files + `data/` directory) onto [Netlify Drop](https://app.netlify.com/drop). That's it.
+The game is hosted at **https://wc26.fantapick.it** (Netlify). The main site **fantapick.it** is a separate Next.js landing page on Vercel — deploying there will not serve this app.
+
+Drag and drop the entire folder (all files + `data/` directory) onto [Netlify Drop](https://app.netlify.com/drop), or connect this repo to the `wc26` Netlify site.
+
+After deploy, bump the `?v=` query on `app.js` and `style.css` in `index.html` if browsers/CDN serve a stale bundle.
 
 ---
 

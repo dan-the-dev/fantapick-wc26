@@ -1,0 +1,19 @@
+# FantaPick WC26 — static deploy (wc26.fantapick.it)
+[build]
+  publish = "."
+
+# SPA fallback: serve index.html for unknown paths; query string is preserved by default.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/app.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

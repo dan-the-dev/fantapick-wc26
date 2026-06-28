@@ -24,6 +24,16 @@ const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
    ============================================================ */
 const DEV_MODE = new URLSearchParams(location.search).has('dev') || false;
 
+/** Read ?page=… from search or #page=… from hash (tolerates common URL mistakes). */
+function getPageParam() {
+  const fromSearch = new URLSearchParams(location.search).get('page');
+  if (fromSearch) return fromSearch;
+  const hash = location.hash.replace(/^#/, '');
+  if (!hash) return null;
+  return new URLSearchParams(hash.includes('=') ? hash : `page=${hash}`).get('page');
+}
+function isAdminPage() { return getPageParam() === 'admin'; }
+
 /* ============================================================
    CONFIG
    ============================================================ */
@@ -2050,15 +2060,16 @@ async function init() {
     await loadData();
     await loadSupabaseState();
     if (DEV_MODE || IS_LOCAL) injectDevBadge();
+    if (DEV_MODE) console.log('[INIT] href:', location.href, '| page:', getPageParam());
 
-    // Nickname gate — must be set before any screen is shown
-    if (!getNickname()) await showNicknameScreen();
-
-    // Admin page routing
-    if (new URLSearchParams(location.search).get('page') === 'admin') {
+    // Admin page routing — before nickname gate
+    if (isAdminPage()) {
       if (isAdminAuthed()) showAdminPanel(); else showAdminLogin();
       return;
     }
+
+    // Nickname gate — must be set before game screens
+    if (!getNickname()) await showNicknameScreen();
 
     startPublicPolling();
 
