@@ -685,13 +685,12 @@ function getAdminMatchForTeam(team, roundMd) {
 
 /* player_stats format (JSONB):
    { events: [{id, type, playerKey, playerName, team, minute}], played: [playerKey,...] }
-   played: null/undefined = all players of the match played (default) */
+   played: null/undefined/[] = nobody marked; only listed players score */
 function scorePlayerAdmin(p, matchPlayers, match) {
   const pKey   = playerKey(p);
   const events = (matchPlayers && matchPlayers.events) || [];
   const played = matchPlayers && matchPlayers.played;
-  // null/undefined played = all played; explicit array = only listed players
-  if (Array.isArray(played) && !played.includes(pKey)) return 0;
+  if (!Array.isArray(played) || !played.includes(pKey)) return 0;
 
   let pts = 0;
   for (const e of events.filter(ev => ev.playerKey === pKey)) {
@@ -2396,7 +2395,7 @@ function renderMatchEditPanel(match, matchData) {
   const completed = matchData.completed || false;
   const mp        = matchData.players || {};
   const events    = mp.events  || [];
-  const played    = mp.played; // null = all played
+  const played    = mp.played; // null/undefined = none marked
 
   const mid  = jsProp(match.id);
 
@@ -2466,7 +2465,7 @@ function renderMatchEditPanel(match, matchData) {
         <div class="me-presenze-list">
           ${teamPlayers.map(p => {
             const pk = playerKey(p);
-            const isPlayed = !Array.isArray(played) || played.includes(pk);
+            const isPlayed = Array.isArray(played) && played.includes(pk);
             return `
               <label class="me-pres-row">
                 <input type="checkbox" ${isPlayed?'checked':''}
@@ -2583,17 +2582,10 @@ function setMatchStatus(matchId, status) {
 function togglePlayerPresence(matchId, pKey, present) {
   const round = getRoundState().currentRound;
   const md = _ensureMatch(round, matchId);
-  const fixture = (DATA.fixtures?.matches || []).find(m => m.id === matchId);
-  if (!fixture) return;
 
-  // Build full played list if not yet set (first interaction)
+  // Initialize empty list on first interaction (default: nobody marked as played)
   if (!Array.isArray(md.players.played)) {
-    const homeSq = DATA.squads.find(sq => sq.team === fixture.home);
-    const awaySq = DATA.squads.find(sq => sq.team === fixture.away);
-    md.players.played = [
-      ...(homeSq?.players || []).map(p => playerKey({...p, team: fixture.home})),
-      ...(awaySq?.players || []).map(p => playerKey({...p, team: fixture.away})),
-    ];
+    md.players.played = [];
   }
   if (present) {
     if (!md.players.played.includes(pKey)) md.players.played.push(pKey);
@@ -2608,6 +2600,10 @@ function addMatchEvent(matchId, event) {
   const md = _ensureMatch(round, matchId);
   md.players.events = md.players.events || [];
   md.players.events.push({ id: Math.random().toString(36).slice(2), ...event });
+  if (event.playerKey) {
+    if (!Array.isArray(md.players.played)) md.players.played = [];
+    if (!md.players.played.includes(event.playerKey)) md.players.played.push(event.playerKey);
+  }
   refreshMatchPanel(matchId);
   scheduleAdminRecalc();
 }
